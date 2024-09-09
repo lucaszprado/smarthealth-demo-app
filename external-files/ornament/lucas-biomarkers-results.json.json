@@ -1,0 +1,3604 @@
+{
+    "total": 113,
+    "biomarkers": [
+        {
+            "id": 32,
+            "categoryId": 17,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "cd10a672-55dd-477c-9499-1fde2580b1bd",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "7600.0",
+                    "originalValue": "7.6",
+                    "date": 1684281600,
+                    "originalUnitId": 26
+                }
+            ]
+        },
+        {
+            "id": 53,
+            "categoryId": 19,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "88720841-93fc-48b9-ade5-5888e23a8ed2",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "677097.0",
+                    "originalValue": "4.5",
+                    "date": 1684281600,
+                    "originalUnitId": 21
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "fd27a59d-6e9b-437e-9027-5aff6fca84e5",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "75.23744",
+                    "originalValue": "32",
+                    "date": 1684281600,
+                    "originalUnitId": 24
+                }
+            ]
+        },
+        {
+            "id": 50,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "9acaa088-7b5b-4f2e-935a-aff7628a5aa1",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "60754.064999999995",
+                    "originalValue": "10.7",
+                    "date": 1684281600,
+                    "originalUnitId": 29
+                }
+            ]
+        },
+        {
+            "id": 66,
+            "categoryId": 21,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "1845cd73-86f6-4af6-8b63-5738d3f1c615",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "45274.125",
+                    "originalValue": "19.5",
+                    "date": 1684281600,
+                    "originalUnitId": 29
+                }
+            ]
+        },
+        {
+            "id": 85,
+            "categoryId": 21,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "f3b4a68e-0f42-4fd4-8f69-1748b9686229",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "3176.8008999999997",
+                    "originalValue": "0.91",
+                    "date": 1684281600,
+                    "originalUnitId": 29
+                }
+            ]
+        },
+        {
+            "id": 187,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "f8dd3143-76f4-4bef-863b-7e019355b0a4",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "77.53949",
+                    "originalValue": "31.3",
+                    "date": 1684281600,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 212,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "ac7d3d23-3234-4ac4-b415-f6faa3a5195f",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "18.917092",
+                    "originalValue": "8.35",
+                    "date": 1684281600,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 213,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "638b7b97-8bdf-44a4-9158-bda5a205e3ce",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "151.909102",
+                    "originalValue": "25.7",
+                    "date": 1684281600,
+                    "originalUnitId": 24
+                }
+            ]
+        },
+        {
+            "id": 215,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "34a3e1be-553a-4748-b2a8-40ed9b51f54b",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.208061292",
+                    "originalValue": "282",
+                    "date": 1684281600,
+                    "originalUnitId": 58
+                }
+            ]
+        },
+        {
+            "id": 493,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "36bd9a09-a5a1-4741-b0ed-529d18847911",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.39911220000000003",
+                    "originalValue": "0.18",
+                    "date": 1684281600,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 1158,
+            "categoryId": 21,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "489070ca-ceec-4923-b2f5-db5f8316f943",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "90.29209589999999",
+                    "originalValue": "34.73",
+                    "date": 1695772800,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "categoryId": 22,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "42a761fc-4451-423a-8b9c-a06a17e810b3",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "5.8",
+                    "originalValue": "5.8",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 168,
+            "categoryId": 22,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "5a6ba0bf-e30e-45f4-ae83-269948859d4d",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "5162188.2",
+                    "originalValue": "93",
+                    "date": 1716336000,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "ab7d793f-bf21-4402-b203-2ef53e37194c",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "5328710.4",
+                    "originalValue": "96",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "c844022d-d774-440d-a340-008369d72bb9",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "4274069.8",
+                    "originalValue": "77",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 3320,
+            "categoryId": 22,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "a9947f4e-d9ca-4790-87d3-9241536a8f24",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "6660888.0",
+                    "originalValue": "120",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "categoryId": 23,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "5570ab73-0ca5-43dc-9051-e2922bac5c2d",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "6670.443",
+                    "originalValue": "0.39",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "a1bc4dff-c3bc-4b92-9ac9-04154f9913d3",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "10091.182999999999",
+                    "originalValue": "0.59",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 48,
+            "categoryId": 23,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "302c7f16-94b9-470e-a357-63179b31d7e9",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "1710.3700000000001",
+                    "originalValue": "0.1",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "75273f74-926e-4892-8e33-b8a0f65c2999",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "1881.4070000000002",
+                    "originalValue": "0.11",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 170,
+            "categoryId": 23,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "8babb0dd-9b77-4c91-bd1b-33ec42623efd",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "8380.813",
+                    "originalValue": "0.49",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "5ca03575-e948-46e6-84c3-ed9e3f0bfaa3",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "11972.59",
+                    "originalValue": "0.7",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "categoryId": 26,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "46c974f7-dc7d-4290-b048-d71432668041",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "1050844.2",
+                    "originalValue": "93",
+                    "date": 1716336000,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "06695baf-4bfb-48e1-b6dd-f6f4cf529ab5",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "644065.7999999999",
+                    "originalValue": "57",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "85b50f76-8019-4001-b432-de7ff075ffc9",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "1050844.2",
+                    "originalValue": "93",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "36e965ca-0669-4649-ab30-8215c2a78f34",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "1163838.2",
+                    "originalValue": "103",
+                    "date": 1673611290,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 57,
+            "categoryId": 26,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "892611c2-9abe-4c8b-8f1e-993d27ceec0a",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "5146717.100000001",
+                    "originalValue": "199",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "fddee3e9-0c33-499c-87fa-9a514bcdf538",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "6077781.5",
+                    "originalValue": "235",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "c90658bf-e32f-49b2-864d-bbdb277ae94b",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "4784636.5",
+                    "originalValue": "185",
+                    "date": 1673611290,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 58,
+            "categoryId": 26,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "7ae7a937-fd83-4804-a400-156551af2261",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "3646711.2",
+                    "originalValue": "141",
+                    "date": 1716336000,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "e31f763d-888c-407b-a46f-111e6ada15b9",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "3879480.0",
+                    "originalValue": "150",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "c560caed-6aa5-47c7-a3e8-b274b8bb8648",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "3905343.2",
+                    "originalValue": "151",
+                    "date": 1673611290,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 109,
+            "categoryId": 26,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "ce11cba7-3d9d-4ee0-8e76-e4d50b5e9638",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "1293150.0",
+                    "originalValue": "50",
+                    "date": 1716336000,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "7f4baef9-87e8-4838-8e5d-1b9687737d48",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "1267296.8",
+                    "originalValue": "49",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "1de1e47e-8c83-41ac-aba9-9f6d75efd60d",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "1370749.6",
+                    "originalValue": "53",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "1b3291ea-8382-46a9-b797-e33d26a9c4d9",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "879342.0",
+                    "originalValue": "34",
+                    "date": 1673611290,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 205,
+            "categoryId": 26,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "48ea1c92-3ded-4181-8fd2-855947a4439c",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "3155310.4",
+                    "originalValue": "122",
+                    "date": 1716336000,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "988278df-d4d6-4074-b2f9-282509cfead9",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "3517395.2",
+                    "originalValue": "136",
+                    "date": 1695772800,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "e0c37946-6e2e-4e4a-a2c2-446b3cfecfcf",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "4189838.4",
+                    "originalValue": "162",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "bdff64e1-061d-457d-8f37-b27bc6fc80ad",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "3362216.0",
+                    "originalValue": "130",
+                    "date": 1673611290,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 139,
+            "categoryId": 29,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "0e04df3d-ea2a-418e-97a7-17bbbc9b2a13",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "93705.802",
+                    "originalValue": "1.06",
+                    "date": 1716336000,
+                    "originalUnitId": 28
+                },
+                {
+                    "seid": "00bf1324-52a4-4d46-8098-7ec1788c1902",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "85749.64899999999",
+                    "originalValue": "0.97",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 210,
+            "categoryId": 29,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "90ea2b14-9bcc-4786-85f0-e526bdae2aa0",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "6327000.0",
+                    "originalValue": "38",
+                    "date": 1684281600,
+                    "originalUnitId": 28
+                }
+            ]
+        },
+        {
+            "id": 217,
+            "categoryId": 29,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "8698233c-5950-4b17-b4c2-029368436df7",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "90.0",
+                    "originalValue": "90",
+                    "date": 1716336000,
+                    "originalUnitId": 43
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "categoryId": 30,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "cff9828f-b0c6-4642-931c-8e180f02c5b0",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "29.413211",
+                    "originalValue": "5.9",
+                    "date": 1684281600,
+                    "originalUnitId": 24
+                }
+            ]
+        },
+        {
+            "id": 824,
+            "categoryId": 30,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "902d787a-f61c-4ed9-a7c3-4a12aefaf292",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "12404.4072",
+                    "originalValue": "81.1",
+                    "date": 1684281600,
+                    "originalUnitId": 23
+                }
+            ]
+        },
+        {
+            "id": 896,
+            "categoryId": 30,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "088a3903-6a75-4fa7-82a0-e57f0602520b",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "122.30591999999999",
+                    "originalValue": "3.3",
+                    "date": 1684281600,
+                    "originalUnitId": 24
+                }
+            ]
+        },
+        {
+            "id": 945,
+            "categoryId": 32,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "d4875180-d13b-4439-8f69-b2484b9eafa6",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.6",
+                    "originalValue": "0.6",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 3728,
+            "categoryId": 32,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "eb807a78-6586-48c9-9972-ca4644dd34a5",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "86.3",
+                    "originalValue": "86.3",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "categoryId": 34,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "babf726a-dfaa-4687-898b-da72a6a002c1",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "19.0",
+                    "originalValue": "19",
+                    "date": 1716336000,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "7ccc6141-02eb-4b57-beb0-3fe0306e530e",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "19.0",
+                    "originalValue": "19",
+                    "date": 1695772800,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "7d0b3203-b086-47e5-8edb-abf3f5bc0e2b",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "20.0",
+                    "originalValue": "20",
+                    "date": 1684281600,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "eaf983c4-4746-4615-b696-baf24dfb1192",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "16.0",
+                    "originalValue": "16",
+                    "date": 1673611290,
+                    "originalUnitId": 8
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "categoryId": 34,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "41451654-ba00-4d8c-83c4-02723e8a83be",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "20.0",
+                    "originalValue": "20",
+                    "date": 1684281600,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "7d0a0136-f8a8-4f3b-828d-ba4e43e53dee",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "15.0",
+                    "originalValue": "15",
+                    "date": 1673611290,
+                    "originalUnitId": 8
+                }
+            ]
+        },
+        {
+            "id": 63,
+            "categoryId": 34,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "7d0e1b92-b066-43db-ba4b-90702271b91f",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "24.0",
+                    "originalValue": "24",
+                    "date": 1716336000,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "0f670645-dffa-4bbe-a784-47fa360c1b66",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "22.0",
+                    "originalValue": "22",
+                    "date": 1695772800,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "8d8830b6-0a15-4668-9832-d85c9172f7a0",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "23.0",
+                    "originalValue": "23",
+                    "date": 1684281600,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "44414f52-9377-4de6-8dc0-3cfeb130838a",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "19.0",
+                    "originalValue": "19",
+                    "date": 1673611290,
+                    "originalUnitId": 8
+                }
+            ]
+        },
+        {
+            "id": 71,
+            "categoryId": 34,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "3b2f2d51-677a-4b01-9b26-a2f2562944c2",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "122.0",
+                    "originalValue": "122",
+                    "date": 1684281600,
+                    "originalUnitId": 8
+                }
+            ]
+        },
+        {
+            "id": 203,
+            "categoryId": 34,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "2f5f77a8-7ae2-492b-94e1-5bff8b83cadc",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "59.0",
+                    "originalValue": "59",
+                    "date": 1684281600,
+                    "originalUnitId": 8
+                },
+                {
+                    "seid": "6c7bb54c-147c-4699-9d6f-8faa52535db8",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "55.0",
+                    "originalValue": "55",
+                    "date": 1673611290,
+                    "originalUnitId": 8
+                }
+            ]
+        },
+        {
+            "id": 124,
+            "categoryId": 35,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "103d0829-623b-48a7-9b36-2e6f6377f179",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "136000000.0",
+                    "originalValue": "136",
+                    "date": 1684281600,
+                    "originalUnitId": 27
+                }
+            ]
+        },
+        {
+            "id": 180,
+            "categoryId": 35,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "6050cec9-18de-47f5-89af-d96cdcaa2562",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "5600000.0",
+                    "originalValue": "5.6",
+                    "date": 1684281600,
+                    "originalUnitId": 27
+                }
+            ]
+        },
+        {
+            "id": 803,
+            "categoryId": 38,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "3c18e38e-935c-4dad-854c-2ce16c0a7657",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "2.413125",
+                    "originalValue": "0.5",
+                    "date": 1684281600,
+                    "originalUnitId": 24
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "categoryId": 45,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "2db285dd-27b9-4dff-a249-6a368f454498",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "2876.628",
+                    "originalValue": "106",
+                    "date": 1684281600,
+                    "originalUnitId": 23
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "categoryId": 45,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "d1964555-96bc-444e-8d98-fa5142caa2b3",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.67139475",
+                    "originalValue": "195",
+                    "date": 1684281600,
+                    "originalUnitId": 58
+                }
+            ]
+        },
+        {
+            "id": 134,
+            "categoryId": 45,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "7c2abab3-1d51-4541-9e86-d6ec18716746",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.29730982749999996",
+                    "originalValue": "8.575",
+                    "date": 1684281600,
+                    "originalUnitId": 31
+                },
+                {
+                    "seid": "3fb34e90-3a8e-4d63-8908-61d38b8c0976",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "1.433",
+                    "originalValue": "1.433",
+                    "date": 1673611290,
+                    "originalUnitId": 34
+                }
+            ]
+        },
+        {
+            "id": 163,
+            "categoryId": 45,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "c264dcb6-0fc4-4ad5-bf66-88c04e5b063c",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "17.1278198",
+                    "originalValue": "494",
+                    "date": 1695772800,
+                    "originalUnitId": 31
+                },
+                {
+                    "seid": "ff92ed1b-1eb8-402d-986b-6a477a4c9ab7",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "13.3832762",
+                    "originalValue": "386",
+                    "date": 1684281600,
+                    "originalUnitId": 31
+                },
+                {
+                    "seid": "b1b750de-e266-46cd-be66-c033b98f80db",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "42.5768476",
+                    "originalValue": "1228",
+                    "date": 1673611290,
+                    "originalUnitId": 31
+                },
+                {
+                    "seid": "ecacdd30-cb96-465d-86df-05e1618565ec",
+                    "sid": "ba52cdc4-8c9a-4bcb-a22a-e60580d9cb09",
+                    "value": "16.9544613",
+                    "originalValue": "489",
+                    "date": 1667476890,
+                    "originalUnitId": 31
+                }
+            ]
+        },
+        {
+            "id": 185,
+            "categoryId": 45,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "0f25e39d-b568-47e3-a4b0-286116b8d289",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "28.0",
+                    "originalValue": "28",
+                    "date": 1684281600,
+                    "originalUnitId": 34
+                },
+                {
+                    "seid": "785f152e-08d9-47ec-8a80-4ad4dd974411",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "12.421033999999999",
+                    "originalValue": "118",
+                    "date": 1673611290,
+                    "originalUnitId": 23
+                }
+            ]
+        },
+        {
+            "id": 372,
+            "categoryId": 45,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "5cb23732-f9df-4554-ab7b-e794b0561ffc",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "4.1958",
+                    "originalValue": "1.2",
+                    "date": 1673611290,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 76,
+            "categoryId": 47,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "b7654df0-419e-4f6c-8ada-fa6b795652a7",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "27.846767999999997",
+                    "originalValue": "213",
+                    "date": 1684281600,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "categoryId": 48,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "0296d0c3-72fa-443d-a674-e60a4963bfc5",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "136.842928",
+                    "originalValue": "4.96",
+                    "date": 1684281600,
+                    "originalUnitId": 23
+                }
+            ]
+        },
+        {
+            "id": 837,
+            "categoryId": 52,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "65073da8-20c6-49bf-8714-a47fc327908f",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.6",
+                    "originalValue": "0.6",
+                    "date": 1684281600,
+                    "originalUnitId": 52
+                }
+            ]
+        },
+        {
+            "id": 46,
+            "categoryId": 53,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "0fab3804-7258-45a0-8420-8f831071f33e",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.08076948",
+                    "originalValue": "22",
+                    "date": 1684281600,
+                    "originalUnitId": 58
+                }
+            ]
+        },
+        {
+            "id": 68,
+            "categoryId": 53,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "271f55da-6974-43a5-9788-95396ac08332",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.179361738",
+                    "originalValue": "8.43",
+                    "date": 1684281600,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 75,
+            "categoryId": 53,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "7619e2e8-7e5d-4682-9b4d-98e670e07267",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.29",
+                    "originalValue": "0.29",
+                    "date": 1684281600,
+                    "originalUnitId": 52
+                }
+            ]
+        },
+        {
+            "id": 120,
+            "categoryId": 53,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "431a5ce9-2875-4726-b5a7-9892276ff5fb",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.24",
+                    "originalValue": "0.24",
+                    "date": 1684281600,
+                    "originalUnitId": 52
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "categoryId": 57,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "8c9a60b3-9e11-4210-9f73-408c16d60349",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "80.0",
+                    "originalValue": "0.8",
+                    "date": 1695772800,
+                    "originalUnitId": 51
+                }
+            ]
+        },
+        {
+            "id": 67,
+            "categoryId": 57,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "d15f3df7-3a43-44ea-a5ae-b99a80043654",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "0.02082",
+                    "originalValue": "3.47",
+                    "date": 1695772800,
+                    "originalUnitId": 55
+                },
+                {
+                    "seid": "eb819364-3a96-40c8-9f3d-0e93ed361600",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.0444",
+                    "originalValue": "7.4",
+                    "date": 1684281600,
+                    "originalUnitId": 55
+                }
+            ]
+        },
+        {
+            "id": 4613,
+            "categoryId": 57,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "1163cea1-a57a-4984-b753-d3f927a235ea",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "38.0",
+                    "originalValue": "38",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "categoryId": 58,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "3d44a8c9-d95d-4adb-8414-0da89b285720",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.6144400000000001",
+                    "originalValue": "0.4",
+                    "date": 1684281600,
+                    "originalUnitId": 56
+                }
+            ]
+        },
+        {
+            "id": 137,
+            "categoryId": 58,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "6dc09ad2-3514-43ad-a020-b9ad76ce201c",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "0.00204",
+                    "originalValue": "2.04",
+                    "date": 1695772800,
+                    "originalUnitId": 55
+                },
+                {
+                    "seid": "6ea92861-d8f0-487e-a147-d7cef62e3b50",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.00218",
+                    "originalValue": "2.18",
+                    "date": 1684281600,
+                    "originalUnitId": 55
+                },
+                {
+                    "seid": "5c99709b-bb50-4585-9e85-98345493036a",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "0.0025299999999999997",
+                    "originalValue": "2.53",
+                    "date": 1673611290,
+                    "originalUnitId": 55
+                }
+            ]
+        },
+        {
+            "id": 141,
+            "categoryId": 58,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "fadc3620-b6fa-4d06-94a2-ee0aed8a1ab4",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.011070092",
+                    "originalValue": "0.86",
+                    "date": 1684281600,
+                    "originalUnitId": 31
+                },
+                {
+                    "seid": "c45a652f-9e77-4216-8d92-f7008cbfa279",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "0.010169038",
+                    "originalValue": "0.79",
+                    "date": 1673611290,
+                    "originalUnitId": 31
+                }
+            ]
+        },
+        {
+            "id": 171,
+            "categoryId": 58,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "b19ebba0-65c9-4aad-81da-219e68aa960d",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.0059141775",
+                    "originalValue": "3.85",
+                    "date": 1684281600,
+                    "originalUnitId": 58
+                }
+            ]
+        },
+        {
+            "id": 1457,
+            "categoryId": 60,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "6b35ea29-d247-43fd-8d6e-227def223346",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "5.0",
+                    "originalValue": "0.05",
+                    "date": 1716336000,
+                    "originalUnitId": 51
+                }
+            ]
+        },
+        {
+            "id": 3289,
+            "categoryId": 60,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "93785722-174e-4648-a247-fb8a2eb76cfb",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "41.0",
+                    "originalValue": "0.41",
+                    "date": 1716336000,
+                    "originalUnitId": 51
+                }
+            ]
+        },
+        {
+            "id": 1591,
+            "categoryId": 73,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "f7a1a791-cd3d-4631-bffd-b675c1afe061",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1716336000,
+                    "originalUnitId": 1001
+                }
+            ]
+        },
+        {
+            "id": 225,
+            "categoryId": 76,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "1379dc2a-792c-4d2d-9cee-e7ae0888239e",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "35.4",
+                    "originalValue": "35.4",
+                    "date": 1695772800,
+                    "originalUnitId": 61
+                },
+                {
+                    "seid": "0ce174f3-eeb3-40c9-859c-9749beb297ee",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "38.0",
+                    "originalValue": "38",
+                    "date": 1684281600,
+                    "originalUnitId": 61
+                }
+            ]
+        },
+        {
+            "id": 226,
+            "categoryId": 76,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "683984a2-920b-4a1e-b318-605a44a47781",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "11.6",
+                    "originalValue": "11.6",
+                    "date": 1695772800,
+                    "originalUnitId": 61
+                },
+                {
+                    "seid": "091110e3-a886-4756-a67c-af6fcfa853cc",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "11.5",
+                    "originalValue": "11.5",
+                    "date": 1684281600,
+                    "originalUnitId": 61
+                }
+            ]
+        },
+        {
+            "id": 227,
+            "categoryId": 76,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "0d07e211-4544-4161-82b2-4a6d98ec7e21",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "103.0",
+                    "originalValue": "1.03",
+                    "date": 1695772800,
+                    "originalUnitId": 51
+                },
+                {
+                    "seid": "91f19603-c594-4fc2-86ca-3c07d1e3b2d3",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "100.0",
+                    "originalValue": "1",
+                    "date": 1684281600,
+                    "originalUnitId": 51
+                }
+            ]
+        },
+        {
+            "id": 229,
+            "categoryId": 76,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "ff687cab-d5f7-4356-91bb-9ded2c4e234c",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "96.0",
+                    "originalValue": "96",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 846,
+            "categoryId": 76,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "82df5d6a-ffea-433b-baba-a4d640cb9191",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "112.00000000000001",
+                    "originalValue": "1.12",
+                    "date": 1695772800,
+                    "originalUnitId": 51
+                },
+                {
+                    "seid": "2e1f1d05-7353-46a7-949a-08d34e2fa9d2",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "125.0",
+                    "originalValue": "1.25",
+                    "date": 1684281600,
+                    "originalUnitId": 51
+                }
+            ]
+        },
+        {
+            "id": 1454,
+            "categoryId": 76,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "905b0df8-68c2-4bfa-a429-68e3462149df",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "103.0",
+                    "originalValue": "1.03",
+                    "date": 1695772800,
+                    "originalUnitId": 51
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "530f6277-b128-417c-b2e7-6b2a9c395846",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "88.5",
+                    "originalValue": "88.5",
+                    "date": 1716336000,
+                    "originalUnitId": 42
+                },
+                {
+                    "seid": "c8f3345c-685e-4f73-b7c1-33a28fbafcf4",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "88.0",
+                    "originalValue": "88",
+                    "date": 1695772800,
+                    "originalUnitId": 42
+                },
+                {
+                    "seid": "935b09d3-755d-4719-8a86-f433bfa5d625",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "87.3",
+                    "originalValue": "87.3",
+                    "date": 1684281600,
+                    "originalUnitId": 90
+                },
+                {
+                    "seid": "b9670806-491b-4305-a582-8d6ba55d145f",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "90.2",
+                    "originalValue": "90.2",
+                    "date": 1673611290,
+                    "originalUnitId": 42
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "48282a0f-51d3-462d-b676-1ac9f1b389fa",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "1.83195",
+                    "originalValue": "29.5",
+                    "date": 1716336000,
+                    "originalUnitId": 19
+                },
+                {
+                    "seid": "9838ef66-a653-4c1a-b5c5-7d1267e30d72",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "1.84437",
+                    "originalValue": "29.7",
+                    "date": 1695772800,
+                    "originalUnitId": 19
+                },
+                {
+                    "seid": "6a418a30-2068-4dbd-bcde-bbfeb0fdd2fb",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "1.90026",
+                    "originalValue": "30.6",
+                    "date": 1684281600,
+                    "originalUnitId": 19
+                },
+                {
+                    "seid": "551fabf6-1ac2-48ef-bd8f-e6c478f9197b",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "1.88784",
+                    "originalValue": "30.4",
+                    "date": 1673611290,
+                    "originalUnitId": 19
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "62af848d-a7bf-49bb-928c-b52369126350",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "4400000.0",
+                    "originalValue": "4.4",
+                    "date": 1716336000,
+                    "originalUnitId": 136
+                },
+                {
+                    "seid": "fa4be4f3-6a75-49bb-9978-f71acbe187f5",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "4580000.0",
+                    "originalValue": "4.58",
+                    "date": 1695772800,
+                    "originalUnitId": 136
+                },
+                {
+                    "seid": "6a8e3309-d0bb-4a99-93f4-f0bbf4b71ec2",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "5060000.0",
+                    "originalValue": "5.06",
+                    "date": 1684281600,
+                    "originalUnitId": 136
+                },
+                {
+                    "seid": "a6a38edd-871f-4803-88c5-779288f561c0",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "4610000.0",
+                    "originalValue": "4.61",
+                    "date": 1673611290,
+                    "originalUnitId": 136
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "52fd1194-9cbd-43b7-ac0b-35b01cd544dc",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "13.8",
+                    "originalValue": "13.8",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "ef09fbb5-100f-4417-acae-b9253cdf5557",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "13.0",
+                    "originalValue": "13",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "ffe72b34-787f-4acf-908e-5c8c9332ce9d",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "13.6",
+                    "originalValue": "13.6",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "d57add9d-31f0-4866-892a-437811a59f9d",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "14.3",
+                    "originalValue": "14.3",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "f7724b04-1644-4b9d-96e3-0bcbca3d969b",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "93c8102a-2279-448d-8040-625351bc0b31",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "881a16cc-8491-4d66-8290-e6577f33e5a2",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "75695c5d-ac83-4891-96b5-7be10a0b94d0",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 79,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "6bd25890-f3f7-458f-83d5-e59703418e19",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "38.9",
+                    "originalValue": "38.9",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "baf30bed-55cb-48c0-90b7-4dc1272a5f70",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "40.3",
+                    "originalValue": "40.3",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "67196249-6233-4aa3-a735-5e9d1f6954d7",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "44.1",
+                    "originalValue": "44.1",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "ae3ece86-7245-4e30-b0bf-3afa137bb886",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "41.6",
+                    "originalValue": "41.6",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 81,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "4e832033-630f-4d40-b04b-0278bd055475",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "20727305.2",
+                    "originalValue": "33.4",
+                    "date": 1716336000,
+                    "originalUnitId": 21
+                },
+                {
+                    "seid": "a42e492e-6a79-4c54-a287-42c799af6ed8",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "20913478.6",
+                    "originalValue": "33.7",
+                    "date": 1695772800,
+                    "originalUnitId": 21
+                },
+                {
+                    "seid": "dcde7fd9-f76a-41ca-9d97-1f5ab3b8358b",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "21782287.8",
+                    "originalValue": "35.1",
+                    "date": 1684281600,
+                    "originalUnitId": 21
+                },
+                {
+                    "seid": "cfb91d77-a4fe-4f60-9674-42f1390edfa0",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "20913478.6",
+                    "originalValue": "33.7",
+                    "date": 1673611290,
+                    "originalUnitId": 21
+                }
+            ]
+        },
+        {
+            "id": 83,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "a011b5e9-05a9-41a8-a5dd-1cc8fb7c3055",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "277000.0",
+                    "originalValue": "277",
+                    "date": 1716336000,
+                    "originalUnitId": 48
+                },
+                {
+                    "seid": "0de3c5a4-db58-46ad-b381-e05d9a8fcfee",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "284000.0",
+                    "originalValue": "284",
+                    "date": 1695772800,
+                    "originalUnitId": 48
+                },
+                {
+                    "seid": "9ddf30b6-9168-4902-8912-8f7a457a1688",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "309000.0",
+                    "originalValue": "309000",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "19815a6f-8519-4d00-b559-5238b6227a97",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "299000.0",
+                    "originalValue": "299",
+                    "date": 1673611290,
+                    "originalUnitId": 48
+                }
+            ]
+        },
+        {
+            "id": 87,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "91b839cf-bbd1-4c2f-8c69-585dfcc847b0",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "8.9",
+                    "originalValue": "8.9",
+                    "date": 1716336000,
+                    "originalUnitId": 42
+                },
+                {
+                    "seid": "25426400-00d6-414c-88b6-fb1aceb5308c",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "8.0",
+                    "originalValue": "8",
+                    "date": 1695772800,
+                    "originalUnitId": 42
+                },
+                {
+                    "seid": "b472ff6a-5b98-4f99-887c-ecef43439efa",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "8.8",
+                    "originalValue": "8.8",
+                    "date": 1684281600,
+                    "originalUnitId": 42
+                },
+                {
+                    "seid": "443567f3-c6eb-4ca1-ab43-846685d6bc39",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "8.6",
+                    "originalValue": "8.6",
+                    "date": 1673611290,
+                    "originalUnitId": 42
+                }
+            ]
+        },
+        {
+            "id": 89,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "a152c891-7dc1-4204-9b30-f0a67534b5fa",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "188.0",
+                    "originalValue": "188",
+                    "date": 1716336000,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "3c05b6a8-9990-48d1-a03f-75eeb6a7797e",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "90.0",
+                    "originalValue": "90",
+                    "date": 1695772800,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "41f3bc9a-5ae1-411d-a560-31c9a6ad522f",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "94.0",
+                    "originalValue": "94",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "602ba933-4a7c-4a28-af43-631a0bfc40ab",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "165.0",
+                    "originalValue": "165",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 93,
+            "categoryId": 80,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "4c91a69a-f913-406f-b14e-c6e7834985ad",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "2.0",
+                    "originalValue": "2",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 132,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "ebf37b37-5856-42ae-892d-ac16799dd1d9",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "47.0",
+                    "originalValue": "47",
+                    "date": 1716336000,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "680fd234-2cc2-4bb2-a6d9-89ad528232a6",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "45.0",
+                    "originalValue": "45",
+                    "date": 1695772800,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "604bfc9d-913e-478e-aac4-e6b0958ce9d3",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "47.0",
+                    "originalValue": "47",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "567e9b68-27e2-451e-bbcb-eaba8ae732b5",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "55.0",
+                    "originalValue": "55",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 135,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "fc17dd0a-1d9b-4711-a79c-10d8f108543d",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "2162.0",
+                    "originalValue": "2162",
+                    "date": 1716336000,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "19e70d29-6aeb-498a-8907-a1c2e19fe987",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "1890.0",
+                    "originalValue": "1890",
+                    "date": 1695772800,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "290cdfd8-c001-4a0e-97da-b98981dc2840",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "1833.0",
+                    "originalValue": "1833",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "84326c95-d4a8-4c9d-8d05-9828dc4ac10d",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "1815.0",
+                    "originalValue": "1815",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 136,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "ff2e52b7-e064-483c-a1cb-3223bb17e200",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "423.0",
+                    "originalValue": "423",
+                    "date": 1716336000,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "b00f8398-b896-40f4-8694-f0cdd3e67c9f",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "450.0",
+                    "originalValue": "450",
+                    "date": 1695772800,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "652ddd4b-322c-4f3a-9394-c0629c1a2554",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "376.0",
+                    "originalValue": "376",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "ffa368e9-0e02-4164-9791-d77fb460a944",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "660.0",
+                    "originalValue": "660",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 166,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "5dd8de10-ed32-4e50-8e1f-10b67bb0db24",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "4700.0",
+                    "originalValue": "4700",
+                    "date": 1716336000,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "fe9b11bb-2f84-4ebd-b7d0-3e48bc7a61e0",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "4500.0",
+                    "originalValue": "4500",
+                    "date": 1695772800,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "426b87c9-5660-422e-ae1b-bedb0e47598a",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "4700.0",
+                    "originalValue": "4700",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "1d5b8fcd-15a4-47c8-87ec-9a4d97ad0b3a",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "5500.0",
+                    "originalValue": "5500",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 190,
+            "categoryId": 80,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "212b220f-1a10-4062-b112-13c9866b7dfd",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "8067514.0",
+                    "originalValue": "13",
+                    "date": 1716336000,
+                    "originalUnitId": 21
+                },
+                {
+                    "seid": "b2142127-068a-4405-87c4-d68f9b29eabe",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "8439860.799999999",
+                    "originalValue": "13.6",
+                    "date": 1695772800,
+                    "originalUnitId": 21
+                },
+                {
+                    "seid": "884bc7b7-41c2-47f0-842c-d18b53bd3505",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "9618959.0",
+                    "originalValue": "15.5",
+                    "date": 1684281600,
+                    "originalUnitId": 21
+                },
+                {
+                    "seid": "8522932d-121a-4cf6-bbcd-26f42de1f353",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "8688092.0",
+                    "originalValue": "14",
+                    "date": 1673611290,
+                    "originalUnitId": 21
+                }
+            ]
+        },
+        {
+            "id": 218,
+            "categoryId": 80,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "e457064e-ea8a-428f-9e67-f9e4e5d52942",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "46.0",
+                    "originalValue": "46",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "dcbf6631-8a86-4484-b146-6cc1950c1417",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "42.0",
+                    "originalValue": "42",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "883c7dfb-d076-4f53-80fc-47899ac29e55",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "39.0",
+                    "originalValue": "39",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "de8c70e7-da2a-4197-9b10-610022f67f5b",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "33.0",
+                    "originalValue": "33",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 219,
+            "categoryId": 80,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "f5d6259e-974b-4fd2-baca-fe444817e6c1",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "9.0",
+                    "originalValue": "9",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "a5765c2a-274a-4910-9080-35d725742a00",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "10.0",
+                    "originalValue": "10",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "1433ac81-b9a4-4fea-9c5f-5c8b7e0a32b0",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "8.0",
+                    "originalValue": "8",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "a930239a-145c-459a-8d2c-02d42f5053f6",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "12.0",
+                    "originalValue": "12",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 222,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "cf86c0be-4b5d-4bf1-b7a2-7c4e0dc44411",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "4.0",
+                    "originalValue": "4",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "81eb8a19-bbdc-4913-a3b3-b35ac61720bc",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "2.0",
+                    "originalValue": "2",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "94da92ac-80e5-410f-86eb-3b8f11bda5ee",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "2.0",
+                    "originalValue": "2",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "d5ce6938-a158-4bbc-912f-285fdb1374f3",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "3.0",
+                    "originalValue": "3",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 223,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "f1be293f-a3c3-41fd-9fee-5de759c9c2cc",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "1.0",
+                    "originalValue": "1",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "470faa9f-5428-4acc-b8a0-8fc94532c7bd",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "1.0",
+                    "originalValue": "1",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "7f5fa167-c5fa-4595-a361-28110166a833",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "1.0",
+                    "originalValue": "1",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "6f021809-b42b-4cb7-a54e-9a3fcf5ee886",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "1.0",
+                    "originalValue": "1",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 834,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "fe92ba2f-e80f-453e-b85b-eafccb53d3cc",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "40.0",
+                    "originalValue": "40",
+                    "date": 1716336000,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "cb5a3ff7-0af5-42ed-be18-5cefda2e08de",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "45.0",
+                    "originalValue": "45",
+                    "date": 1695772800,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "296bfff2-ba27-4c7b-8b2d-07a19d68553e",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "50.0",
+                    "originalValue": "50",
+                    "date": 1684281600,
+                    "originalUnitId": 1
+                },
+                {
+                    "seid": "6d686f33-4a3b-43c6-9201-0d9506ee3956",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "51.0",
+                    "originalValue": "51",
+                    "date": 1673611290,
+                    "originalUnitId": 1
+                }
+            ]
+        },
+        {
+            "id": 909,
+            "categoryId": 80,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "754886db-1e60-49ea-8377-7843e3163c31",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1716336000,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "d3a8618b-2164-4e16-9726-2515ae98cba0",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1695772800,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "c73bed21-6345-422c-8e52-0048567468d8",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "37766d6b-b3e9-41a0-a30e-a32da1200054",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 996,
+            "categoryId": 80,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "b01e2a3b-d14c-4256-be7c-b7c3eff4746d",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "309000.0",
+                    "originalValue": "309000",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 1049,
+            "categoryId": 80,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "400f31e7-472d-42b9-8e20-a9ba64a03fce",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "1880.0",
+                    "originalValue": "1880",
+                    "date": 1716336000,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "88065169-e191-45f6-be0a-29ba02bcb544",
+                    "sid": "8d86ccd2-f517-4deb-865f-e389e275369c",
+                    "value": "2025.0",
+                    "originalValue": "2025",
+                    "date": 1695772800,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "41144e98-820c-436b-8421-54a2aa09956a",
+                    "sid": "caef1cf9-6c6b-4754-8c08-1cb23ba3734f",
+                    "value": "2350.0",
+                    "originalValue": "2350",
+                    "date": 1684281600,
+                    "originalUnitId": 121
+                },
+                {
+                    "seid": "5d0992b5-354a-4a3c-8d37-8b9ec9d5c424",
+                    "sid": "1ec6d1c8-74e8-4fa1-a920-aa5c581ae552",
+                    "value": "2805.0",
+                    "originalValue": "2805",
+                    "date": 1673611290,
+                    "originalUnitId": 121
+                }
+            ]
+        },
+        {
+            "id": 1335,
+            "categoryId": 83,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "1789dc97-c943-4df1-a6a7-35642dcf6838",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1716336000,
+                    "originalUnitId": 1000
+                }
+            ]
+        },
+        {
+            "id": 1676,
+            "categoryId": 84,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "e9b8ac89-bf06-4795-8c48-98c7edbf792c",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "9.0",
+                    "originalValue": "0.09",
+                    "date": 1716336000,
+                    "originalUnitId": 51
+                }
+            ]
+        },
+        {
+            "id": 1690,
+            "categoryId": 84,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "9a7a9963-e6ae-445e-a96e-c971767904d7",
+                    "sid": "f165225a-3a50-41be-b0bd-aab7495cc648",
+                    "value": "0.0",
+                    "originalValue": "0",
+                    "date": 1716336000,
+                    "originalUnitId": 1001
+                }
+            ]
+        },
+        {
+            "id": 3704,
+            "categoryId": 104,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "2a7a5cf7-1234-4dda-a1fc-6dd09cbf133b",
+                    "sid": "0559c78d-5bf7-4244-98f7-a5b34d0d2b6a",
+                    "value": "23.836734693877553",
+                    "originalValue": "23.836734693877553",
+                    "date": 1712873419,
+                    "originalUnitId": 145
+                }
+            ]
+        },
+        {
+            "id": 4489,
+            "categoryId": 104,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "3078aba1-82b1-4707-8568-e62726660854",
+                    "sid": "bc21c898-da78-4a11-a5c6-1d649384eadc",
+                    "value": "1243.0",
+                    "originalValue": "1243",
+                    "date": 1725192000,
+                    "originalUnitId": 155
+                }
+            ]
+        },
+        {
+            "id": 4500,
+            "categoryId": 104,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "9a071280-51ec-47f5-82d5-a536b95033be",
+                    "sid": "f12158dc-a85b-4ecc-beff-fa77421d6f74",
+                    "value": "36.5",
+                    "originalValue": "36.5",
+                    "date": 1715860890,
+                    "originalUnitId": 116
+                }
+            ]
+        },
+        {
+            "id": 4508,
+            "categoryId": 104,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "eeabe052-904f-43b4-a0be-9119d66d3445",
+                    "sid": "0559c78d-5bf7-4244-98f7-a5b34d0d2b6a",
+                    "value": "1750000.0",
+                    "originalValue": "175",
+                    "date": 1712873419,
+                    "originalUnitId": 118
+                }
+            ]
+        },
+        {
+            "id": 4509,
+            "categoryId": 104,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "a3fec549-3bbe-4f38-a07e-3779a68fd186",
+                    "sid": "0559c78d-5bf7-4244-98f7-a5b34d0d2b6a",
+                    "value": "73000000.0",
+                    "originalValue": "73",
+                    "date": 1712873419,
+                    "originalUnitId": 150
+                }
+            ]
+        },
+        {
+            "id": 5413,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "3beffe73-a6ef-4c89-b77f-d86f38424ced",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "369622.4694252014",
+                    "originalValue": "369.6224694252014",
+                    "date": 1722513600,
+                    "originalUnitId": 169
+                }
+            ]
+        },
+        {
+            "id": 5414,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "6960ac0b-783f-4325-a616-5589cbf5dd3c",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "16331.942392513156",
+                    "originalValue": "16.331942392513156",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5415,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "fa4ac025-c39d-4bba-b023-c7ff2274df94",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "4785.687265917659",
+                    "originalValue": "4.785687265917659",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5416,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "d5c96844-ac10-4791-80dd-c55272edd171",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "14177.874856524995",
+                    "originalValue": "14.177874856524996",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5418,
+            "categoryId": 108,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "ff0757ef-16b7-4dd7-8a93-eb735c90355a",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "23059.18638408184",
+                    "originalValue": "23.05918638408184",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5420,
+            "categoryId": 108,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "03693ce8-4f14-4352-b8b5-c8719ede7896",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "5367.041807621717",
+                    "originalValue": "5.3670418076217175",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5421,
+            "categoryId": 108,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "d50fdf94-74b2-4d89-a70f-292c514577e5",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "173.2198452882585",
+                    "originalValue": "0.1732198452882585",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5422,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "69c6376a-b8ae-42fa-8f47-b7fea188326d",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "42178.68709564209",
+                    "originalValue": "42.17868709564209",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5423,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "1e089479-f5e9-4304-8afe-ffff2fa3bd60",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "157.65550918877125",
+                    "originalValue": "0.15765550918877125",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5424,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "9b92b4bc-c98d-4b75-8bc7-0ed66fc9b72b",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "1.9105187675449997",
+                    "originalValue": "0.0019105187675449997",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5425,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "1f8f4c46-df84-44b4-bef1-58efbe749413",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "583.0650106072426",
+                    "originalValue": "0.5830650106072426",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5426,
+            "categoryId": 108,
+            "status": "A",
+            "entries": [
+                {
+                    "seid": "2f8ae64f-50eb-42b1-8786-47fea2969b6c",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "285.3060686029494",
+                    "originalValue": "0.2853060686029494",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        },
+        {
+            "id": 5428,
+            "categoryId": 108,
+            "status": "N",
+            "entries": [
+                {
+                    "seid": "103ecc19-4dcd-479b-92c8-5d31094e0b3d",
+                    "sid": "64ba0882-8727-4342-8d41-ad89aa671d86",
+                    "value": "72.72887881845236",
+                    "originalValue": "0.07272887881845236",
+                    "date": 1722513600,
+                    "originalUnitId": 149
+                }
+            ]
+        }
+    ],
+    "refs": {
+        "1": {
+            "common": [
+                7.0,
+                55.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                10.0,
+                30.0
+            ]
+        },
+        "5": {
+            "common": [
+                78.2,
+                97.9
+            ],
+            "optimal": [
+                82.0,
+                89.9
+            ],
+            "paidOptimal": []
+        },
+        "6": {
+            "common": [
+                1.677,
+                2.049
+            ],
+            "optimal": [
+                1.739,
+                1.981
+            ],
+            "paidOptimal": []
+        },
+        "8": {
+            "common": [
+                2415.0,
+                11590.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                5428.0,
+                11590.0
+            ]
+        },
+        "9": {
+            "common": [
+                0.0,
+                18000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                1710.0,
+                11970.0
+            ]
+        },
+        "13": {
+            "common": [
+                8.0,
+                61.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                10.0,
+                17.0
+            ]
+        },
+        "14": {
+            "common": [
+                0.3856,
+                3.288
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "17": {
+            "common": [
+                0.1536,
+                0.3687
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "19": {
+            "common": [
+                0.0,
+                1700000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                790000.0,
+                900000.0
+            ]
+        },
+        "24": {
+            "common": [
+                4350000.0,
+                5650000.0
+            ],
+            "optimal": [
+                4800000.0,
+                5500000.0
+            ],
+            "paidOptimal": []
+        },
+        "29": {
+            "common": [
+                0.0,
+                74.28
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "30": {
+            "common": [
+                11.8,
+                14.5
+            ],
+            "optimal": [
+                11.8,
+                13.0
+            ],
+            "paidOptimal": []
+        },
+        "32": {
+            "common": [
+                4000.0,
+                11400.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                5000.0,
+                7200.0
+            ]
+        },
+        "33": {
+            "common": [
+                70.0,
+                180.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "38": {
+            "common": [
+                4.8,
+                5.6
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                4.8,
+                5.1
+            ]
+        },
+        "39": {
+            "common": [
+                0.0,
+                190.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.0,
+                100.0
+            ]
+        },
+        "41": {
+            "common": [
+                0.0,
+                5.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.0,
+                1.0
+            ]
+        },
+        "43": {
+            "common": [
+                64.0,
+                536.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                138.0,
+                266.0
+            ]
+        },
+        "46": {
+            "common": [
+                0.03671,
+                0.1469
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "48": {
+            "common": [
+                0.0,
+                5000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                1710.0,
+                2570.0
+            ]
+        },
+        "50": {
+            "common": [
+                11360.0,
+                119200.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                73810.0,
+                119200.0
+            ]
+        },
+        "53": {
+            "common": [
+                526700.0,
+                752400.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                677100.0,
+                752400.0
+            ]
+        },
+        "57": {
+            "common": [
+                3233000.0,
+                5147000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                4138000.0,
+                5147000.0
+            ]
+        },
+        "58": {
+            "common": [
+                0.0,
+                3362000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                1810000.0,
+                2560000.0
+            ]
+        },
+        "63": {
+            "common": [
+                8.0,
+                48.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                10.0,
+                30.0
+            ]
+        },
+        "66": {
+            "common": [
+                12770.0,
+                39470.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "67": {
+            "common": [
+                0.0156,
+                0.1494
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.0156,
+                0.06
+            ]
+        },
+        "68": {
+            "common": [
+                0.04255,
+                0.383
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.04255,
+                0.2128
+            ]
+        },
+        "71": {
+            "common": [
+                39.0,
+                308.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                65.0,
+                135.0
+            ]
+        },
+        "75": {
+            "common": [
+                1.2,
+                15.8
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "76": {
+            "common": [
+                10.59,
+                56.87
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                10.59,
+                19.61
+            ]
+        },
+        "79": {
+            "common": [
+                38.3,
+                48.6
+            ],
+            "optimal": [
+                40.0,
+                48.0
+            ],
+            "paidOptimal": []
+        },
+        "81": {
+            "common": [
+                19860000.0,
+                22340000.0
+            ],
+            "optimal": [
+                21100000.0,
+                22340000.0
+            ],
+            "paidOptimal": []
+        },
+        "83": {
+            "common": [
+                135000.0,
+                317000.0
+            ],
+            "optimal": [
+                190000.0,
+                300000.0
+            ],
+            "paidOptimal": []
+        },
+        "85": {
+            "common": [
+                1135.0,
+                2723.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "87": {
+            "common": [
+                7.5,
+                11.5
+            ],
+            "optimal": [
+                7.5,
+                8.2
+            ],
+            "paidOptimal": []
+        },
+        "89": {
+            "common": [
+                30.0,
+                480.0
+            ],
+            "optimal": [
+                30.0,
+                200.0
+            ],
+            "paidOptimal": []
+        },
+        "93": {
+            "common": [
+                1560.0,
+                6450.0
+            ],
+            "optimal": [
+                1900.0,
+                4200.0
+            ],
+            "paidOptimal": []
+        },
+        "109": {
+            "common": [
+                1034000.0,
+                2586000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                1422000.0,
+                2405000.0
+            ]
+        },
+        "120": {
+            "common": [
+                1.3,
+                9.6
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "124": {
+            "common": [
+                135000000.0,
+                146000000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                135000000.0,
+                142000000.0
+            ]
+        },
+        "132": {
+            "common": [
+                10.0,
+                80.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "134": {
+            "common": [
+                0.03155,
+                0.1116
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "135": {
+            "common": [
+                950.0,
+                3070.0
+            ],
+            "optimal": [
+                1440.0,
+                2540.0
+            ],
+            "paidOptimal": []
+        },
+        "136": {
+            "common": [
+                260.0,
+                810.0
+            ],
+            "optimal": [
+                260.0,
+                810.0
+            ],
+            "paidOptimal": []
+        },
+        "137": {
+            "common": [
+                0.0003,
+                0.0042
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.0018,
+                0.0025
+            ]
+        },
+        "139": {
+            "common": [
+                53040.0,
+                119300.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                70720.0,
+                97240.0
+            ]
+        },
+        "141": {
+            "common": [
+                0.01158,
+                0.02188
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.01287,
+                0.01931
+            ]
+        },
+        "163": {
+            "common": [
+                8.321,
+                32.94
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "166": {
+            "common": [
+                3400.0,
+                9600.0
+            ],
+            "optimal": [
+                3800.0,
+                6000.0
+            ],
+            "paidOptimal": []
+        },
+        "168": {
+            "common": [
+                3900000.0,
+                5500000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                4160000.0,
+                4720000.0
+            ]
+        },
+        "170": {
+            "common": [
+                0.0,
+                20520.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                8552.0,
+                15390.0
+            ]
+        },
+        "171": {
+            "common": [
+                0.004301,
+                0.006759
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.004608,
+                0.005376
+            ]
+        },
+        "180": {
+            "common": [
+                3600000.0,
+                5200000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                4000000.0,
+                5000000.0
+            ]
+        },
+        "185": {
+            "common": [
+                10.0,
+                50.0
+            ],
+            "optimal": [
+                40.0,
+                46.0
+            ],
+            "paidOptimal": []
+        },
+        "187": {
+            "common": [
+                74.32,
+                198.2
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                74.32,
+                123.9
+            ]
+        },
+        "190": {
+            "common": [
+                8192000.0,
+                10300000.0
+            ],
+            "optimal": [
+                8688000.0,
+                9309000.0
+            ],
+            "paidOptimal": []
+        },
+        "203": {
+            "common": [
+                40.0,
+                129.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                70.0,
+                100.0
+            ]
+        },
+        "205": {
+            "common": [
+                0.0,
+                2586000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                2069000.0,
+                2586000.0
+            ]
+        },
+        "210": {
+            "common": [
+                3200000.0,
+                7300000.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "212": {
+            "common": [
+                12.46,
+                61.18
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                34.0,
+                56.7
+            ]
+        },
+        "213": {
+            "common": [
+                29.56,
+                295.5
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "215": {
+            "common": [
+                0.1476,
+                0.8116
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                0.4021,
+                0.8116
+            ]
+        },
+        "217": {
+            "common": [
+                90.0,
+                130.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                90.0,
+                130.0
+            ]
+        },
+        "218": {
+            "common": [
+                20.0,
+                40.0
+            ],
+            "optimal": [
+                30.0,
+                35.0
+            ],
+            "paidOptimal": []
+        },
+        "219": {
+            "common": [
+                2.0,
+                8.0
+            ],
+            "optimal": [
+                4.0,
+                7.0
+            ],
+            "paidOptimal": []
+        },
+        "222": {
+            "common": [
+                1.0,
+                4.0
+            ],
+            "optimal": [
+                1.0,
+                3.0
+            ],
+            "paidOptimal": []
+        },
+        "223": {
+            "common": [
+                0.5,
+                1.0
+            ],
+            "optimal": [
+                0.5,
+                1.0
+            ],
+            "paidOptimal": []
+        },
+        "225": {
+            "common": [
+                25.0,
+                37.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "226": {
+            "common": [
+                9.4,
+                12.5
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "227": {
+            "common": [
+                90.0,
+                110.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "229": {
+            "common": [
+                70.0,
+                120.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "372": {
+            "common": [
+                1.399,
+                5.245
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "493": {
+            "common": [
+                0.2217,
+                4.878
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "803": {
+            "common": [
+                0.0,
+                120.7
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "824": {
+            "common": [
+                9177.0,
+                16210.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                12240.0,
+                15300.0
+            ]
+        },
+        "834": {
+            "common": [
+                40.0,
+                60.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "837": {
+            "common": [
+                0.0,
+                5.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "846": {
+            "common": [
+                80.0,
+                120.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "896": {
+            "common": [
+                0.0,
+                555.9
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "909": {
+            "common": [
+                0.0,
+                500.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "945": {
+            "common": [
+                0.0,
+                0.9
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "996": {
+            "common": [
+                0.0,
+                0.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1049": {
+            "common": [
+                2500.0,
+                6000.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1158": {
+            "common": [
+                5.72,
+                110.8
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1335": {
+            "common": [
+                0.0,
+                0.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1454": {
+            "common": [
+                90.0,
+                110.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1457": {
+            "common": [
+                0.0,
+                90.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1591": {
+            "common": [
+                0.0,
+                0.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1676": {
+            "common": [
+                0.0,
+                100.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "1690": {
+            "common": [
+                0.0,
+                0.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "3289": {
+            "common": [
+                0.0,
+                99.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "3320": {
+            "common": [
+                5050000.0,
+                6330000.0
+            ],
+            "optimal": [],
+            "paidOptimal": [
+                5050000.0,
+                5550000.0
+            ]
+        },
+        "3704": {
+            "common": [
+                18.5,
+                29.99
+            ],
+            "optimal": [
+                20.0,
+                25.0
+            ],
+            "paidOptimal": []
+        },
+        "3728": {
+            "common": [
+                96.4,
+                98.8
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "4489": {
+            "common": [
+                4000.0,
+                20000.0
+            ],
+            "optimal": [
+                7000.0,
+                12000.0
+            ],
+            "paidOptimal": []
+        },
+        "4500": {
+            "common": [
+                36.1,
+                37.2
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "4613": {
+            "common": [
+                80.0,
+                200.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5413": {
+            "common": [
+                1800000.0,
+                2900000.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5414": {
+            "common": [
+                45000.0,
+                253800.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5415": {
+            "common": [
+                28000.0,
+                34000.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5416": {
+            "common": [
+                40000.0,
+                112800.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5418": {
+            "common": [
+                0.0,
+                72500.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5420": {
+            "common": [
+                0.0,
+                32220.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5421": {
+            "common": [
+                0.0,
+                300.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5422": {
+            "common": [
+                202500.0,
+                471200.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5423": {
+            "common": [
+                1000.0,
+                2500.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5424": {
+            "common": [
+                8.0,
+                45.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5425": {
+            "common": [
+                3400.0,
+                3900.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        },
+        "5426": {
+            "common": [
+                460.0,
+                2000.0
+            ],
+            "optimal": [],
+            "paidOptimal": []
+        }
+    }
+}
