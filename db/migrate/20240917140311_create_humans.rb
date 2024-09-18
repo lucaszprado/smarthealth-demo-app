@@ -1,6 +1,6 @@
-class CreateHumen < ActiveRecord::Migration[7.1]
+class CreateHumans < ActiveRecord::Migration[7.1]
   def change
-    create_table :humen do |t|
+    create_table :humans do |t|
       t.string :name
       t.string :gender
       t.date :birthdate
