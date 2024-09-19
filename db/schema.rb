@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_18_200525) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_19_195733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_200525) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "external_ref"
   end
 
   create_table "biomarkers_ranges", force: :cascade do |t|
@@ -38,6 +39,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_200525) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "external_ref"
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
   create_table "humans", force: :cascade do |t|
@@ -69,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_200525) do
     t.bigint "biomarker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "language"
     t.index ["biomarker_id"], name: "index_synonyms_on_biomarker_id"
   end
 
@@ -78,9 +83,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_200525) do
     t.integer "value_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "external_ref"
   end
 
   add_foreign_key "biomarkers_ranges", "biomarkers"
+  add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "measures", "biomarkers"
   add_foreign_key "measures", "categories"
   add_foreign_key "measures", "humans"
