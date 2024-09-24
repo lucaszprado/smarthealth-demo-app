@@ -10,4 +10,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: "home#index"
+
+  namespace :api do
+    namespace :v1 do
+      resources :humans, only: [:show] do
+        post :upload_exam, on: :member  # POST /api/v1/humans/:id/upload_exam
+      end
+    end
+  end
+
+  resources :humans, only: [:show]
 end

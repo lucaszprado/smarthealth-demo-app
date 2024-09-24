@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_23_194349) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_24_203211) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,25 +110,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_194349) do
     t.float "value"
     t.float "original_value"
     t.datetime "date"
-    t.bigint "biomarker_id", null: false
-    t.bigint "category_id", null: false
-    t.bigint "unit_id", null: false
-    t.bigint "human_id", null: false
+    t.bigint "biomarker_id"
+    t.bigint "category_id"
+    t.bigint "unit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "source_id", null: false
+    t.bigint "source_id"
     t.index ["biomarker_id"], name: "index_measures_on_biomarker_id"
     t.index ["category_id"], name: "index_measures_on_category_id"
-    t.index ["human_id"], name: "index_measures_on_human_id"
     t.index ["source_id"], name: "index_measures_on_source_id"
     t.index ["unit_id"], name: "index_measures_on_unit_id"
   end
 
   create_table "sources", force: :cascade do |t|
     t.string "file"
-    t.string "type"
+    t.string "source_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "human_id", null: false
+    t.index ["human_id"], name: "index_sources_on_human_id"
   end
 
   create_table "synonyms", force: :cascade do |t|
@@ -167,8 +167,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_194349) do
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "measures", "biomarkers"
   add_foreign_key "measures", "categories"
-  add_foreign_key "measures", "humans"
   add_foreign_key "measures", "sources"
   add_foreign_key "measures", "units"
+  add_foreign_key "sources", "humans"
   add_foreign_key "synonyms", "biomarkers"
 end

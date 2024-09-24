@@ -2,7 +2,6 @@ class Measure < ApplicationRecord
   belongs_to :biomarker, optional: true
   belongs_to :category, optional: true
   belongs_to :unit, optional: true
-  belongs_to :human, optional: true
   belongs_to :source, optional: true
 
 

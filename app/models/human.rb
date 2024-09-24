@@ -1,5 +1,5 @@
 class Human < ApplicationRecord
-  has_many :measures, dependent: :destroy
+  has_many :sources
 
   def self.ransackable_associations(auth_object = nil)
     ["measures"]

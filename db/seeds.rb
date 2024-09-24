@@ -76,4 +76,11 @@ biomarkers_json["biomarkers"].each do |biomarker_data|
     )
   end
 end
+
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+Human.create(
+  name: "Joaquim Neto",
+  gender: "M",
+  birthdate: Date.new(1989, 4, 21)
+  )
