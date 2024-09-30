@@ -22,3 +22,4 @@ class MeasureProcessor
     raise "Error processing measures: #{e.message}"
   end
 end
+

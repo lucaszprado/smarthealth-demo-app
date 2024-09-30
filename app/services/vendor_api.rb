@@ -2,7 +2,11 @@ require 'net/http'
 require 'uri'
 
 class VendorApi
-  PID = '7169a804-6e39-4ce3-a4b9-ff85cd8c058a'
+  PID = '58fffbc4-2824-4969-961a-0edc7741b247'
+  # <attention> | LP @2024-09-30: I changed the PID FROM 7169a804-6e39-4ce3-a4b9-ff85cd8c058a TO
+  # 58fffbc4-2824-4969-961a-0edc7741b247 in order to
+  # link to the PID where we will upload and delete data all the time. We will not use
+  # my personal account.
   VENDOR_URL = "https://api.ornament.health/medical-data-api/public/v1.0/profile/biomarkers?pid=#{PID}"
 
 
@@ -11,7 +15,7 @@ class VendorApi
     request = Net::HTTP::Get.new(uri)
     request["Authorization"] = "Bearer #{ENV['VENDOR_API_TOKEN']}"
 
-    ## We will not use this right now because Lucas will upload the pdf manually. We will only get the response by API
+    ## We will not use this right now because Lucas will upload the pdf manually. We will only get the response by API.
     # # Attach the PDF from ActiveStorage
     # file = source.file.download  # Download the file locally
     # form_data = [["pdf", file]]
