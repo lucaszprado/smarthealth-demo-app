@@ -12,6 +12,7 @@ class VendorApi
 
   def self.send_pdf_to_vendor(source)
     uri = URI.parse(VENDOR_URL)
+
     request = Net::HTTP::Get.new(uri)
     request["Authorization"] = "Bearer #{ENV['VENDOR_API_TOKEN']}"
 
