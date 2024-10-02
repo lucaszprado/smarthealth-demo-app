@@ -7,10 +7,10 @@ class Api::V1::HumansController < ActionController::API
 
     # Step 2: Send the PDF to the vendor API for processing
     hash_data = VendorApi.send_pdf_to_vendor(source)
-
+    
     # # Step 3: Process the hash and create Measures for the Source
     MeasureProcessor.save_measures_from_vendor(source, hash_data)
-    binding.pry
+
     render json: { message: "Measures created successfully" }, status: :created
   rescue StandardError => e
     render json: { error: e.message }, status: :unprocessable_entity
