@@ -8,7 +8,7 @@ class HumansController < ApplicationController
 
     # Step 2: Collect all measures from those sources
     # measures = sources.flat_map(&:measures)
-
+    debugger
     # TODO: create a View to render this controller in HTML and not in json
     # Step 3: Render JSON response
     render json: {

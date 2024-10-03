@@ -1,5 +1,5 @@
 class MeasureProcessor
-  # TODO create biomarkers_ranges and categories from this loop
+  p
   def self.save_measures_from_vendor(source, hash_data)
     begin
       ActiveRecord::Base.transaction do
@@ -19,8 +19,6 @@ class MeasureProcessor
           end
         end
 
-        puts hash_data[:refs]
-
         hash_data["refs"].each do |external_ref, ranges|
           # Step 1: Find the corresponding Biomarker by its external_ref
           biomarker = Biomarker.find_or_create_by!(external_ref: external_ref.to_s.to_i)
@@ -28,9 +26,6 @@ class MeasureProcessor
           common_max = ranges["common"][1]
           optimal_min = ranges["optimal"][0]
           optimal_max = ranges["optimal"][1]
-
-          #puts "\n\n\n\n\n\n#{biomarker.name}\n\n\n\n\n\n"
-
 
         # Step 2: Insert the range values
           BiomarkersRange.create!(
