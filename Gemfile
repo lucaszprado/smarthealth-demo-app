@@ -73,3 +73,11 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# Let’s install Bootstrap with the gem
+gem "bootstrap", "~> 5.2"
+
+gem "font-awesome-sass", "~> 6.1"
+
+gem "simple_form"
+
+gem "autoprefixer-rails"

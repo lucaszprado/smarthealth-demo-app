@@ -1,1 +1,8 @@
 <h1> Our first Human 🚀</h1>
+<div>
+  <ol>
+    <% @measures.each do |measure| %>
+      <li><%= measure.biomarker.name %> = <%= measure.original_value %> @ <%= measure.date %> from <%= measure.source.id %> </li>
+    <% end %>
+  </ol>
+</div>
