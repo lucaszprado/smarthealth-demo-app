@@ -1,16 +1,77 @@
-<div class="banner">
-  <h1>Welcome home</h1>
-</div>
 
 
-<h1> Health Loop 🚀</h1>
-<h1> Você com o controle da sua saúde 🚀</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+      <!-- This div is centered and takes 9 columns -->
+      <header>
+        <div class="time-signal">
+          <span>07:20</span>
+          <span>4G</span>
+        </div>
+        <nav class="tabs">
+          <button class="tab active">Biomarcadores</button>
+          <button class="tab">Documentos</button>
+        </nav>
+      </header>
+      <main>
+        <section class="section">
+          <h3>Estudos de coagulação do sangue</h3>
+          <ul class="study-list">
+            <li class="study-item">
+              <span>INR (Razão normalizada internacional)</span>
+              <span class="value">1.03 ×100%</span>
+              <span class="date">17 Jul 2024</span>
+              <span class="status green"></span>
+            </li>
+            <li class="study-item">
+              <span>Relação tempo de tromboplastina parcial ativada (aPTT)</span>
+              <span class="value">1.08 ×100%</span>
+              <span class="date">17 Jul 2024</span>
+              <span class="status green"></span>
+            </li>
+            <li class="study-item">
+              <span>TP (Tempo de Protrombina)</span>
+              <span class="value">12.8 s</span>
+              <span class="date">17 Jul 2024</span>
+              <span class="status yellow"></span>
+            </li>
+            <li class="study-item">
+              <span>TTPa (Tempo de tromboplastina parcial ativado)</span>
+              <span class="value">29.8 s</span>
+              <span class="date">17 Jul 2024</span>
+              <span class="status green"></span>
+            </li>
+            <li class="study-item">
+              <span>Índice de Quick</span>
+              <span class="value">94.7%</span>
+              <span class="date">17 Jul 2024</span>
+              <span class="status green"></span>
+            </li>
+          </ul>
+        </section>
+      </main>
 
-<div class="card" style="width: 18rem;">
-  <img src="" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="card-justify border">
+        <div class="rounded">
+          <%= image_tag "chart_example.png", alt: "Chart", width: 100%>
+        </div>
+        <div class="card-item-center text-left">
+          <h5>Biomarker name</h5>
+        </div>
+
+        <div class="flexbox-text-right">
+          <div class="card-justify">
+            <p>Measure</p> <span class="status green"></span>
+          </div>
+          <div>
+            <p>Last Measure Date</p>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
   </div>
 </div>
