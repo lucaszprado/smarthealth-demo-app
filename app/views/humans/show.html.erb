@@ -1,8 +1,16 @@
 <h1> Our first Human 🚀</h1>
 <div>
-  <ol>
-    <% @measures.each do |measure| %>
-      <li><%= measure.biomarker.name %> = <%= measure.original_value %> @ <%= measure.date %> from <%= measure.source.id %> </li>
+  <ul>
+    <% @human_biomarkers.each do |biomarker_id, biomarker_serie| %>
+      <li>
+        Biomarker: <%= Biomarker.find(biomarker_id).name %>
+        <ol>
+          <% biomarker_serie.each do |date, value|%>
+            <li> <%= date %> = <%= value %> </li>
+          <% end %>
+          <%= line_chart(biomarker_serie, width: "10rem", height: "3rem", label: "Value") %>
+        </ol>
+      </li>
     <% end %>
-  </ol>
+  </ul>
 </div>
