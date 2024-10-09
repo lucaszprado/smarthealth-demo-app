@@ -6,4 +6,3 @@
 //= link popper.js
 //= link bootstrap.min.js
 
-//= link chart.js

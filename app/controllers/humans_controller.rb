@@ -5,7 +5,6 @@ class HumansController < ApplicationController
     human = Human.find(params[:id])
     human.measures.each do |measure|
       biomarker_id = measure.biomarker.id
-      biomarker_name = measure.biomarker.name
       biomarker_original_value = measure.original_value
       measure_date = measure.date.strftime("%Y-%m-%d")
 
