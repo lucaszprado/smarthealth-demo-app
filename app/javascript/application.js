@@ -5,6 +5,3 @@ import "controllers";
 
 import "bootstrap";
 import "@popperjs/core";
-
-import "chartkick";
-import "Chart.bundle";
