@@ -7,7 +7,9 @@ Chart.register(...registerables);
 export default class extends Controller {
   static targets = ["canvas"];
   static values = {
-    biomarkerMeasures: Object
+    biomarkerMeasures: Object,
+    biomarkerUpperBand: Number,
+    biomarkerLowerBand: Number
   };
 
   connect() {
@@ -19,8 +21,8 @@ export default class extends Controller {
 
     // Example chart data and options, you can customize as needed
     const labels = Object.keys(chartData);
-    const upperBandY = 85;
-    const lowerBandY = 45;
+    const upperBandY = this.biomarkerUpperBandValue;
+    const lowerBandY = this.biomarkerLowerBandValue;
 
     const data = {
       labels: labels,
