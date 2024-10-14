@@ -10,7 +10,7 @@ class VendorApi
   VENDOR_URL = "https://api.ornament.health/medical-data-api/public/v1.0/profile/biomarkers?pid=#{PID}"
 
 
-  def self.send_pdf_to_vendor(source)
+  def self.get_parsed_data()
     uri = URI.parse(VENDOR_URL)
 
     request = Net::HTTP::Get.new(uri)

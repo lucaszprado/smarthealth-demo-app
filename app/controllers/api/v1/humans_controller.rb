@@ -1,13 +1,17 @@
 class Api::V1::HumansController < ActionController::API
   def upload_exam
     human = Human.find(params[:id])
-    debugger
+
     # Step 1: Create a new Source and store the uploaded PDF
     data_source = human.sources.create!
     data_source.file.attach(params[:file])
+    data_source.save!
 
-    # Step 2: Send the PDF to the vendor API for processing
-    hash_data = VendorApi.send_pdf_to_vendor(data_source)
+    # Step 2: Send the PDF for parsing via vendor OR via internal service
+    # TODO in the future
+
+    # Step 3: Get parsed information from parsing process
+    hash_data = VendorApi.get_parsed_data()
 
     # # Step 3: Process the hash and create Measures for the Source
     MeasureProcessor.save_measures_from_vendor(data_source, hash_data)
