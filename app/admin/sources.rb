@@ -15,4 +15,48 @@ ActiveAdmin.register Source do
     permitted
   end
 
+  form do |f|
+    f.inputs do
+      f.input :human, as: :select, collection: Human.all
+      f.input :file, as: :file
+    end
+    f.actions
+  end
+
+  index do
+    selectable_column
+    id_column
+    column :human
+    column :source_type
+    column :created_at
+    column :updated_at
+    column "PDF File" do |source|
+      if source.file.attached?
+        link_to "View PDF", rails_blob_path(source.file, disposition: "inline"), target: "_blank"
+      else
+        "No File"
+      end
+    end
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :human
+      row :source_type
+      row :created_at
+      row :updated_at
+      row :file do |source|
+        if source.file.attached?
+          link_to "View PDF", rails_blob_path(source.file, disposition: "inline"), target: "_blank"
+        else
+          "No File"
+        end
+      end
+    end
+    active_admin_comments
+  end
+
+
 end
