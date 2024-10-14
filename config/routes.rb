@@ -16,9 +16,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :humans, only: [:show] do
         post :upload_exam, on: :member  # POST /api/v1/humans/:id/upload_exam
+        # It's an endpoint nested under human. It's a Post because it's POST request to upload the file.
       end
     end
   end
 
-  resources :humans, only: [:show]
+  resources :humans, only: [:show] do
+    resources :biomarkers, only: [:index, :show] #{only => [:index, :show]} || Chamando uma funcao resources e de argumento passando uma string e um hash.
+    #another syntax: resources("biomarkers", {"only" => ["index", "show"]}) || resources("biomarkers") --> Hash is a change argument for the function.
+  end
 end
