@@ -6,12 +6,19 @@ Chart.register(...registerables);
 // Connects to data-controller="chart"
 export default class extends Controller {
   static targets = ["canvas"];
+  static values = {
+    biomarkerMeasures: Object
+  };
 
   connect() {
+    console.log("Entrei");
+
+    const chartData = this.biomarkerMeasuresValue;
     const ctx = this.canvasTarget.getContext("2d");
 
+
     // Example chart data and options, you can customize as needed
-    const labels = ['2024-01-01', '2024-01-02', '2024-01-03', '2024-01-04', '2024-01-05', '2024-01-06', '2024-01-07'];
+    const labels = Object.keys(chartData);
     const upperBandY = 85;
     const lowerBandY = 45;
 
@@ -20,7 +27,7 @@ export default class extends Controller {
       datasets: [
       {
         label: 'Biomarker measures',
-        data: [65, 59, 80, 90, 56, 55, 40], // Biomarker measures
+        data: Object.values(chartData), // Biomarker measures
         fill: false,
         borderColor: 'rgba(255, 136, 91, 0.5)',
         tension: 0.1,
@@ -29,17 +36,17 @@ export default class extends Controller {
         pointBackgroundColor: (context) => {
             const value = context.dataset.data[context.dataIndex];
             if (value > upperBandY) {
-              return 'rgb(75, 192, 100)'
+              return 'rgb(255, 255, 102)'
             } else if (value < lowerBandY) {
-              return 'rgb(75, 192, 100)'
+              return 'rgb(255, 255, 102)'
             } else {
-              return 'rgb(255, 99, 132)'
+              return 'rgb(51, 255, 153)'
             }
         }
       },
       {
         label: 'Lower band',
-        data: [lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY],
+        data: Array(labels.length).fill(lowerBandY),
         fill: false,
         borderColor: 'rgba(129, 176, 239, 0.3)',
         tension: 0.1,
@@ -47,7 +54,7 @@ export default class extends Controller {
       },
       {
         label: 'Upper band',
-        data: [85, 85, 85, 85, 85, 85, 85],
+        data: Array(labels.length).fill(upperBandY),
         fill: 'origin',
         backgroundColor: (context) => {
             const ctx = context.chart.ctx;
