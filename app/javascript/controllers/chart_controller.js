@@ -11,42 +11,110 @@ export default class extends Controller {
     const ctx = this.canvasTarget.getContext("2d");
 
     // Example chart data and options, you can customize as needed
+    const labels = ['2024-01-01', '2024-01-02', '2024-01-03', '2024-01-04', '2024-01-05', '2024-01-06', '2024-01-07'];
+    const upperBandY = 85;
+    const lowerBandY = 45;
+
     const data = {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
+      labels: labels,
+      datasets: [
+      {
+        label: 'Biomarker measures',
+        data: [65, 59, 80, 90, 56, 55, 40], // Biomarker measures
+        fill: false,
+        borderColor: 'rgba(255, 136, 91, 0.5)',
+        tension: 0.1,
+        pointRadius: 6,
+        pointBorderColor: 'rgba(255, 99, 132,0)',
+        pointBackgroundColor: (context) => {
+            const value = context.dataset.data[context.dataIndex];
+            if (value > upperBandY) {
+              return 'rgb(75, 192, 100)'
+            } else if (value < lowerBandY) {
+              return 'rgb(75, 192, 100)'
+            } else {
+              return 'rgb(255, 99, 132)'
+            }
+        }
+      },
+      {
+        label: 'Lower band',
+        data: [lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY],
+        fill: false,
+        borderColor: 'rgba(129, 176, 239, 0.3)',
+        tension: 0.1,
+        pointRadius: 0
+      },
+      {
+        label: 'Upper band',
+        data: [85, 85, 85, 85, 85, 85, 85],
+        fill: 'origin',
+        backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const chartHeight = context.chart.height;
+
+            // Create a gradient to create the abrupt fill effect
+            const gradient = ctx.createLinearGradient(0, 0, 0, chartHeight);
+
+            // Abrupt fill up to y=45
+            gradient.addColorStop(0, 'rgba(204, 229, 255, 0.2)'); // Solid fill from the top (y=85) to y=45
+            gradient.addColorStop(0.73, 'rgba(204, 229, 255, 0.2)'); // Still solid at y=45
+            gradient.addColorStop(0.73, 'rgba(255, 99, 132, 0)');   // Abruptly changes to transparent at y=45
+            gradient.addColorStop(0.73, 'rgba(255, 99, 132, 0)');      // Fully transparent below y=45
+
+            return gradient;
+          },
+        borderColor: 'rgba(129, 176, 239, 0.3)',
+        tension: 0.1,
+        pointRadius: 0
+      }
+      ]
     };
 
     const options = {
       scales: {
+        x: {
+         // type: 'timeseries',
+          grid: {
+            display: false,
+          },
+          //offset: true,
+          ticks: {
+            padding: 1,
+          }
+        },
         y: {
-          beginAtZero: true
+          grid:{
+            display: false
+          },
+          min: 30,
+          max: 100,
+          ticks: {
+            stepSize: 10,
+            padding: 30,
+            display: true
+          },
+          border: {
+            display: false
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            // Custom label to display only the y-axis value in the tooltip
+            label: function(tooltipItem) {
+            // Return only the y-axis value (which is the "raw" value of the point)
+            return `${tooltipItem.raw}`;
+            }
+          }
         }
       }
     };
 
     // Initialize the chart
     new Chart(ctx, {
-      type: 'bar',  // or 'line', 'pie', etc.
+      type: 'line',  // or 'line', 'pie', etc.
       data: data,
       options: options
     });
