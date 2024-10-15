@@ -30,7 +30,7 @@ export default class extends Controller {
     const upperYAxis = 1.2*Math.max(biomarkerHighest, upperBandY);
     const lowerYAxis = 0.7*Math.min(biomarkerLowest, lowerBandY);
 
-
+    debugger
     const data = {
       labels: labels,
       datasets: [
