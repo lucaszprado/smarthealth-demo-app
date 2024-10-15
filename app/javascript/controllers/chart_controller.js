@@ -104,7 +104,7 @@ export default class extends Controller {
           },
           //offset: true,
           ticks: {
-            padding: 1,
+            padding: 15,
           }
         },
         y: {

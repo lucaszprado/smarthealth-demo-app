@@ -1,5 +1,4 @@
 class MeasureProcessor
-  p
   def self.save_measures_from_vendor(source, hash_data)
     begin
       ActiveRecord::Base.transaction do

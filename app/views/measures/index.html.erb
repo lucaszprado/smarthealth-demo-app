@@ -1,0 +1,7 @@
+<h1> Biomarcador X para Human Y </h1>
+
+<h3> <%= @biomarker.name %> </h3>
+
+<% @measures.each do |measure| %>
+  <p> <%= measure.biomarker.name %> <%= measure.original_value %> </p>
+<% end %>

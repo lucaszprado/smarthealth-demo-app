@@ -16,6 +16,8 @@ class HumansController < ApplicationController
       @human_biomarkers[biomarker_id] = @human_biomarkers[biomarker_id].sort_by { |key, value| key}.to_h
     end
 
+    #raise
+
     # # Step 1: Fetch all sources associated with the human
     # sources = human.sources.includes(measures: :biomarker)
 
