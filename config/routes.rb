@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   end
 
   resources :humans, only: [:show] do
-    resources :biomarkers, only: [:index, :show] #{only => [:index, :show]} || Chamando uma funcao resources e de argumento passando uma string e um hash.
+    resources :biomarkers, only: [:index, :show] do #{only => [:index, :show]} || Chamando uma funcao resources e de argumento passando uma string e um hash.
     #another syntax: resources("biomarkers", {"only" => ["index", "show"]}) || resources("biomarkers") --> Hash is a change argument for the function.
+    resources :measures, only: [:index]
+    end
   end
 end

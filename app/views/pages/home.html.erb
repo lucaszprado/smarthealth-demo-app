@@ -69,10 +69,14 @@
       </div>
 
     <!-- JavaScript Chart-->
-    
-    <div>
-      <canvas data-controller="chart" data-chart-target="canvas" width="400" height="200"></canvas>
+
+    <div data-controller="chart" data-chart-biomarker-measures-value="<%= @biomarker_measures_json%>" data-chart-biomarker-upper-band-value="<%=@biomarker_upper_band%>" data-chart-biomarker-lower-band-value="<%=@biomarker_lower_band%>">
+      <canvas data-chart-target="canvas" width="400" height="200">
+
+      </canvas>
     </div>
+
+
     </div>
   </div>
 </div>

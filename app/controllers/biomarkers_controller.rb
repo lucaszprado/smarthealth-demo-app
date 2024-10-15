@@ -1,0 +1,3 @@
+class BiomarkersController < ApplicationController
+
+end

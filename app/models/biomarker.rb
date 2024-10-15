@@ -1,6 +1,7 @@
 class Biomarker < ApplicationRecord
   has_many :synonyms
   has_many :measures
+  has_many :biomarkers_range
 
   def self.ransackable_associations(auth_object = nil)
     ["synonyms", "measures"]

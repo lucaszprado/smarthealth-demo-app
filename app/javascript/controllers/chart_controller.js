@@ -6,21 +6,37 @@ Chart.register(...registerables);
 // Connects to data-controller="chart"
 export default class extends Controller {
   static targets = ["canvas"];
+  static values = {
+    biomarkerMeasures: Object,
+    biomarkerUpperBand: Number,
+    biomarkerLowerBand: Number
+  };
 
   connect() {
+    console.log("Entrei");
+
+    const chartData = this.biomarkerMeasuresValue;
     const ctx = this.canvasTarget.getContext("2d");
 
-    // Example chart data and options, you can customize as needed
-    const labels = ['2024-01-01', '2024-01-02', '2024-01-03', '2024-01-04', '2024-01-05', '2024-01-06', '2024-01-07'];
-    const upperBandY = 85;
-    const lowerBandY = 45;
+    // X-axis, upper band and lower band
+    const labels = Object.keys(chartData);
+    const biomarkerSeries = Object.values(chartData);
+    const upperBandY = this.biomarkerUpperBandValue;
+    const lowerBandY = this.biomarkerLowerBandValue;
+
+    // Defining chart Y range constants
+    const biomarkerHighest = Math.max(...biomarkerSeries);
+    const biomarkerLowest = Math.min(...biomarkerSeries);
+    const upperYAxis = 1.2*Math.max(biomarkerHighest, upperBandY);
+    const lowerYAxis = 0.7*Math.min(biomarkerLowest, lowerBandY);
+
 
     const data = {
       labels: labels,
       datasets: [
       {
         label: 'Biomarker measures',
-        data: [65, 59, 80, 90, 56, 55, 40], // Biomarker measures
+        data: biomarkerSeries, // Biomarker measures
         fill: false,
         borderColor: 'rgba(255, 136, 91, 0.5)',
         tension: 0.1,
@@ -29,17 +45,17 @@ export default class extends Controller {
         pointBackgroundColor: (context) => {
             const value = context.dataset.data[context.dataIndex];
             if (value > upperBandY) {
-              return 'rgb(75, 192, 100)'
+              return 'rgb(255, 255, 102)'
             } else if (value < lowerBandY) {
-              return 'rgb(75, 192, 100)'
+              return 'rgb(255, 255, 102)'
             } else {
-              return 'rgb(255, 99, 132)'
+              return 'rgb(51, 255, 153)'
             }
         }
       },
       {
         label: 'Lower band',
-        data: [lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY, lowerBandY],
+        data: Array(labels.length).fill(lowerBandY),
         fill: false,
         borderColor: 'rgba(129, 176, 239, 0.3)',
         tension: 0.1,
@@ -47,20 +63,28 @@ export default class extends Controller {
       },
       {
         label: 'Upper band',
-        data: [85, 85, 85, 85, 85, 85, 85],
+        data: Array(labels.length).fill(upperBandY),
         fill: 'origin',
         backgroundColor: (context) => {
             const ctx = context.chart.ctx;
-            const chartHeight = context.chart.height;
+            const canvas = context.chart.canvas;
 
-            // Create a gradient to create the abrupt fill effect
-            const gradient = ctx.createLinearGradient(0, 0, 0, chartHeight);
+            // const chartArea = context.chart.chartArea;
+            // debugger
+            // const chartHeight = chartArea.bottom - chartArea.top; // Height of the chart area
+            // const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom); // Gradient vector (x0, y0, x1, y1)
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height); // Gradient vector (x0, y0, x1, y1)
+            // Calculate gradient markers as percentage of chart height
 
-            // Abrupt fill up to y=45
-            gradient.addColorStop(0, 'rgba(204, 229, 255, 0.2)'); // Solid fill from the top (y=85) to y=45
-            gradient.addColorStop(0.73, 'rgba(204, 229, 255, 0.2)'); // Still solid at y=45
-            gradient.addColorStop(0.73, 'rgba(255, 99, 132, 0)');   // Abruptly changes to transparent at y=45
-            gradient.addColorStop(0.73, 'rgba(255, 99, 132, 0)');      // Fully transparent below y=45
+            const upperBandPosition = (upperYAxis - upperBandY) / (upperYAxis - lowerYAxis);
+            const lowerBandPosition = (upperYAxis - lowerBandY) / (upperYAxis - lowerYAxis);
+
+            //debugger
+            // Add color stops for the gradient
+            gradient.addColorStop(0, 'rgba(204, 229, 255, 0.2)'); // Light blue at the top
+            gradient.addColorStop(upperBandPosition, 'rgba(204, 229, 255, 0.2)'); // Solid blue starting from the upper band
+            gradient.addColorStop(lowerBandPosition, 'rgba(204, 229, 255, 0)');   // Transparent from lower band
+            gradient.addColorStop(1, 'rgba(204, 229, 255, 0)');   // Transparent at the bottom
 
             return gradient;
           },
@@ -80,17 +104,17 @@ export default class extends Controller {
           },
           //offset: true,
           ticks: {
-            padding: 1,
+            padding: 15,
           }
         },
         y: {
           grid:{
             display: false
           },
-          min: 30,
-          max: 100,
+          min: lowerYAxis,
+          max: upperYAxis,
           ticks: {
-            stepSize: 10,
+            stepSize: Math.round((upperYAxis - lowerYAxis)/8),
             padding: 30,
             display: true
           },
