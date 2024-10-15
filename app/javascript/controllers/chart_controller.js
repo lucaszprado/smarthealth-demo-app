@@ -18,18 +18,27 @@ export default class extends Controller {
     const chartData = this.biomarkerMeasuresValue;
     const ctx = this.canvasTarget.getContext("2d");
 
-
-    // Example chart data and options, you can customize as needed
+    // X-axis, upper band and lower band
     const labels = Object.keys(chartData);
+    const biomarkerSeries = Object.values(chartData);
     const upperBandY = this.biomarkerUpperBandValue;
     const lowerBandY = this.biomarkerLowerBandValue;
 
+    // Defining chart Y range
+    const biomarkerHighest = Math.max(...biomarkerSeries);
+    const biomarkerLowest = Math.min(...biomarkerSeries);
+
+    const upperYAxis = 1.2*Math.max(biomarkerHighest, upperBandY);
+    const lowerYAxis = 0.7*Math.min(biomarkerLowest, lowerBandY);
+    const gradientMarker = (upperBandY - lowerBandY ) / (upperBandY-lowerYAxis);
+
+    debugger
     const data = {
       labels: labels,
       datasets: [
       {
         label: 'Biomarker measures',
-        data: Object.values(chartData), // Biomarker measures
+        data: biomarkerSeries, // Biomarker measures
         fill: false,
         borderColor: 'rgba(255, 136, 91, 0.5)',
         tension: 0.1,
@@ -67,9 +76,9 @@ export default class extends Controller {
 
             // Abrupt fill up to y=45
             gradient.addColorStop(0, 'rgba(204, 229, 255, 0.2)'); // Solid fill from the top (y=85) to y=45
-            gradient.addColorStop(0.73, 'rgba(204, 229, 255, 0.2)'); // Still solid at y=45
-            gradient.addColorStop(0.73, 'rgba(255, 99, 132, 0)');   // Abruptly changes to transparent at y=45
-            gradient.addColorStop(0.73, 'rgba(255, 99, 132, 0)');      // Fully transparent below y=45
+            gradient.addColorStop(gradientMarker, 'rgba(204, 229, 255, 0.2)'); // Still solid at y=45
+            gradient.addColorStop(gradientMarker, 'rgba(255, 99, 132, 0)');   // Abruptly changes to transparent at y=45
+            gradient.addColorStop(gradientMarker, 'rgba(255, 99, 132, 0)');      // Fully transparent below y=45
 
             return gradient;
           },
@@ -96,10 +105,10 @@ export default class extends Controller {
           grid:{
             display: false
           },
-          min: 30,
-          max: 100,
+          min: lowerYAxis,
+          max: upperYAxis,
           ticks: {
-            stepSize: 10,
+            stepSize: (upperYAxis - lowerYAxis)/8,
             padding: 30,
             display: true
           },
