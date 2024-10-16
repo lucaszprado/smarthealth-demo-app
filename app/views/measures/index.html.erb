@@ -1,7 +1,15 @@
-<h1> Biomarcador X para Human Y </h1>
+<div class = "container">
+  <div class = "row justify-content-center">
+    <div class = "col-12 col-lg-9">
+      <!--! The page content goes inside this div -->
+      <h1> Biomarcador <%= @biomarker.name %> para <%=@human.name%> </h1>
 
-<h3> <%= @biomarker.name %> </h3>
+      <!-- JavaScript Chart-->
+      <div data-controller="chart" data-chart-biomarker-measures-value="<%= @human_biomarker_measures_json%>" data-chart-biomarker-upper-band-value="<%=@biomarker_upper_band%>" data-chart-biomarker-lower-band-value="<%=@biomarker_lower_band%>">
+        <canvas data-chart-target="canvas" width="400" height="200">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% @measures.each do |measure| %>
-  <p> <%= measure.biomarker.name %> <%= measure.original_value %> </p>
-<% end %>

@@ -17,7 +17,7 @@ export default class extends Controller {
 
     const chartData = this.biomarkerMeasuresValue;
     const ctx = this.canvasTarget.getContext("2d");
-
+    debugger
     // X-axis, upper band and lower band
     const labels = Object.keys(chartData);
     const biomarkerSeries = Object.values(chartData);
