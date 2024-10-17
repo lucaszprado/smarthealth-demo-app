@@ -1,0 +1,4 @@
+<h3>Aqui vai ficar minha lista de Biomarkers</h3>
+<% @last_measures.each do |measure| %>
+  <p> <%= measure.biomarker.name %> <%= measure.original_value %> </p>
+<% end %>
