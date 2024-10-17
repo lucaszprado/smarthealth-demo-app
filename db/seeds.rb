@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+puts "Hold your horses....."
 require 'json'
 
 # Create Categories
@@ -53,10 +53,10 @@ units_json.each do |unit_data|
     unit.synomys_string = unit_data["synonymsString"]
   end
 end
-
+puts "Lembre da terceira lei da matemática...."
 # Create Biomarkers and Synonyms
 # Read and parse the JSON file
-file_path = Rails.root.join('external-files', 'ornament', 'biomarkes-v11-legends-en.json')
+file_path = Rails.root.join('external-files', 'ornament', 'biomarkes-v11-legends-en-pt.json')
 file_content = File.read(file_path)
 biomarkers_json = JSON.parse(file_content)
 
@@ -84,3 +84,4 @@ Human.create(
   gender: "M",
   birthdate: Date.new(1989, 4, 21)
   )
+puts "Seed done!"
