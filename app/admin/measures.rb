@@ -15,4 +15,43 @@ ActiveAdmin.register Measure do
     permitted
   end
 
+  index do
+    selectable_column
+    id_column
+    column :value
+    column :original_value
+    column :date
+    column :biomarker
+    column :category
+    column :unit
+    column :source
+    column "Human" do |measure|
+      link_to measure.source.human.name, admin_human_path(measure.source.human) if measure.source&.human
+    end
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :value
+      row :original_value
+      row :date
+      row :biomarker
+      row :category
+      row :unit
+      row :source
+      row :created_at
+      row :updated_at
+      row "Human" do |measure|
+        link_to measure.source.human.name, admin_human_path(measure.source.human) if measure.source&.human
+      end
+    end
+  end
+
+  preserve_default_filters!
+
+  filter :source_human_name_cont, as: :string, label: "Human Name"
+  filter :biomarker, as: :select, collection: -> { Biomarker.order(:name).pluck(:name, :id) }
+
+
 end
