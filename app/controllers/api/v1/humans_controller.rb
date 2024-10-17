@@ -1,5 +1,5 @@
 class Api::V1::HumansController < ActionController::API
-  def upload_exam
+  def get_human_measures
     human = Human.find(params[:id])
 
     # Step 1: Create a new Source and store the uploaded PDF

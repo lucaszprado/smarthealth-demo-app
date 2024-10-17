@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :humans, only: [:show] do
-        post :upload_exam, on: :member  # POST /api/v1/humans/:id/upload_exam
+        post :get_human_measures, on: :member  # POST /api/v1/humans/:id/get_human_measures
         # It's an endpoint nested under human. It's a Post because it's POST request to upload the file.
       end
     end
