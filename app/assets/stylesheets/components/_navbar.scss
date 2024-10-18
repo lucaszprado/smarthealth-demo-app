@@ -8,5 +8,14 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 10rem;
+}
+
+.nav-item.dropdown .dropdown-toggle {
+  cursor: pointer;
+}
+
+// Push the content down in all the pages where we have a navbar
+body {
+  padding-top: 3rem;
 }

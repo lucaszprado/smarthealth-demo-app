@@ -21,8 +21,8 @@ class MeasuresController < ApplicationController
       @human_biomarker_measures[measure_date] = biomarker_original_value
       @human_biomarker_measures = @human_biomarker_measures.sort_by { |key, value| key}.to_h
       @human_biomarker_measures_json = @human_biomarker_measures.to_json
-      @biomarker_upper_band = 90
-      @biomarker_lower_band = 70
+      #@biomarker_upper_band = 459
+      #@biomarker_lower_band = 320
     end
   end
 end
