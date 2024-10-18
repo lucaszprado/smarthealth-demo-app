@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_24_203211) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_18_191831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -140,6 +140,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_24_203211) do
     t.index ["biomarker_id"], name: "index_synonyms_on_biomarker_id"
   end
 
+  create_table "unit_factors", force: :cascade do |t|
+    t.float "factor"
+    t.bigint "biomarker_id", null: false
+    t.bigint "unit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["biomarker_id"], name: "index_unit_factors_on_biomarker_id"
+    t.index ["unit_id"], name: "index_unit_factors_on_unit_id"
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "name"
     t.string "synomys_string"
@@ -171,4 +181,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_24_203211) do
   add_foreign_key "measures", "units"
   add_foreign_key "sources", "humans"
   add_foreign_key "synonyms", "biomarkers"
+  add_foreign_key "unit_factors", "biomarkers"
+  add_foreign_key "unit_factors", "units"
 end

@@ -75,6 +75,15 @@ biomarkers_json["biomarkers"].each do |biomarker_data|
       biomarker_id: biomarker.id
     )
   end
+
+  biomarker_data["unitsFactors"].each do |unit_factor_data|
+    UnitFactor.create(
+      unit_id: unit_factor_data[0],
+      factor: unit_factor_data[1],
+      biomarker_id: biomarker.id
+    )
+  end
+
 end
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
