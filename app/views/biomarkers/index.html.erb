@@ -1,4 +1,70 @@
-<h3>Aqui vai ficar minha lista de Biomarkers</h3>
-<% @last_measures.each do |measure| %>
-  <p> <%= measure.biomarker.name %> <%= measure.original_value %> </p>
-<% end %>
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon mb-10 fixed-top">
+      <div class="container-fluid">
+        <%= link_to "#", class: "navbar-brand" do %>
+          <%= image_tag "logo.svg" %>
+        <% end %>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto">
+            <%# if user_signed_in? %>
+              <li class="nav-item active">
+                <%= link_to "Home", "#", class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Messages", "#", class: "nav-link" %>
+              </li>
+              <li class="nav-item dropdown">
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <%= link_to "Action", "#", class: "dropdown-item" %>
+                  <%= link_to "Another action", "#", class: "dropdown-item" %>
+                  <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+                  <%# link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+                </div>
+              </li>
+            <%# else %>
+              <!--li class="nav-item"-->
+                <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+              <!--/li-->
+            <%# end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pt-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
+          <% @last_measures.each do |measure| %>
+            <%= link_to human_biomarker_measures_path(@human.id, measure.biomarker.id), class: "text-decoration-none link-dark" do %>
+              <div class="card-justify border-bottom ps-3">
+                <div>
+                  <i class="fa-solid fa-chart-line fa-3x"></i>
+                </div>
+                <div class="card-item-center text-left">
+                  <h5> <%= measure.biomarker.name %> </h5>
+                </div>
+
+                <div class="flexbox-text-right">
+                  <div class="card-justify">
+                    <p class="fs-5"><%= measure.original_value %></p> <span class="status green"></span>
+                  </div>
+                  <div>
+                    <p><%= measure.date.strftime("%Y-%m-%d") %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </body>
