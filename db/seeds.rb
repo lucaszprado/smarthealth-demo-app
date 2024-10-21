@@ -78,10 +78,11 @@ biomarkers_json["biomarkers"].each do |biomarker_data|
 
   biomarker_data["unitsFactors"].each do |unit_factor_data|
     UnitFactor.create(
-      unit_id: unit_factor_data[0],
+      unit_id: Unit.find_by(external_ref: unit_factor_data[0]).id,
       factor: unit_factor_data[1],
       biomarker_id: biomarker.id
     )
+
   end
 
 end
