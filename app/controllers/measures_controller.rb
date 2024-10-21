@@ -21,8 +21,8 @@ class MeasuresController < ApplicationController
       @human_biomarker_measures[measure_date] = biomarker_original_value
       @human_biomarker_measures = @human_biomarker_measures.sort_by { |key, value| key}.to_h
       @human_biomarker_measures_json = @human_biomarker_measures.to_json
-      unit = measure.unit
-      unit_factor = UnitFactor.find_by(biomarker: @biomarker, unit: unit).factor
+      @unit = measure.unit
+      unit_factor = UnitFactor.find_by(biomarker: @biomarker, unit: @unit).factor
       biomarker_range = BiomarkersRange.find_by(biomarker: @biomarker)
       @biomarker_upper_band = biomarker_range.possible_max_value/unit_factor
       @biomarker_lower_band = biomarker_range.possible_min_value/unit_factor

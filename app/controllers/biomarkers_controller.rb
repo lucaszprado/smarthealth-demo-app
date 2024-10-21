@@ -7,6 +7,13 @@ class BiomarkersController < ApplicationController
     .where(sources: { human_id: @human.id })
     .order('measures.biomarker_id, measures.date DESC');
 
-    @last_measures = @last_measures.sort_by { |measure| measure.biomarker.name }
+    @last_measures = @last_measures.sort_by do |measure|
+
+      if !measure.biomarker.synonyms.find_by(language: "PT").nil?
+        measure.biomarker.synonyms.find_by(language: "PT").name
+      else
+        measure.biomarker.name
+      end
+    end
   end
 end

@@ -50,12 +50,16 @@
                   <i class="fa-solid fa-chart-line fa-3x"></i>
                 </div>
                 <div class="card-item-center text-left">
-                  <h5> <%= measure.biomarker.name %> </h5>
+                  <% if !measure.biomarker.synonyms.find_by(language: "PT").nil? %>
+                    <h5> <%= measure.biomarker.synonyms.find_by(language: "PT").name %> </h5>
+                  <% else %>
+                    <h5><%= measure.biomarker.name %></h5>
+                  <% end %>
                 </div>
 
                 <div class="flexbox-text-right">
                   <div class="card-justify">
-                    <p class="fs-5"><%= measure.original_value %></p> <span class="status green"></span>
+                    <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}" %></p><span class="status green"></span>
                   </div>
                   <div>
                     <p><%= measure.date.strftime("%Y-%m-%d") %></p>
