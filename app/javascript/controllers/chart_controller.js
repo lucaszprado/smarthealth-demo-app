@@ -17,7 +17,7 @@ export default class extends Controller {
 
     const chartData = this.biomarkerMeasuresValue;
     const ctx = this.canvasTarget.getContext("2d");
-    debugger
+
     // X-axis, upper band and lower band
     const labels = Object.keys(chartData);
     const biomarkerSeries = Object.values(chartData);
@@ -30,7 +30,25 @@ export default class extends Controller {
     const upperYAxis = 1.2*Math.max(biomarkerHighest, upperBandY);
     const lowerYAxis = 0.7*Math.min(biomarkerLowest, lowerBandY);
 
-    debugger
+     // Add two placeholder labels to center the point
+     labels.unshift(""); // Add an empty label at the beginning
+     labels.push("");     // Add an empty label at the end
+
+     // Add placeholder null values to maintain dataset length
+     biomarkerSeries.unshift(null); // Empty value at the beginning
+     biomarkerSeries.push(null);    // Empty value at the end
+
+    const pointColor = (context) => {
+      const value = context.dataset.data[context.dataIndex];
+          if (value > upperBandY) {
+            return '#F7F7BE'
+          } else if (value < lowerBandY) {
+            return '#F7F7BE)'
+          } else {
+            return '#044E0C'
+          }
+    };
+
     const data = {
       labels: labels,
       datasets: [
@@ -38,26 +56,17 @@ export default class extends Controller {
         label: 'Biomarker measures',
         data: biomarkerSeries, // Biomarker measures
         fill: false,
-        borderColor: 'rgba(255, 136, 91, 0.5)',
+        borderColor: '#B9D7FA',
         tension: 0.1,
         pointRadius: 6,
-        pointBorderColor: 'rgba(255, 99, 132,0)',
-        pointBackgroundColor: (context) => {
-            const value = context.dataset.data[context.dataIndex];
-            if (value > upperBandY) {
-              return 'rgb(255, 255, 102)'
-            } else if (value < lowerBandY) {
-              return 'rgb(255, 255, 102)'
-            } else {
-              return 'rgb(51, 255, 153)'
-            }
-        }
+        pointBorderColor: pointColor,
+        pointBackgroundColor: pointColor
       },
       {
         label: 'Lower band',
         data: Array(labels.length).fill(lowerBandY),
         fill: false,
-        borderColor: 'rgba(129, 176, 239, 0.3)',
+        borderColor: 'rgba(155, 238, 155, 0.3)',
         tension: 0.1,
         pointRadius: 0
       },
@@ -66,29 +75,30 @@ export default class extends Controller {
         data: Array(labels.length).fill(upperBandY),
         fill: 'origin',
         backgroundColor: (context) => {
-            const ctx = context.chart.ctx;
-            const canvas = context.chart.canvas;
+          const ctx = context.chart.ctx;
+          const chartArea = context.chart.chartArea;
 
-            // const chartArea = context.chart.chartArea;
-            // debugger
-            // const chartHeight = chartArea.bottom - chartArea.top; // Height of the chart area
-            // const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom); // Gradient vector (x0, y0, x1, y1)
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height); // Gradient vector (x0, y0, x1, y1)
-            // Calculate gradient markers as percentage of chart height
+          if (!chartArea) {
+            return 'Wainting';
+          }
+          const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+            // const ctx = context.chart.ctx;
+            // const canvas = context.chart.canvas;
+            // const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height); // Gradient vector (x0, y0, x1, y1)
 
             const upperBandPosition = (upperYAxis - upperBandY) / (upperYAxis - lowerYAxis);
             const lowerBandPosition = (upperYAxis - lowerBandY) / (upperYAxis - lowerYAxis);
-
             //debugger
             // Add color stops for the gradient
-            gradient.addColorStop(0, 'rgba(204, 229, 255, 0.2)'); // Light blue at the top
-            gradient.addColorStop(upperBandPosition, 'rgba(204, 229, 255, 0.2)'); // Solid blue starting from the upper band
-            gradient.addColorStop(lowerBandPosition, 'rgba(204, 229, 255, 0)');   // Transparent from lower band
-            gradient.addColorStop(1, 'rgba(204, 229, 255, 0)');   // Transparent at the bottom
+            gradient.addColorStop(0, 'rgba(155, 238, 155, 0.3)'); // Light green at the top
+            gradient.addColorStop(upperBandPosition, 'rgba(155, 238, 155, 0.1)'); // Solid green starting from the upper band
+            gradient.addColorStop(lowerBandPosition, 'rgba(155, 238, 155, 0.1)');   // Transparent from lower band
+            gradient.addColorStop(lowerBandPosition + 0.001, 'rgba(155, 238, 155, 0)');   // Transparent from lower band
+            gradient.addColorStop(1, 'rgba(155, 238, 155, 0)');   // Transparent at the bottom
 
             return gradient;
           },
-        borderColor: 'rgba(129, 176, 239, 0.3)',
+        borderColor: 'rgba(155, 238, 155, 0.3)',
         tension: 0.1,
         pointRadius: 0
       }
@@ -111,18 +121,19 @@ export default class extends Controller {
           grid:{
             display: false
           },
-          min: lowerYAxis,
-          max: upperYAxis,
+          min: Math.round(lowerYAxis),
+          max: Math.round(upperYAxis),
           ticks: {
-            stepSize: Math.round((upperYAxis - lowerYAxis)/8),
+            stepSize: Math.ceil((upperYAxis - lowerYAxis)/5),
             padding: 30,
-            display: true
+            display: true,
           },
           border: {
             display: false
           }
         }
       },
+
       plugins: {
         tooltip: {
           callbacks: {
@@ -133,8 +144,10 @@ export default class extends Controller {
             }
           }
         }
-      }
+      },
     };
+
+    //debugger
 
     // Initialize the chart
     new Chart(ctx, {
