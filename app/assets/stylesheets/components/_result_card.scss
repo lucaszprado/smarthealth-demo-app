@@ -17,6 +17,17 @@
   }
 }
 
+.card-justify.border-bottom.ps-3 {
+  /* Initial state */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-justify.border-bottom.ps-3:hover {
+  transform: translateY(2px); /* Moves the button down by 2px */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow to make it look pressed */
+  background-color: var(--Primary, #F5F5F5); /* Optional background color change */
+}
+
 .card-item-center {
   flex-grow: 1;
   padding: 1rem;

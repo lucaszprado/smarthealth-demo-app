@@ -41,9 +41,9 @@ export default class extends Controller {
     const pointColor = (context) => {
       const value = context.dataset.data[context.dataIndex];
           if (value > upperBandY) {
-            return '#F7F7BE'
+            return '#E7EE33'
           } else if (value < lowerBandY) {
-            return '#F7F7BE)'
+            return '#E7EE33)'
           } else {
             return '#044E0C'
           }
