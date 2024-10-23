@@ -11,5 +11,5 @@ class Biomarker < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "external_ref", "id", "id_value", "name", "updated_at"]
   end
-
+  
 end

@@ -1,11 +1,21 @@
 class BiomarkersController < ApplicationController
   def index
-    @human = Human.find(params[:human_id])
-    @last_measures = Measure
-    .select('DISTINCT ON (measures.biomarker_id) measures.*')
-    .joins(:source)
-    .where(sources: { human_id: @human.id })
-    .order('measures.biomarker_id, measures.date DESC');
+    if params[:query].present?
+      @human = Human.find(params[:human_id])
+      @last_measures = Measure
+      .select('DISTINCT ON (measures.biomarker_id) measures.*')
+      .joins(:source)
+      .joins(biomarker: :synonyms)
+      .where("synonyms.name ILIKE ?", "%#{params[:query]}%")
+      .where(source: { human_id: @human.id });
+    else
+      @human = Human.find(params[:human_id])
+      @last_measures = Measure
+      .select('DISTINCT ON (measures.biomarker_id) measures.*')
+      .joins(:source)
+      .where(sources: { human_id: @human.id })
+      .order('measures.biomarker_id, measures.date DESC');
+    end
 
     @last_measures = @last_measures.sort_by do |measure|
 
