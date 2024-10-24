@@ -1,0 +1,49 @@
+#survey-container-open {
+  position: fixed;
+  bottom: 0.1rem;
+  right: 0.1rem;
+  width: 310px;
+  height: 500px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  padding-top: 5px;
+  overflow: hidden;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+#survey-container-open .btn.btn-primary {
+  display: block; /* Make the button take the full width of its parent */
+  width: 95%; /* Set the button width to 90% of the parent div */
+  padding: 10px 20px; /* Adjust padding for visual appeal */
+  box-sizing: border-box;
+  margin: 0 auto;
+  background-color:#05467e;
+}
+
+
+
+#survey-container-close {
+  position: fixed;
+  bottom: 0.1rem;
+  right: 0.1rem;
+  width: 310px;
+  height: 50px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  padding-top: 5px;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+
+#survey-container-close .btn.btn-primary {
+  display: block; /* Make the button take the full width of its parent */
+  width: 95%; /* Set the button width to 90% of the parent div */
+  padding: 10px 20px; /* Adjust padding for visual appeal */
+  box-sizing: border-box;
+  margin: 0;
+  background-color:#05467e;
+}
