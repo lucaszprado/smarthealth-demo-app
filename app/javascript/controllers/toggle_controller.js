@@ -11,7 +11,6 @@ export default class extends Controller {
   fire() {
     this.statusCloseTarget.classList.toggle("d-none")
     this.statusOpenTarget.classList.toggle("d-none")
-
   }
 
 }

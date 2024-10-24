@@ -28,7 +28,7 @@ export default class extends Controller {
     const biomarkerHighest = Math.max(...biomarkerSeries);
     const biomarkerLowest = Math.min(...biomarkerSeries);
     const upperYAxis = 1.2*Math.max(biomarkerHighest, upperBandY);
-    const lowerYAxis = 0.7*Math.min(biomarkerLowest, lowerBandY);
+    const lowerYAxis = 0*Math.min(biomarkerLowest, lowerBandY);
 
      // Add two placeholder labels to center the point
      labels.unshift(""); // Add an empty label at the beginning
@@ -47,6 +47,13 @@ export default class extends Controller {
           } else {
             return '#044E0C'
           }
+    };
+
+    Chart.defaults.font = {
+      family: '"Work Sans", "Helvetica", "sans-serif"', // Set the font family
+      size: 17, // Set the font size in pixels
+      weight: 'normal', // Optional: Set font weight
+      lineHeight: 1.2, // Optional: Set line height
     };
 
     const data = {
@@ -124,7 +131,7 @@ export default class extends Controller {
           min: Math.round(lowerYAxis),
           max: Math.round(upperYAxis),
           ticks: {
-            stepSize: Math.ceil((upperYAxis - lowerYAxis)/5),
+            // stepSize: Math.ceil((upperYAxis - lowerYAxis)/5),
             padding: 30,
             display: true,
           },
@@ -143,6 +150,9 @@ export default class extends Controller {
             return `${tooltipItem.raw}`;
             }
           }
+        },
+        legend: {
+          display: false
         }
       },
     };

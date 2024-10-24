@@ -17,7 +17,7 @@
           <div class="d-flex justify-content-center search-bar">
               <%= form_with url: human_biomarkers_path(@human), method: :get, class: "d-flex w-100 mb-3" do %>
                 <%= text_field_tag :query, params[:query], class: "form-control me-2", placeholder:"Digite um biomarcador"%>
-                <%= submit_tag "Filtrar", name: "", class: "btn btn-primary"%>
+                <%= submit_tag "Buscar", name: "", class: "btn btn-primary"%>
               <% end %>
           </div>
           <% @last_measures.each do |measure| %>
@@ -28,9 +28,9 @@
                 </div>
                 <div class="card-item-center text-left">
                   <% if !measure.biomarker.synonyms.find_by(language: "PT").nil? %>
-                    <h5> <%= measure.biomarker.synonyms.find_by(language: "PT").name %> </h5>
+                    <p class="fs-6"> <%= measure.biomarker.synonyms.find_by(language: "PT").name %> </p>
                   <% else %>
-                    <h5><%= measure.biomarker.name %></h5>
+                    <p class="fs-6"><%= measure.biomarker.name %></p>
                   <% end %>
                 </div>
 
