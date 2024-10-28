@@ -29,7 +29,7 @@ export default class extends Controller {
     const biomarkerLowest = Math.min(...biomarkerSeries);
     const upperYAxis = 1.2*Math.max(biomarkerHighest, upperBandY);
     const lowerYAxis = 0*Math.min(biomarkerLowest, lowerBandY);
-
+    // debugger
      // Add two placeholder labels to center the point
      labels.unshift(""); // Add an empty label at the beginning
      labels.push("");     // Add an empty label at the end
@@ -89,21 +89,20 @@ export default class extends Controller {
             return 'Wainting';
           }
           const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-            // const ctx = context.chart.ctx;
-            // const canvas = context.chart.canvas;
-            // const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height); // Gradient vector (x0, y0, x1, y1)
 
+            // Defining position of the bands in terms of fractions of Y axis to apply the gradient.
             const upperBandPosition = (upperYAxis - upperBandY) / (upperYAxis - lowerYAxis);
-            const lowerBandPosition = (upperYAxis - lowerBandY) / (upperYAxis - lowerYAxis);
-            //debugger
+            const lowerBandPosition = (upperYAxis - lowerBandY) / (upperYAxis - lowerYAxis) - 0.001;
+            // debugger
             // Add color stops for the gradient
-            gradient.addColorStop(0, 'rgba(155, 238, 155, 0.3)'); // Light green at the top
-            gradient.addColorStop(upperBandPosition, 'rgba(155, 238, 155, 0.1)'); // Solid green starting from the upper band
-            gradient.addColorStop(lowerBandPosition, 'rgba(155, 238, 155, 0.1)');   // Transparent from lower band
+            //gradient.addColorStop(0, 'rgba(155, 238, 155, 0.3)'); // Light green at the upper band
+            gradient.addColorStop(upperBandPosition, 'rgba(155, 238, 155, 0.1)'); // light green starting at the upper band
+            gradient.addColorStop(lowerBandPosition, 'rgba(155, 238, 155, 0.1)');   // light green at the lower band
             gradient.addColorStop(lowerBandPosition + 0.001, 'rgba(155, 238, 155, 0)');   // Transparent from lower band
             gradient.addColorStop(1, 'rgba(155, 238, 155, 0)');   // Transparent at the bottom
 
             return gradient;
+
           },
         borderColor: 'rgba(155, 238, 155, 0.3)',
         tension: 0.1,
@@ -157,7 +156,7 @@ export default class extends Controller {
       },
     };
 
-    //debugger
+
 
     // Initialize the chart
     new Chart(ctx, {
