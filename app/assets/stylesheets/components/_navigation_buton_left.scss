@@ -24,6 +24,7 @@
   height: auto; /* Maintains aspect ratio */
 }
 
+// Media Query for screens smaller than 600px
 @media (max-width: 600px) {
   .navigation-button-left {
     width: 2.0rem; /* Smaller width */

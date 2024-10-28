@@ -27,8 +27,9 @@ export default class extends Controller {
     // Defining chart Y range constants
     const biomarkerHighest = Math.max(...biomarkerSeries);
     const biomarkerLowest = Math.min(...biomarkerSeries);
-    const upperYAxis = 1.2*Math.max(biomarkerHighest, upperBandY);
-    const lowerYAxis = 0*Math.min(biomarkerLowest, lowerBandY);
+    const highestYValue = Math.max(biomarkerHighest, upperBandY);
+    const lowestYValue = 0*Math.min(biomarkerLowest, lowerBandY);
+
     // debugger
      // Add two placeholder labels to center the point
      labels.unshift(""); // Add an empty label at the beginning
@@ -49,9 +50,17 @@ export default class extends Controller {
           }
     };
 
+    // Helper function to calculate step size
+    function calculateStepSize(min, max) {
+      const range = max - min;
+      if (range <= 50) return 10;          // Small range
+      if (range <= 100) return 20;        // Medium range
+      return Math.ceil(range / 5);       // Larger range, divide range by 5
+    }
+
     Chart.defaults.font = {
       family: '"Work Sans", "Helvetica", "sans-serif"', // Set the font family
-      size: 17, // Set the font size in pixels
+      size: 14, // Set the font size in pixels
       weight: 'normal', // Optional: Set font weight
       lineHeight: 1.2, // Optional: Set line height
     };
@@ -91,6 +100,9 @@ export default class extends Controller {
           const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
 
             // Defining position of the bands in terms of fractions of Y axis to apply the gradient.
+            const lowerYAxis = Math.round(lowestYValue);
+            const upperYAxis = calculateStepSize(Math.round(lowestYValue), Math.round(highestYValue))*6;
+
             const upperBandPosition = (upperYAxis - upperBandY) / (upperYAxis - lowerYAxis);
             const lowerBandPosition = (upperYAxis - lowerBandY) / (upperYAxis - lowerYAxis) - 0.001;
             // debugger
@@ -112,6 +124,8 @@ export default class extends Controller {
     };
 
     const options = {
+      responsive: true, // This makes the chart automatically resize to fit its container
+      maintainAspectRatio: false, // Allows the chart to fill its container’s width and height
       scales: {
         x: {
          // type: 'timeseries',
@@ -120,19 +134,32 @@ export default class extends Controller {
           },
           //offset: true,
           ticks: {
-            padding: 15,
+            padding: window.innerWidth < 576 ? 5 : 15,  // Adjust padding based on screen width
+            autoSkip: true,  // Auto-skip labels if there’s overlap
+            maxRotation: window.innerWidth < 576 ? 45 : 0,  // Rotate labels on mobile
+            minRotation: window.innerWidth < 576 ? 45 : 0,  // Keep rotation consistent
+            font: {
+              size: window.innerWidth < 576 ? 10 : 14,  // Reduce font size on small screens
+            }
           }
         },
         y: {
           grid:{
             display: false
           },
-          min: Math.round(lowerYAxis),
-          max: Math.round(upperYAxis),
+          min: Math.round(lowestYValue),
+          max: calculateStepSize(Math.round(lowestYValue), Math.round(highestYValue))*6,
           ticks: {
             // stepSize: Math.ceil((upperYAxis - lowerYAxis)/5),
-            padding: 30,
+            padding: window.innerWidth < 576 ? 5 : 30,
             display: true,
+            font: {
+              size: window.innerWidth < 576 ? 10 : 14,  // Reduce font size on small screens
+            },
+            stepSize: calculateStepSize(Math.round(lowestYValue), Math.round(highestYValue)),  // Custom step size
+            callback: function(value) {
+              return Math.round(value);  // Show rounded values without precise decimal points
+            }
           },
           border: {
             display: false
@@ -156,8 +183,10 @@ export default class extends Controller {
       },
     };
 
+    const chartContainer = document.querySelector('.chart-container'); // Assuming you have a container
+    chartContainer.style.minHeight = '25rem';
 
-
+    debugger
     // Initialize the chart
     new Chart(ctx, {
       type: 'line',  // or 'line', 'pie', etc.

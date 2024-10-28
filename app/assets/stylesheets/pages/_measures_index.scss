@@ -1,0 +1,25 @@
+// Adjusting chart size for mobile
+
+// .chart-container { /* Adjust height for smaller screens */
+//   width: 80rem; /* Smaller width */
+//   height: 40rem;
+// }
+
+
+// @media (max-width: 600px) {
+//   .chart-container {
+//     width: 22.5rem;
+//     height: 20rem; /* Adjust height for smaller screens */
+//   }
+// }
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9rem; /* Scales down to about 14px on mobile */
+  }
+
+  h2, h5, p {
+    font-size: 0.8rem;
+  }
+}
