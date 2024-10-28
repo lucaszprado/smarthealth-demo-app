@@ -186,7 +186,7 @@ export default class extends Controller {
     const chartContainer = document.querySelector('.chart-container'); // Assuming you have a container
     chartContainer.style.minHeight = '25rem';
 
-    debugger
+    // debugger
     // Initialize the chart
     new Chart(ctx, {
       type: 'line',  // or 'line', 'pie', etc.
