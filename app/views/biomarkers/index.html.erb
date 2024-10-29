@@ -36,7 +36,13 @@
 
                 <div class="flexbox-text-right">
                   <div class="card-justify">
-                    <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}" %></p><span class="status green"></span>
+                    <% if measure.original_value > measure.same_unit_possible_max_value.round(2)%>
+                      <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name} #{measure.same_unit_possible_min_value.round(2)} "  %></p><span class="status yellow"></span>
+                    <%elsif measure.original_value < measure.same_unit_possible_min_value.round(2) %>
+                      <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name} #{measure.same_unit_possible_min_value.round(2)} "  %></p><span class="status yellow"></span>
+                    <%else%>
+                      <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name} #{measure.same_unit_possible_min_value.round(2)} "  %></p><span class="status green"></span>
+                    <% end %>
                   </div>
                   <div>
                     <p><%= measure.date.strftime("%Y-%m-%d") %></p>

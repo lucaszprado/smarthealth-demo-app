@@ -1,5 +1,6 @@
 class Unit < ApplicationRecord
-  has_many :unit_factor
+  has_many :unit_factors
+  has_many :measures
 
   def self.ransackable_associations(auth_object = nil)
     ["unit_factor"]
