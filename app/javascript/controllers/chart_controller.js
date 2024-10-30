@@ -53,7 +53,7 @@ export default class extends Controller {
     // Helper function to calculate step size
     function calculateStepSize(min, max) {
       const range = max - min;
-      if (range <= 1) return 0.2;
+      // if (range <= 1) return 0.2;
       if (range <= 5) return 1;
       if (range <= 50) return 10;          // Small range
       if (range <= 100) return 20;        // Medium range
@@ -185,8 +185,8 @@ export default class extends Controller {
       },
     };
 
-    const chartContainer = document.querySelector('.chart-container'); // Assuming you have a container
-    chartContainer.style.minHeight = '20rem';
+    // const chartContainer = document.querySelector('.chart-container'); // Assuming you have a container
+    // chartContainer.style.minHeight = '20rem';
 
     // debugger
     // Initialize the chart

@@ -1,0 +1,7 @@
+.chart-container {
+  min-height: 20rem; // Default for larger screens
+
+  @include media-breakpoint-down(sm) {
+    min-height: 15rem; // Height for mobile devices
+  }
+}
