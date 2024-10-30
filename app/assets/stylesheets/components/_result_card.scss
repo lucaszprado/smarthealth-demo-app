@@ -3,10 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.1rem;
-  h5{
-    padding: 0rem;
-    margin: 0rem;
-  }
+
   p{
     padding: 0rem;
     margin: 0rem;
@@ -17,9 +14,12 @@
   }
 }
 
-.card-justify.border-bottom.ps-3 {
-  /* Initial state */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.card-justify > div:first-child {
+  width: 1rem; /* Adjust as needed based on icon size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0.5rem;
 }
 
 .card-justify.border-bottom.ps-3:hover {
@@ -31,14 +31,19 @@
 .card-item-center {
   flex-grow: 1;
   padding: 1rem;
+  min-width: 0; /* Enables shrinking and wrapping for long names */
+  white-space: normal; /* Allows text wrapping */
 }
 
 .flexbox-text-right{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   padding: 1rem;
+  flex-shrink: 0; /* Prevents shrinking */
+  //min-width: 100px; /* Ensures a minimum width */
+  white-space: nowrap; /* Prevents wrapping for value, unit, and date */
 
 }
 
@@ -47,7 +52,7 @@
   height: 10px;
   border-radius: 50%;
   display: inline-block;
-
+  margin-left: 0.3rem;
 
   &.green {
     background-color: $green;
@@ -59,5 +64,14 @@
 
   &.red {
     background-color: $red;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .card-item-center p.fs-6,
+  .card-justify p.fs-6 {
+    font-size: 0.9rem !important;
+    line-height: 1 !important;
   }
 }

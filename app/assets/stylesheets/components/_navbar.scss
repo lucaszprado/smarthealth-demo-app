@@ -16,3 +16,13 @@
 body {
   padding-top: 3rem;
 }
+
+// Adjusting NavBar Width for Mobile devices / Breakpoint: 768px
+@media (max-width: 768px) {
+  .navbar-lewagon .navbar-brand img {
+    width: 5rem;
+  }
+  body {
+    padding-top: 0.7rem;
+  }
+}
