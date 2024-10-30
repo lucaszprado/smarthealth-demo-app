@@ -5,7 +5,12 @@
     <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
       <div class="container-fluid d-flex justify-content-start">
         <%= link_to "#", class: "navbar-brand" do %>
-          <%= image_tag "logo.svg" %>
+          <!--Uncomment when you have a logo -->
+          <!--%= image_tag "logo.svg" %-->
+          <!--Uncomment when you have a logo -->
+          <div>
+            <p class="fs-3"> <%= @human.name %> </p>
+          </div>
         <% end %>
       </div>
     </div>

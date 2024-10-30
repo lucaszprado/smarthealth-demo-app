@@ -2,6 +2,7 @@
   justify-content: space-between;
   background: white;
   padding-bottom: 0.5rem;
+  height: 6rem; // Comment when you have a logo
 }
 
 .navbar-lewagon .navbar-brand img {
@@ -22,7 +23,10 @@ body {
   .navbar-lewagon .navbar-brand img {
     width: 5rem;
   }
+  .navbar-lewagon {
+    height: 4rem; // Comment when you have a logo
+  }
   body {
-    padding-top: 0.7rem;
+    padding-top: 0.5rem;
   }
 }
