@@ -54,6 +54,7 @@ export default class extends Controller {
     function calculateStepSize(min, max) {
       const range = max - min;
       if (range <= 1) return 0.2;
+      if (range <= 3) return 0.6;
       if (range <= 5) return 1;
       if (range <= 50) return 10;          // Small range
       if (range <= 100) return 20;        // Medium range
@@ -103,7 +104,7 @@ export default class extends Controller {
 
             // Defining position of the bands in terms of fractions of Y axis to apply the gradient.
             const lowerYAxis = Math.round(lowestYValue);
-            const upperYAxis = calculateStepSize(Math.round(lowestYValue), Math.round(highestYValue))*6;
+            const upperYAxis = Math.round(calculateStepSize(lowestYValue, highestYValue)*6*100)/100 // Stepsize are range divided 5 -> 6 to add some pading.
 
             const upperBandPosition = (upperYAxis - upperBandY) / (upperYAxis - lowerYAxis);
             const lowerBandPosition = (upperYAxis - lowerBandY) / (upperYAxis - lowerYAxis) - 0.001;
@@ -149,8 +150,8 @@ export default class extends Controller {
           grid:{
             display: false
           },
-          min: Math.round(lowestYValue),
-          max: calculateStepSize(Math.round(lowestYValue), Math.round(highestYValue))*6,
+          beginAtZero: true,
+          max: Math.round(calculateStepSize(lowestYValue, highestYValue)*6*100)/100, // Stepsize are range divided 5 -> 6 to add some pading.
           ticks: {
             // stepSize: Math.ceil((upperYAxis - lowerYAxis)/5),
             padding: window.innerWidth < 576 ? 5 : 30,
@@ -158,7 +159,7 @@ export default class extends Controller {
             font: {
               size: window.innerWidth < 576 ? 10 : 14,  // Reduce font size on small screens
             },
-            stepSize: calculateStepSize(Math.round(lowestYValue), Math.round(highestYValue)),  // Custom step size
+            stepSize: calculateStepSize(lowestYValue, highestYValue),  // Custom step size
             callback: function(value) {
               if (value < 10) {
                 return value.toFixed(1); // Format to 2 decimal places
