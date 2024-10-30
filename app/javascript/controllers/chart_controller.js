@@ -185,9 +185,6 @@ export default class extends Controller {
       },
     };
 
-    // const chartContainer = document.querySelector('.chart-container'); // Assuming you have a container
-    // chartContainer.style.minHeight = '20rem';
-
     // debugger
     // Initialize the chart
     new Chart(ctx, {
