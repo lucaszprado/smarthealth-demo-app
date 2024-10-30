@@ -68,11 +68,18 @@
   }
 }
 
+.card-justify.border-bottom.ps-3 .fa-chart-line{
+  font-size: 3em;
+}
+
 // Adjusting font size for mobile devices
 @media (max-width: 768px) {
   .card-item-center p.fs-6,
   .card-justify p.fs-6 {
     font-size: 0.9rem !important;
     line-height: 1 !important;
+  }
+  .card-justify.border-bottom.ps-3 .fa-chart-line {
+    font-size: 2em; /* Adjust the size as needed */
   }
 }
