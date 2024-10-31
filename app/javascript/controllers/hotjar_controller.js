@@ -13,12 +13,12 @@ export default class extends Controller {
 
     // Check if Hotjar has been initialized
     if (typeof hj !== 'undefined') {
-      console.log("Re-triggering Hotjar");
-      hj('trigger', 'page_view'); // Optional trigger if you have custom triggers set up
+      console.log("Re-triggering Hotjar on turbo navigation");
+      hj('stateChange', window.location.pathname); // Notify Hotjar of a new page view
       return;
     }
 
-    // Hotjar initialization code
+    console.log("Initializing Hotjar for the first time");
     (function(h, o, t, j, a, r) {
       h.hj = h.hj || function() { (h.hj.q = h.hj.q || []).push(arguments); };
       h._hjSettings = { hjid:5191202, hjsv: 6 };
@@ -28,5 +28,12 @@ export default class extends Controller {
       a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   }
-
 }
+
+// Ensure Hotjar is re-triggered on Turbo navigation
+document.addEventListener('turbo:load', () => {
+  const hotjarElement = document.querySelector('[data-controller="hotjar"]');
+  if (hotjarElement && hotjarElement.controller) {
+    hotjarElement.controller.loadHotjar();
+  }
+});
