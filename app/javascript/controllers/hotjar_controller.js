@@ -10,6 +10,14 @@ export default class extends Controller {
   }
 
   loadHotjar() {
+
+    // Check if Hotjar has been initialized
+    if (typeof hj !== 'undefined') {
+      console.log("Re-triggering Hotjar");
+      hj('trigger', 'page_view'); // Optional trigger if you have custom triggers set up
+      return;
+    }
+
     // Hotjar initialization code
     (function(h, o, t, j, a, r) {
       h.hj = h.hj || function() { (h.hj.q = h.hj.q || []).push(arguments); };
