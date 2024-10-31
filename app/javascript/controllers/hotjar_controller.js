@@ -10,9 +10,6 @@ export default class extends Controller {
   }
 
   loadHotjar() {
-    // Check if Hotjar script is already loaded to avoid duplicates
-    if (document.querySelector('script[src^="https://static.hotjar.com/c/hotjar-"]')) return;
-
     // Hotjar initialization code
     (function(h, o, t, j, a, r) {
       h.hj = h.hj || function() { (h.hj.q = h.hj.q || []).push(arguments); };
