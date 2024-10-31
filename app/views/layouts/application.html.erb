@@ -13,7 +13,14 @@
 
   </head>
 
-  <body>
+  <% if (controller.controller_name == 'biomarkers' && controller.action_name == 'index') ||
+      (controller.controller_name == 'measures' && controller.action_name == 'index') %>
+    <!-- Hotjar Tracking Code -->
+    <body data-controller="hotjar">
+    <% else %>
+    <body>
+  <% end %>
+  
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
