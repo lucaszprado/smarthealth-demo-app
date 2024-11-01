@@ -21,8 +21,11 @@ export default class extends Controller {
   loadHotjar() {
     console.log("loadHotjar() called");
     // Check if the Hotjar script is already loaded, and run it if necessary
-    if (typeof window.hj === "undefined" || !window.hj) {
-      console.log("Hotjar script initializing");
+    if (typeof window.hj === "function") {
+      console.log("Reinvoking Hotjar tracking function");
+      window.hj('trigger', 'page_view'); // This will re-trigger Hotjar tracking for a new page view
+    } else {
+      console.log("Initializing Hotjar script");
 
     //const timestamp = new Date().getTime(); // Add const here
       (function(h, o, t, j, a, r) {
@@ -36,9 +39,6 @@ export default class extends Controller {
       })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
 
       console.log("Hotjar script added to the DOM");
-    } else {
-
-      console.log("Hotjar script already initialized")
     }
   }
 }
