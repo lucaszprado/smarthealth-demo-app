@@ -16,6 +16,11 @@ export default class extends Controller {
   handleTurboLoad() {
     console.log("turbo:load event detected");
     this.reloadHotjar();
+    if (typeof window.hj === "function") {
+      // Notify Hotjar of a new page state
+      console.log("Hotjar stateChange triggered");
+      window.hj('stateChange', window.location.pathname);
+    }
   }
 
   loadHotjar() {
