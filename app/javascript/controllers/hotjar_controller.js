@@ -5,7 +5,17 @@ export default class extends Controller {
   connect() {
     console.log("Hello from hotjar controller")
     this.loadHotjar();
+
+     // Ensure the script runs when the page is visited through a link
+     document.addEventListener("turbo:load", this.loadHotjar);
+
   }
+
+  disconnect() {
+    // Clean up the event listener when the controller is disconnected
+    document.removeEventListener("turbo:load", this.loadHotjar);
+  }
+  
 
   loadHotjar() {
     // Remove existing script if it exists to reload it
