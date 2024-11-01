@@ -3,24 +3,23 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="hotjar"
 export default class extends Controller {
   connect() {
-    console.log("Hello from hotjar controller")
+    console.log("Hello from hotjar controller - connect() called");
     this.loadHotjar();
-
-     // Ensure the script runs when the page is visited through a link
-     document.addEventListener("turbo:load", () => {
-      requestAnimationFrame(() => {
-        this.loadHotjar();
-      });
-    });
+    document.addEventListener("turbo:load", this.handleTurboLoad.bind(this));
   }
 
   disconnect() {
-    // Clean up the event listener when the controller is disconnected
-    document.removeEventListener("turbo:load", this.loadHotjar);
+    console.log("Hotjar controller - disconnect() called");
+    document.removeEventListener("turbo:load", this.handleTurboLoad.bind(this));
   }
 
+  handleTurboLoad() {
+    console.log("turbo:load event detected");
+    this.loadHotjar();
+  }
 
   loadHotjar() {
+    console.log("loadHotjar() called");
     // Check if the Hotjar script is already loaded, and run it if necessary
     if (typeof window.hj === "undefined" || !window.hj) {
       console.log("Hotjar script initializing");
@@ -36,7 +35,10 @@ export default class extends Controller {
         a.appendChild(r);
       })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
 
-      console.log("Hotjar script loaded");
+      console.log("Hotjar script added to the DOM");
+    } else {
+
+      console.log("Hotjar script already initialized")
     }
   }
 }
