@@ -15,4 +15,7 @@ ActiveAdmin.register Synonym do
     permitted
   end
 
+  preserve_default_filters!
+
+  filter :biomarker, as: :select, collection: -> { Biomarker.order(:name).pluck(:name, :id) }
 end

@@ -11,7 +11,7 @@ ActiveAdmin.register Measure do
   #
   permit_params do
     permitted = [:value, :original_value, :date, :biomarker_id, :category_id, :unit_id, :source_id]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' # && current_user.admin? -> LP: Removed authorization
     permitted
   end
 
