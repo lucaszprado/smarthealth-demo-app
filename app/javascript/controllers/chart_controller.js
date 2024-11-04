@@ -56,6 +56,9 @@ export default class extends Controller {
       if (range <= 1) return 0.2;
       if (range <= 3) return 0.6;
       if (range <= 5) return 1;
+      if (range <= 10) return 2;
+      if (range <= 20) return 4;
+      if (range <= 40) return 8;
       if (range <= 50) return 10;          // Small range
       if (range <= 100) return 20;        // Medium range
       return Math.ceil(range / 5);       // Larger range, divide range by 5
