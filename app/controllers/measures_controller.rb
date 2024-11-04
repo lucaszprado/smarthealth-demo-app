@@ -20,9 +20,15 @@ class MeasuresController < ApplicationController
       @unit = measure.unit
       unit_factor = UnitFactor.find_by(biomarker: @biomarker, unit: @unit).factor
       biomarker_range = BiomarkersRange.find_by(biomarker: @biomarker)
-      @biomarker_upper_band = biomarker_range.possible_max_value/unit_factor
-      @biomarker_lower_band = biomarker_range.possible_min_value/unit_factor
-      
+
+      if !biomarker_range.nil?
+        @biomarker_upper_band = biomarker_range.possible_max_value/unit_factor
+        @biomarker_lower_band = biomarker_range.possible_min_value/unit_factor
+      else
+        @biomarker_upper_band = nil
+        @biomarker_lower_band = nil
+      end
+
     end
   end
 end
