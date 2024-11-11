@@ -1,7 +1,8 @@
 class MeasureProcessor
-  def self.save_measures_from_vendor(source, hash_data)
+  def self.save_measures_from_vendor(source, hash_data, human)
     begin
       ActiveRecord::Base.transaction do
+        date = Time.at(hash_data["biomarkers"][0]["entries"][0]["date"]).to_date
         hash_data["biomarkers"].each do |biomarker_data|
           biomarker = Biomarker.find_or_create_by!(external_ref: biomarker_data["id"])
           category = Category.find_by(external_ref: biomarker_data["categoryId"])
@@ -26,11 +27,15 @@ class MeasureProcessor
           optimal_min = ranges["optimal"][0]
           optimal_max = ranges["optimal"][1]
 
-        # Step 2: Insert the range values
+          # Step 2: Defining human variables
+          gender = human.gender
+          age = ((date - human.birthdate)/365.25).floor
+
+          # Step 3: Insert the range values
           BiomarkersRange.create!(
             biomarker: biomarker,
-            gender: nil,    # You can adjust as per your needs
-            age: nil,       # You can add logic if needed
+            gender: gender,
+            age: age,
             possible_min_value: common_min,
             possible_max_value: common_max,
             optimal_min_value: optimal_min.presence, # Use `presence` to handle empty arrays

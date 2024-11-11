@@ -14,7 +14,7 @@ class Api::V1::HumansController < ActionController::API
     hash_data = VendorApi.get_parsed_data()
 
     # # Step 3: Process the hash and create Measures for the Source
-    MeasureProcessor.save_measures_from_vendor(data_source, hash_data)
+    MeasureProcessor.save_measures_from_vendor(data_source, hash_data, human)
 
     render json: { message: "Measures created successfully" }, status: :created
   rescue StandardError => e
