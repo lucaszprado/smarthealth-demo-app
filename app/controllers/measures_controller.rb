@@ -1,34 +1,53 @@
 class MeasuresController < ApplicationController
   def index
-    
     @human_biomarker_measures = {}
     @human = Human.find(params[:human_id])
+    gender = @human.gender
+    birthdate = @human.birthdate
     @biomarker = Biomarker.find(params[:biomarker_id])
     @measures = @human.measures.where(biomarker: @biomarker)
+    # chart will be on the last measure unit
+    most_recent_measure = @measures.order(date: :desc).first
+    @unit = most_recent_measure.unit
+    unit_factor = UnitFactor.find_by(biomarker: @biomarker, unit: @unit).factor
+
 
     @measures.each do |measure|
-      biomarker_original_value = measure.original_value
+      biomarker_value = measure.value/unit_factor
       measure_date = measure.date.strftime("%Y-%m-%d")
 
-      # Initialize the nested hash for the biomarker name if it doesn't exist
+      # Initialize the hash for the biomarker measures and biomarker ranges
       @human_biomarker_measures ||= {}
+      @human_biomarker_upper_band_measures ||= {}
+      @human_biomarker_lower_band_measures ||= {}
 
-      # Add the date as key and biomarker name as original value inside the nested hash
-      @human_biomarker_measures[measure_date] = biomarker_original_value
-      @human_biomarker_measures = @human_biomarker_measures.sort_by { |key, value| key}.to_h
-      @human_biomarker_measures_json = @human_biomarker_measures.to_json
-      @unit = measure.unit
-      unit_factor = UnitFactor.find_by(biomarker: @biomarker, unit: @unit).factor
-      biomarker_range = BiomarkersRange.find_by(biomarker: @biomarker)
 
+      # Add the date as key and biomarker original value inside the hash
+      @human_biomarker_measures[measure_date] = biomarker_value
+
+
+      # Add the date as key and biomarker range values inside the hash
+      age = ((measure.date.to_date - birthdate)/365.25).floor
+      biomarker_range = BiomarkersRange.find_by(biomarker: @biomarker, gender: gender, age: age)
       if !biomarker_range.nil?
-        @biomarker_upper_band = biomarker_range.possible_max_value/unit_factor
-        @biomarker_lower_band = biomarker_range.possible_min_value/unit_factor
+        @human_biomarker_upper_band_measures[measure_date] = biomarker_range.possible_max_value/unit_factor
+        @human_biomarker_lower_band_measures[measure_date] = biomarker_range.possible_min_value/unit_factor
       else
-        @biomarker_upper_band = nil
-        @biomarker_lower_band = nil
+        @human_biomarker_upper_band_measures[measure_date] = nil
+        @human_biomarker_lower_band_measures[measure_date] = nil
       end
-
     end
+
+    # Order the hash by date
+    @human_biomarker_measures = @human_biomarker_measures.sort_by { |key, value| key}.to_h
+    @human_biomarker_upper_band_measures = @human_biomarker_upper_band_measures.sort_by { |key, value| key}.to_h
+    @human_biomarker_lower_band_measures = @human_biomarker_lower_band_measures.sort_by { |key, value| key}.to_h
+
+
+    # Transform into JSON
+    @human_biomarker_measures_json = @human_biomarker_measures.to_json
+    @human_biomarker_upper_band_measures_json = @human_biomarker_upper_band_measures.to_json
+    @human_biomarker_lower_band_measures_json = @human_biomarker_lower_band_measures.to_json
+    
   end
 end

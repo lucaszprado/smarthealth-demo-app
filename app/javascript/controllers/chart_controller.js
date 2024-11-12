@@ -8,43 +8,59 @@ export default class extends Controller {
   static targets = ["canvas"];
   static values = {
     biomarkerMeasures: Object,
-    biomarkerUpperBand: Number,
-    biomarkerLowerBand: Number
+    biomarkerUpperBand: Object,
+    biomarkerLowerBand: Object
   };
 
   connect() {
     console.log("Entrei");
-
-    const chartData = this.biomarkerMeasuresValue;
     const ctx = this.canvasTarget.getContext("2d");
+    const biomarkerMeasures = this.biomarkerMeasuresValue;
+    const biomarkerUpperBand = this.biomarkerUpperBandValue;
+    const biomarkerLowerBand = this.biomarkerLowerBandValue;
 
-    // X-axis, upper band and lower band
-    const labels = Object.keys(chartData);
-    const biomarkerSeries = Object.values(chartData);
-    const upperBandY = this.biomarkerUpperBandValue;
-    const lowerBandY = this.biomarkerLowerBandValue;
+
+
+    // X-axis, biomaerker series, upper band and lower band series
+    const labels = Object.keys(biomarkerMeasures);
+    const biomarkerMeasuresSeries = Object.values(biomarkerMeasures);
+    const biomarkerUpperBandSeries = Object.values(biomarkerUpperBand);
+    const biomarkerLowerBandSeries = Object.values(biomarkerLowerBand);
 
     // Defining chart Y range constants
-    const biomarkerHighest = Math.max(...biomarkerSeries);
-    const biomarkerLowest = Math.min(...biomarkerSeries);
-    const highestYValue = Math.max(biomarkerHighest, upperBandY);
-    const lowestYValue = 0*Math.min(biomarkerLowest, lowerBandY);
+    const biomarkerHighest = Math.max(...biomarkerMeasuresSeries);
+    const highestUpperBandY = Math.max(...biomarkerUpperBandSeries);
+    const highestLowerBandY = Math.max(...biomarkerLowerBandSeries);
+    const highestYValue = Math.max(biomarkerHighest, highestUpperBandY);
+    const lowestYValue = 0;
 
     // debugger
-     // Add two placeholder labels to center the point
-     labels.unshift(""); // Add an empty label at the beginning
-     labels.push("");     // Add an empty label at the end
+    // Add two placeholder labels to center the point
+    labels.unshift(""); // Add an empty label at the beginning
+    labels.push("");     // Add an empty label at the end
 
-     // Add placeholder null values to maintain dataset length
-     biomarkerSeries.unshift(null); // Empty value at the beginning
-     biomarkerSeries.push(null);    // Empty value at the end
+    // Add placeholder null values to maintain dataset length
+    biomarkerMeasuresSeries.unshift(null); // Empty value at the beginning
+    biomarkerMeasuresSeries.push(null);    // Empty value at the end
 
-    const pointColor = (context) => {
+    // Repeat band values for placeholder
+    biomarkerUpperBandSeries.unshift(biomarkerUpperBandSeries[0]);
+    biomarkerUpperBandSeries.push(biomarkerUpperBandSeries[biomarkerUpperBandSeries.length-1]);
+    biomarkerLowerBandSeries.unshift(biomarkerLowerBandSeries[0]);
+    biomarkerLowerBandSeries.push(biomarkerLowerBandSeries[biomarkerLowerBandSeries.length-1]);
+
+    //
+     const pointColor = (context) => {
+      // value extracts a specific data point from the chart dataset based on the current context
+      // in which the function pointColor is being called.
       const value = context.dataset.data[context.dataIndex];
+      const upperBandY = biomarkerUpperBandSeries[context.dataIndex];
+      const lowerBandY = biomarkerLowerBandSeries[context.dataIndex];
+
           if (value > upperBandY) {
             return '#E7EE33'
           } else if (value < lowerBandY) {
-            return '#E7EE33)'
+            return '#E7EE33'
           } else {
             return '#044E0C'
           }
@@ -76,17 +92,17 @@ export default class extends Controller {
       datasets: [
       {
         label: 'Biomarker measures',
-        data: biomarkerSeries, // Biomarker measures
+        data: biomarkerMeasuresSeries, // Biomarker measures
         fill: false,
         borderColor: '#B9D7FA',
         tension: 0.1,
         pointRadius: 6,
-        pointBorderColor: pointColor,
-        pointBackgroundColor: pointColor
+        pointBorderColor: pointColor, // Chart.js will pass `context` to `pointColor` for each data point in the dataset
+        pointBackgroundColor: pointColor // Chart.js will pass `context` to `pointColor` for each data point in the dataset
       },
       {
         label: 'Lower band',
-        data: Array(labels.length).fill(lowerBandY),
+        data: biomarkerLowerBandSeries,
         fill: false,
         borderColor: 'rgba(155, 238, 155, 0.3)',
         tension: 0.1,
@@ -94,7 +110,7 @@ export default class extends Controller {
       },
       {
         label: 'Upper band',
-        data: Array(labels.length).fill(upperBandY),
+        data: biomarkerUpperBandSeries,
         fill: 'origin',
         backgroundColor: (context) => {
           const ctx = context.chart.ctx;
@@ -109,8 +125,8 @@ export default class extends Controller {
             const lowerYAxis = Math.round(lowestYValue);
             const upperYAxis = Math.round(calculateStepSize(lowestYValue, highestYValue)*6*100)/100 // Stepsize are range divided 5 -> 6 to add some pading.
 
-            const upperBandPosition = (upperYAxis - upperBandY) / (upperYAxis - lowerYAxis);
-            const lowerBandPosition = (upperYAxis - lowerBandY) / (upperYAxis - lowerYAxis) - 0.001;
+            const upperBandPosition = (upperYAxis - highestUpperBandY) / (upperYAxis - lowerYAxis);
+            const lowerBandPosition = (upperYAxis - highestLowerBandY) / (upperYAxis - lowerYAxis) - 0.001;
             // debugger
             // Add color stops for the gradient
             //gradient.addColorStop(0, 'rgba(155, 238, 155, 0.3)'); // Light green at the upper band

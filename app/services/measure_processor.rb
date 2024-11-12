@@ -32,7 +32,7 @@ class MeasureProcessor
           age = ((date - human.birthdate)/365.25).floor
 
           # Step 3: Insert the range values
-          BiomarkersRange.create!(
+          BiomarkersRange.find_or_create_by!(
             biomarker: biomarker,
             gender: gender,
             age: age,

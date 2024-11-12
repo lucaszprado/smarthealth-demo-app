@@ -10,7 +10,7 @@
       <h5> Unidade: <%= @unit.name %> </h5>
 
       <!-- JavaScript Chart-->
-      <div class="chart-container" data-controller="chart" data-chart-biomarker-measures-value="<%= @human_biomarker_measures_json%>" data-chart-biomarker-upper-band-value="<%=@biomarker_upper_band%>" data-chart-biomarker-lower-band-value="<%=@biomarker_lower_band%>">
+      <div class="chart-container" data-controller="chart" data-chart-biomarker-measures-value="<%= @human_biomarker_measures_json%>" data-chart-biomarker-upper-band-value="<%=@human_biomarker_upper_band_measures_json%>" data-chart-biomarker-lower-band-value="<%=@human_biomarker_lower_band_measures_json%>">
         <canvas data-chart-target="canvas"></canvas>
       </div>
       <%= link_to human_biomarkers_path(@human.id) do %>
