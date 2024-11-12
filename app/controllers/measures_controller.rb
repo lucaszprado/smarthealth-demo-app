@@ -1,6 +1,6 @@
 class MeasuresController < ApplicationController
   def index
-    # New code
+    
     @human_biomarker_measures = {}
     @human = Human.find(params[:human_id])
     @biomarker = Biomarker.find(params[:biomarker_id])
