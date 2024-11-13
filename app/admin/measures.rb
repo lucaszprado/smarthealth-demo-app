@@ -50,6 +50,14 @@ ActiveAdmin.register Measure do
 
   preserve_default_filters!
 
+  filter :source, as: :select, collection: -> {
+    # Fetches the Source records and maps them to show `source_id - Human Name`
+    Source.includes(:human).map do |source|
+      human_name = source.human&.name || "No Human"
+      ["#{source.id} - #{human_name}", source.id]
+    end
+  }, label: "Source (ID - Human Name)"
+
   filter :source_human_name_cont, as: :string, label: "Human Name"
   filter :biomarker, as: :select, collection: -> { Biomarker.order(:name).pluck(:name, :id) }
 
