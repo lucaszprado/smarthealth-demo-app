@@ -27,8 +27,14 @@ class MeasuresController < ApplicationController
 
 
       # Add the date as key and biomarker range values inside the hash
+      # 1. Which age should be searched?
       age = ((measure.date.to_date - birthdate)/365.25).floor
-      biomarker_range = BiomarkersRange.find_by(biomarker: @biomarker, gender: gender, age: age)
+      # 2. Find the most recent range
+      biomarker_range = BiomarkersRange
+        .where(biomarker: @biomarker, gender: gender, age: age)
+        .order(created_at: :desc)
+        .first
+
       if !biomarker_range.nil?
         @human_biomarker_upper_band_measures[measure_date] = biomarker_range.possible_max_value/unit_factor
         @human_biomarker_lower_band_measures[measure_date] = biomarker_range.possible_min_value/unit_factor
@@ -48,6 +54,6 @@ class MeasuresController < ApplicationController
     @human_biomarker_measures_json = @human_biomarker_measures.to_json
     @human_biomarker_upper_band_measures_json = @human_biomarker_upper_band_measures.to_json
     @human_biomarker_lower_band_measures_json = @human_biomarker_lower_band_measures.to_json
-    
+
   end
 end

@@ -19,8 +19,6 @@ export default class extends Controller {
     const biomarkerUpperBand = this.biomarkerUpperBandValue;
     const biomarkerLowerBand = this.biomarkerLowerBandValue;
 
-
-
     // X-axis, biomaerker series, upper band and lower band series
     const labels = Object.keys(biomarkerMeasures);
     const biomarkerMeasuresSeries = Object.values(biomarkerMeasures);
@@ -33,7 +31,6 @@ export default class extends Controller {
     const highestYValue = Math.max(biomarkerHighest, highestUpperBandY);
     const biomarkerLowest = Math.min(...biomarkerMeasuresSeries);
     const lowestLowerBandY = Math.min(...biomarkerUpperBandSeries);
-    const lowestYValue = Math.min(biomarkerLowest, lowestLowerBandY);
     const axisStartYValue = 0;
 
     // debugger

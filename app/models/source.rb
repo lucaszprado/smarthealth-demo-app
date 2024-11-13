@@ -1,6 +1,6 @@
 class Source < ApplicationRecord
   belongs_to :human
-  has_many :measures
+  has_many :measures, dependent: :destroy
   has_one_attached :file
 
   def self.ransackable_associations(auth_object = nil)
