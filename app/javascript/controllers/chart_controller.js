@@ -30,9 +30,11 @@ export default class extends Controller {
     // Defining chart Y range constants
     const biomarkerHighest = Math.max(...biomarkerMeasuresSeries);
     const highestUpperBandY = Math.max(...biomarkerUpperBandSeries);
-    const highestLowerBandY = Math.max(...biomarkerLowerBandSeries);
     const highestYValue = Math.max(biomarkerHighest, highestUpperBandY);
-    const lowestYValue = 0;
+    const biomarkerLowest = Math.min(...biomarkerMeasuresSeries);
+    const lowestLowerBandY = Math.min(...biomarkerUpperBandSeries);
+    const lowestYValue = Math.min(biomarkerLowest, lowestLowerBandY);
+    const axisStartYValue = 0;
 
     // debugger
     // Add two placeholder labels to center the point
@@ -89,59 +91,34 @@ export default class extends Controller {
 
     const data = {
       labels: labels,
-      datasets: [
-      {
-        label: 'Biomarker measures',
-        data: biomarkerMeasuresSeries, // Biomarker measures
-        fill: false,
-        borderColor: '#B9D7FA',
-        tension: 0.1,
-        pointRadius: 6,
-        pointBorderColor: pointColor, // Chart.js will pass `context` to `pointColor` for each data point in the dataset
-        pointBackgroundColor: pointColor // Chart.js will pass `context` to `pointColor` for each data point in the dataset
-      },
-      {
-        label: 'Lower band',
-        data: biomarkerLowerBandSeries,
-        fill: false,
-        borderColor: 'rgba(155, 238, 155, 0.3)',
-        tension: 0.1,
-        pointRadius: 0
-      },
-      {
-        label: 'Upper band',
-        data: biomarkerUpperBandSeries,
-        fill: 'origin',
-        backgroundColor: (context) => {
-          const ctx = context.chart.ctx;
-          const chartArea = context.chart.chartArea;
-
-          if (!chartArea) {
-            return 'Wainting';
-          }
-          const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-
-            // Defining position of the bands in terms of fractions of Y axis to apply the gradient.
-            const lowerYAxis = Math.round(lowestYValue);
-            const upperYAxis = Math.round(calculateStepSize(lowestYValue, highestYValue)*6*100)/100 // Stepsize are range divided 5 -> 6 to add some pading.
-
-            const upperBandPosition = (upperYAxis - highestUpperBandY) / (upperYAxis - lowerYAxis);
-            const lowerBandPosition = (upperYAxis - highestLowerBandY) / (upperYAxis - lowerYAxis) - 0.001;
-            // debugger
-            // Add color stops for the gradient
-            //gradient.addColorStop(0, 'rgba(155, 238, 155, 0.3)'); // Light green at the upper band
-            gradient.addColorStop(upperBandPosition, 'rgba(155, 238, 155, 0.1)'); // light green starting at the upper band
-            gradient.addColorStop(lowerBandPosition, 'rgba(155, 238, 155, 0.1)');   // light green at the lower band
-            gradient.addColorStop(lowerBandPosition + 0.001, 'rgba(155, 238, 155, 0)');   // Transparent from lower band
-            gradient.addColorStop(1, 'rgba(155, 238, 155, 0)');   // Transparent at the bottom
-
-            return gradient;
-
+        datasets: [
+          {
+            label: 'Lower band',
+            data: biomarkerLowerBandSeries,
+            fill: false, // Ensures the fill color spans from this dataset to the upper band
+            borderColor: 'rgba(155, 238, 155, 0.3)',
+            tension: 0.1,
+            pointRadius: 0
           },
-        borderColor: 'rgba(155, 238, 155, 0.3)',
-        tension: 0.1,
-        pointRadius: 0
-      }
+          {
+          label: 'Upper band',
+          data: biomarkerUpperBandSeries,
+          backgroundColor: 'rgba(155, 238, 155, 0.1)',
+          fill: '-1', // Fills to the previous dataset (lower band), creating the area in between -> The dataset order matters.
+          borderColor: 'rgba(155, 238, 155, 0.3)',
+          tension: 0.1,
+          pointRadius: 0
+        },
+        {
+          label: 'Biomarker measures',
+          data: biomarkerMeasuresSeries, // Biomarker measures
+          fill: false,
+          borderColor: '#B9D7FA',
+          tension: 0.1,
+          pointRadius: 6,
+          pointBorderColor: pointColor, // Chart.js will pass `context` to `pointColor` for each data point in the dataset
+          pointBackgroundColor: pointColor // Chart.js will pass `context` to `pointColor` for each data point in the dataset
+        }
       ]
     };
 
@@ -170,7 +147,7 @@ export default class extends Controller {
             display: false
           },
           beginAtZero: true,
-          max: Math.round(calculateStepSize(lowestYValue, highestYValue)*6*100)/100, // Stepsize are range divided 5 -> 6 to add some pading.
+          max: Math.round(calculateStepSize(axisStartYValue, highestYValue)*6*100)/100, // Stepsize are range divided 5 -> 6 to add some pading.
           ticks: {
             // stepSize: Math.ceil((upperYAxis - lowerYAxis)/5),
             padding: window.innerWidth < 576 ? 5 : 30,
@@ -178,7 +155,7 @@ export default class extends Controller {
             font: {
               size: window.innerWidth < 576 ? 10 : 14,  // Reduce font size on small screens
             },
-            stepSize: calculateStepSize(lowestYValue, highestYValue),  // Custom step size
+            stepSize: calculateStepSize(axisStartYValue, highestYValue),  // Custom step size
             callback: function(value) {
               if (value < 10) {
                 return value.toFixed(1); // Format to 2 decimal places
@@ -208,7 +185,7 @@ export default class extends Controller {
       },
     };
 
-    // debugger
+    debugger
     // Initialize the chart
     new Chart(ctx, {
       type: 'line',  // or 'line', 'pie', etc.
