@@ -53,7 +53,7 @@ ActiveAdmin.register Measure do
   filter :source, as: :select, collection: -> {
     # Fetches the Source records and maps them to show `source_id - Human Name`
     Source.includes(:human).map do |source|
-      human_name = source.human&.name || "No Human"
+      human_name = source.human.name
       ["#{source.id} - #{human_name}", source.id]
     end
   }, label: "Source (ID - Human Name)"
