@@ -13,7 +13,7 @@ class MeasuresController < ApplicationController
 
 
     @measures.each do |measure|
-      biomarker_value = measure.value/unit_factor
+      biomarker_value = (measure.value/unit_factor).round(decimal_places = 2)
       measure_date = measure.date.strftime("%Y-%m-%d")
 
       # Initialize the hash for the biomarker measures and biomarker ranges
