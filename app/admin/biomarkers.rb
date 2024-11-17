@@ -10,7 +10,7 @@ ActiveAdmin.register Biomarker do
   # or
   #
   permit_params do
-    permitted = [:name, :external_ref]
+    permitted = [:name, :external_ref, :biomarkers_range_id]
     permitted << :other if params[:action] == 'create'
     permitted
   end
