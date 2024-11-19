@@ -48,6 +48,20 @@ ActiveAdmin.register Measure do
     end
   end
 
+  # Customize the form to use a dropdown for `source_id`
+  form do |f|
+    f.inputs do
+      f.input :value
+      f.input :original_value
+      f.input :date, as: :datepicker
+      f.input :biomarker, as: :select, collection: Biomarker.order(:name).pluck(:name, :id)
+      f.input :category, as: :select, collection: Category.order(:name).pluck(:name, :id)
+      f.input :unit, as: :select, collection: Unit.order(:name).pluck(:name, :id)
+      f.input :source, as: :select, collection: Source.includes(:human).map { |source| ["#{source.id} - #{source.human.name}", source.id] }, label: "Source (ID - Human Name)"
+    end
+    f.actions
+  end
+
   preserve_default_filters!
 
   filter :source, as: :select, collection: -> {
