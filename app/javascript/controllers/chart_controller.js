@@ -117,7 +117,6 @@ export default class extends Controller {
             data: biomarkerLowerBandSeries,
             fill: false, // Ensures the fill color spans from this dataset to the upper band
             borderColor: 'rgba(155, 238, 155, 0.3)',
-            borderWidth: 2,
             tension: 0.1,
             pointRadius: 0,
             order: 1
@@ -128,7 +127,6 @@ export default class extends Controller {
           backgroundColor: 'rgba(155, 238, 155, 0.1)',
           fill: '-1', // Fills to the previous dataset (lower band), creating the area in between -> The dataset order matters.
           borderColor: 'rgba(155, 238, 155, 0.3)',
-          borderWidth: 2,
           tension: 0.1,
           pointRadius: 0,
           order: 2
@@ -140,7 +138,7 @@ export default class extends Controller {
           borderColor: '#B9D7FA',
           tension: 0.1,
           pointRadius: 6,
-          pointBorderWidth: 3,
+          pointBorderWidth: 2,
           pointBorderColor: pointColor, // Chart.js will pass `context` to `pointColor` for each data point in the dataset
           pointBackgroundColor: pointColor, // Chart.js will pass `context` to `pointColor` for each data point in the dataset
           order: 3
