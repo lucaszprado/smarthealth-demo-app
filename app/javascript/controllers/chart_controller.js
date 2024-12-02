@@ -86,6 +86,29 @@ export default class extends Controller {
       lineHeight: 1.2, // Optional: Set line height
     };
 
+    // Define afterDatasetsDraw plugin hook to ensure the points of the Biomarker measures series are drawn last
+    // Normally, Chart.js renders datasets (lines and points) together,
+    // which can cause overlapping issues. By using a plugin, we separate the rendering of points from the lines, ensuring they are drawn last.
+    const ensurePointsOnTop = {
+      id: 'ensurePointsOnTop',
+      afterDatasetsDraw(chart, args, options) {
+        const ctx = chart.ctx;
+        //retrieves the metadata for the Biomarker measures dataset, including the points.
+        const biomarkerDatasetIndex = chart.data.datasets.findIndex(
+          (dataset) => dataset.label === 'Biomarker measures'
+        );
+
+        if (biomarkerDatasetIndex !== -1) {
+          const datasetMeta = chart.getDatasetMeta(biomarkerDatasetIndex);
+
+          // Force re-rendering of the points for Biomarker measures
+          datasetMeta.data.forEach((point) => {
+            point.draw(ctx); // Redraw the points
+          });
+        }
+      },
+    };
+
     const data = {
       labels: labels,
         datasets: [
@@ -94,8 +117,10 @@ export default class extends Controller {
             data: biomarkerLowerBandSeries,
             fill: false, // Ensures the fill color spans from this dataset to the upper band
             borderColor: 'rgba(155, 238, 155, 0.3)',
+            borderWidth: 2,
             tension: 0.1,
-            pointRadius: 0
+            pointRadius: 0,
+            order: 1
           },
           {
           label: 'Upper band',
@@ -103,8 +128,10 @@ export default class extends Controller {
           backgroundColor: 'rgba(155, 238, 155, 0.1)',
           fill: '-1', // Fills to the previous dataset (lower band), creating the area in between -> The dataset order matters.
           borderColor: 'rgba(155, 238, 155, 0.3)',
+          borderWidth: 2,
           tension: 0.1,
-          pointRadius: 0
+          pointRadius: 0,
+          order: 2
         },
         {
           label: 'Biomarker measures',
@@ -113,11 +140,14 @@ export default class extends Controller {
           borderColor: '#B9D7FA',
           tension: 0.1,
           pointRadius: 6,
+          pointBorderWidth: 3,
           pointBorderColor: pointColor, // Chart.js will pass `context` to `pointColor` for each data point in the dataset
-          pointBackgroundColor: pointColor // Chart.js will pass `context` to `pointColor` for each data point in the dataset
+          pointBackgroundColor: pointColor, // Chart.js will pass `context` to `pointColor` for each data point in the dataset
+          order: 3
         }
       ]
     };
+
 
     const options = {
       responsive: true, // This makes the chart automatically resize to fit its container
@@ -182,12 +212,13 @@ export default class extends Controller {
       },
     };
 
-    debugger
+
     // Initialize the chart
     new Chart(ctx, {
       type: 'line',  // or 'line', 'pie', etc.
       data: data,
-      options: options
+      options: options,
+      plugins: [ensurePointsOnTop]
     });
   }
 }
