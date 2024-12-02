@@ -11,7 +11,9 @@ class Api::V1::HumansController < ActionController::API
     # TODO in the future
 
     # Step 3: Get parsed information from parsing process
-    hash_data = VendorApi.get_parsed_data()
+    # Differenciate by male and female
+    gender = human.gender
+    hash_data = VendorApi.get_parsed_data(gender)
 
     # # Step 3: Process the hash and create Measures for the Source
     MeasureProcessor.save_measures_from_vendor(data_source, hash_data, human)

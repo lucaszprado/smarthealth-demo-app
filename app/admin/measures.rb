@@ -15,6 +15,7 @@ ActiveAdmin.register Measure do
     permitted
   end
 
+  # Measures index
   index do
     selectable_column
     id_column
@@ -31,6 +32,7 @@ ActiveAdmin.register Measure do
     actions
   end
 
+  # Show page for a measure
   show do
     attributes_table do
       row :value
@@ -48,7 +50,7 @@ ActiveAdmin.register Measure do
     end
   end
 
-  # Customize the form to use a dropdown for `source_id`
+  # Customize the form (Create) to use a dropdown for `source_id`
   form do |f|
     f.inputs do
       f.input :value
