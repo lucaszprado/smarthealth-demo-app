@@ -9,14 +9,14 @@ puts "Seeding data for the bioimpedance..."
 
 biomarkers = [
   {
-    "title": "Muscle mass",
-    "synonyms": [
+    title: "Muscle mass",
+    synonyms: [
         {
-            "title": "Massa muscular",
-            "language": "PT"
+            title: "Massa muscular",
+            language: "PT"
         }
     ],
-    "unitsFactors": [
+    unitsFactors: [
               [
                   1,
                   1
@@ -24,14 +24,14 @@ biomarkers = [
     ]
   },
   {
-    "title": "Fat Mass",
-    "synonyms": [
+    title: "Fat Mass",
+    synonyms: [
         {
-            "title": "Gordura corporal",
-            "language": "PT"
+            title: "Gordura corporal",
+            language: "PT"
         }
     ],
-    "unitsFactors": [
+    unitsFactors: [
               [
                   1,
                   1
@@ -39,14 +39,14 @@ biomarkers = [
     ]
   },
   {
-    "title": "Visceral Fat",
-    "synonyms": [
+    title: "Visceral Fat",
+    synonyms: [
         {
-            "title": "Gordura visceral",
-            "language": "PT"
+            title: "Gordura visceral",
+            language: "PT"
         }
     ],
-    "unitsFactors": [
+    unitsFactors: [
               [
                   1,
                   1

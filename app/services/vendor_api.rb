@@ -22,7 +22,6 @@ class VendorApi
       uri = URI.parse(VENDOR_URL_FEMALE)
     end
 
-    debugger 
     request = Net::HTTP::Get.new(uri)
     request["Authorization"] = "Bearer #{ENV['VENDOR_API_TOKEN']}"
 
