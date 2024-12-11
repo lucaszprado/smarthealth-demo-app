@@ -23,8 +23,67 @@ class Api::V1::HumansController < ActionController::API
     render json: { error: e.message }, status: :unprocessable_entity
   end
 
-# def upload_exam_params
-#   params.require(:human).permit(:file)
-# end
+  def upload_bioimpedance
+    ActiveRecord::Base.transaction do
+      csv_file = params[:csv_file]
+      pdf_file = params[:pdf_file]
+      human_id = params[:id]
+
+
+      # Ensure the human exists and defining variable to create ranges
+      human = Human.find(human_id)
+      gender = human.gender
+
+
+      # Validate the presence of required files
+      raise "Missing files" unless csv_file && pdf_file && human
+
+      # Create the source and attah the PDF file
+      source = human.sources.create!
+      source.file.attach(pdf_file)
+
+      # Process the CSV file -> Create associated Measures and references
+      csv_data = CSV.parse(csv_file.read, headers: true)
+      csv_data.each do |row|
+        # Transforming row to treat empty spaces
+        row = row.to_h.transform_values { |v| v.presence }
+
+        # Define Biomarker
+        biomarker = Biomarker.find(row["biomarker_id"])
+
+        # Determining age to create ranges
+        date = Time.at(row["date"].to_i).to_date
+        age = ((date - human.birthdate)/365.25).floor
+
+        Measure.create!(
+          biomarker: biomarker,
+          source: source,
+          unit_id: row["unit_id"],
+          category_id: row["category_id"],
+          original_value: row["original_value"],
+          value: row["value"],
+          date: Time.at(row["date"].to_i)
+        )
+
+        BiomarkersRange.create!(
+          biomarker: biomarker,
+          gender: gender,
+          age: age,
+          possible_min_value: row["common_min"].nil? ? nil : row["common_min"].to_f,
+          possible_max_value: row["common_max"].nil? ? nil : row["common_max"].to_f,
+          optimal_min_value: row["optimal_min"].nil? ? nil : row["optimal_min"].to_f,
+          optimal_max_value: row["optimal_max"].nil? ? nil : row["optimal_max"].to_f
+        )
+      end
+
+      render json: {message: "Upload successful"}, status: :created
+    rescue => e
+      puts "Error type: #{e.class}"       # The exception type (IndexError)
+      puts "Error message: #{e.message}" # The error message
+      puts "Cleaned backtrace:"
+      puts Rails.backtrace_cleaner.clean(e.backtrace)
+      render json: {error: e.message}, status: :unprocessable_entity
+    end
+  end
 
 end

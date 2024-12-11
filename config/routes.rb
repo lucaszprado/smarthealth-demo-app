@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :humans, only: [:show] do
         post :get_human_measures, on: :member  # POST /api/v1/humans/:id/get_human_measures
         # It's an endpoint nested under human. It's a Post because it's POST request to upload the file.
+        post :upload_bioimpedance, on: :member
       end
     end
   end

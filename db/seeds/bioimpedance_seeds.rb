@@ -3,8 +3,9 @@ puts "Seeding data for the bioimpedance..."
 #0. Data Strcuture to Store Bioimpedance Biomarkers and its respective synonyms
 # We use the same structure as ornament uses
 # We just need to add 3 new biomarkers to Ornament DB.
-# Their standard unit will percentage and we will have only one display unit: percentage
-# Therefore we just need to setup one unitFactor
+# Their standard unit will be percentage and we will have only one display unit: percentage
+# Therefore we just need to setup one unitFactor, which UnitFactor will be 1
+# unitsFactor elements are defined as [Unit_Id, UnitFactor]
 
 
 biomarkers = [

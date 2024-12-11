@@ -35,7 +35,7 @@ class MeasuresController < ApplicationController
         .order(created_at: :desc)
         .first
 
-      if !biomarker_range.nil?
+      if !biomarker_range.possible_min_value.nil?
         @human_biomarker_upper_band_measures[measure_date] = biomarker_range.possible_max_value/unit_factor
         @human_biomarker_lower_band_measures[measure_date] = biomarker_range.possible_min_value/unit_factor
       else
