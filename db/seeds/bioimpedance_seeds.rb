@@ -77,7 +77,6 @@ biomarkers.each do |biomarker_data|
   # our system Unit Id.
 
   biomarker_data[:unitsFactors].each do |unit_factor_data|
-    debugger
     UnitFactor.find_or_create_by!(unit_id: Unit.find(unit_factor_data[0]).id, biomarker_id: biomarker.id) do |u|
       u.factor = unit_factor_data[1]
     end
