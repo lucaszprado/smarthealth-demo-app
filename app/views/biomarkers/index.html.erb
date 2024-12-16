@@ -45,14 +45,14 @@
                     <!-- Verifying if biomarker has a range reference -->
                     <% if !measure.same_unit_possible_max_value.nil?%>
                       <% if measure.original_value > measure.same_unit_possible_max_value.round(2)%>
-                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status yellow"></span>
+                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small yellow"></span>
                       <%elsif measure.original_value < measure.same_unit_possible_min_value.round(2) %>
-                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status yellow"></span>
+                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small yellow"></span>
                       <%else%>
-                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status green"></span>
+                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small green"></span>
                       <% end %>
                     <% else %>
-                      <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status green"></span>
+                      <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small green"></span>
                     <% end %>
                   </div>
                   <div>

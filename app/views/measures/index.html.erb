@@ -7,10 +7,29 @@
       <% else %>
         <h2><%= @biomarker.name %></h2>
       <% end %>
-      <h5> Unidade: <%= @unit.name %> </h5>
+
+      <div class="card-flex-start">
+        <% if !@last_biomarker_upper_band_measure.nil? %>
+          <% if @last_biomarker_measure > @last_biomarker_upper_band_measure %>
+            <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big yellow"> </span> <p> Acima do normal </p>
+          <% elsif @last_biomarker_measure < @last_biomarker_lower_band_measure %>
+            <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big yellow"></span>
+          <% else %>
+            <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big green"></span> <p> Normal </p>
+          <% end %>
+        <% else %>
+          <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big green"></span>
+        <% end %>
+      </div>
+
+
+      <div class="box-container-central mb-2">
+        <h5>Valores de referência</h6>
+        <p class="small"> Valores de referência para um <%= @gender=="M" ? "Homem" : "Mulher" %> de <%= @age%> anos </p>
+      </div>
 
       <!-- JavaScript Chart-->
-      <div class="chart-container" data-controller="chart" data-chart-biomarker-measures-value="<%= @human_biomarker_measures_json%>" data-chart-biomarker-upper-band-value="<%=@human_biomarker_upper_band_measures_json%>" data-chart-biomarker-lower-band-value="<%=@human_biomarker_lower_band_measures_json%>">
+      <div class="box-container-central chart-container" data-controller="chart" data-chart-biomarker-measures-value="<%= @human_biomarker_measures_json%>" data-chart-biomarker-upper-band-value="<%=@human_biomarker_upper_band_measures_json%>" data-chart-biomarker-lower-band-value="<%=@human_biomarker_lower_band_measures_json%>">
         <canvas data-chart-target="canvas"></canvas>
       </div>
       <%= link_to human_biomarkers_path(@human.id) do %>

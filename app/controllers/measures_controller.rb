@@ -2,7 +2,7 @@ class MeasuresController < ApplicationController
   def index
     @human_biomarker_measures = {}
     @human = Human.find(params[:human_id])
-    gender = @human.gender
+    @gender = @human.gender
     birthdate = @human.birthdate
     @biomarker = Biomarker.find(params[:biomarker_id])
     @measures = @human.measures.where(biomarker: @biomarker)
@@ -28,10 +28,10 @@ class MeasuresController < ApplicationController
 
       # Add the date as key and biomarker range values inside the hash
       # 1. Which age should be searched?
-      age = ((measure.date.to_date - birthdate)/365.25).floor
+      @age = ((measure.date.to_date - birthdate)/365.25).floor
       # 2. Find the most recent range
       biomarker_range = BiomarkersRange
-        .where(biomarker: @biomarker, gender: gender, age: age)
+        .where(biomarker: @biomarker, gender: @gender, age: @age)
         .order(created_at: :desc)
         .first
 
@@ -49,11 +49,16 @@ class MeasuresController < ApplicationController
     @human_biomarker_upper_band_measures = @human_biomarker_upper_band_measures.sort_by { |key, value| key}.to_h
     @human_biomarker_lower_band_measures = @human_biomarker_lower_band_measures.sort_by { |key, value| key}.to_h
 
-
     # Transform into JSON
     @human_biomarker_measures_json = @human_biomarker_measures.to_json
     @human_biomarker_upper_band_measures_json = @human_biomarker_upper_band_measures.to_json
     @human_biomarker_lower_band_measures_json = @human_biomarker_lower_band_measures.to_json
+
+
+    # Last measure value
+    @last_biomarker_measure = @human_biomarker_measures[@human_biomarker_measures.keys.last]
+    @last_biomarker_upper_band_measure = @human_biomarker_upper_band_measures[@human_biomarker_upper_band_measures.keys.last]
+    @last_biomarker_lower_band_measure = @human_biomarker_lower_band_measures[@human_biomarker_lower_band_measures.keys.last]
 
   end
 end

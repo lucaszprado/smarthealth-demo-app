@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  // It also applies to the p and span elements inside the .card-justify
   p{
     padding: 0rem;
     margin: 0rem;
@@ -13,14 +13,24 @@
   }
 }
 
-// .card-justify > div:first-child {
-//   width: 1rem; /* Adjust as needed based on icon size */
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-right: 0.5rem;
-//   margin-left: 0.5rem
-// }
+.card-flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  p{
+    padding: 0rem;
+    margin: 0rem;
+  }
+
+  h5{
+    padding: 0rem;
+    margin: 0rem;
+  }
+  span{
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+  }
+}
 
 .card-justify.border-bottom.ps-3:hover {
   transform: translateY(2px); /* Moves the button down by 2px */
@@ -47,9 +57,31 @@
 
 }
 
-.status {
+// "&" represents the parent selector.
+.status-small {
   width: 10px;
   height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 0.3rem;
+
+  &.green {
+    background-color: $green;
+  }
+
+  &.yellow {
+    background-color: $yellow;
+  }
+
+  &.red {
+    background-color: $red;
+  }
+}
+
+// "&" represents the parent selector.
+.status-big {
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   display: inline-block;
   margin-left: 0.3rem;
