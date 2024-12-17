@@ -26,7 +26,7 @@
 
 
       <!-- Reference Values Div -->
-      <div class="box-container-central mb-2 mt-4">
+      <div class="box-container-central mb-2 mt-4 pb-0">
         <h5>Valores de referência</h5>
         <p class="small text-secondary"> Referência: <%= @gender=="M" ? "Homem" : "Mulher" %> de <%= @age%> anos </p>
         <div class="text-elements-flex-start">
@@ -43,28 +43,34 @@
         <div>
           <canvas class="chart-container" data-chart-target="canvas"></canvas>
         </div>
-        <div class="mt-2">
-          <p> Histórico de Medidas </p>
-        </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <td class="small">Data</td>
-              <td>Medida</td>
-              <td>Laboratório</td>
-              <td>Exame Original</td>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td class="small text-secondary"> teste </td>
-                <td> teste </td>
-                <td> teste </td>
-                <td> teste </td>
-              </tr>
 
-          </tbody>
-        </table>
+
+        <!-- Historic Table Div -->
+        <div class="table-div mt-3 mb-5">
+          <table class="table measures-table table-hover align-middle">
+            <thead>
+              <tr>
+                <td class="small text-center"> Data </td>
+                <td class="small text-center"> Medida </td>
+              </tr>
+            </thead>
+            <tbody>
+                <% @human_biomarker_measures.each do |key, value| %>
+                  <tr>
+                    <td class="small text-secondary text-center"> <%= key.strftime("%d/%m/%Y") %> </td>
+                    <td class="small text-secondary text-center"> <%= value %> </td>
+                  </tr>
+                <% end %>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- Page Footnotes Div -->
+        <div class="small-letters">
+          <p> Fontes de informação: Nossas referências são baseadas em instiuições de pesquisa e associações médicas. <br>
+          Principais fontes: Biblioteca de Saúde da <a href= "https://www.mayoclinic.org/diseases-conditions" target="_blank"> Clínica Mayo</a>
+          e Centro de Controle e Prevenção de Doenças dos EUA - <a href="https://www.cdc.gov/health-topics.html" target="_blank">CDC</a>.</p>
+        </div>
       </div>
 
       <%= link_to human_biomarkers_path(@human.id) do %>
