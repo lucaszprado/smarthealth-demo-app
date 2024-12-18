@@ -27,14 +27,14 @@
 // Media Query for screens smaller than 600px
 @media (max-width: 600px) {
   .navigation-button-left {
-    width: 2.0rem; /* Smaller width */
-    height: 2.0rem; /* Smaller height */
+    width: 2.5rem; /* Smaller width */
+    height: 2.5rem; /* Smaller height */
     padding: 0.5rem; /* Smaller padding */
     border-radius: 3rem; /* Adjusted to keep the circular shape */
   }
 
   .button-icon {
-    width: 80%; /* Scale down the image proportionally */
+    width: 90%; /* Scale down the image proportionally */
     height: auto; /* Maintain the aspect ratio */
   }
 }
