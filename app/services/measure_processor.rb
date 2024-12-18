@@ -45,11 +45,10 @@ class MeasureProcessor
       end
     rescue ActiveRecord::RecordInvalid => e
       Rails.logger.error "ActiveRecord::RecordInvalid: #{e.message}"
-      puts
-      raise
+      raise ActiveRecord::Rollback
     rescue StandardError => e
       Rails.logger.error "StandardError: #{e.message}"
-      raise
+      raise ActiveRecord::Rollback
     end
   end
 end

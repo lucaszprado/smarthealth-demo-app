@@ -74,15 +74,18 @@ class Api::V1::HumansController < ActionController::API
           optimal_min_value: row["optimal_min"].nil? ? nil : row["optimal_min"].to_f,
           optimal_max_value: row["optimal_max"].nil? ? nil : row["optimal_max"].to_f
         )
+
       end
 
       render json: {message: "Upload successful"}, status: :created
     rescue => e
-      puts "Error type: #{e.class}"       # The exception type (IndexError)
-      puts "Error message: #{e.message}" # The error message
+      puts "Error type: #{e.class}"
+      puts "Error message: #{e.message}"
       puts "Cleaned backtrace:"
       puts Rails.backtrace_cleaner.clean(e.backtrace)
       render json: {error: e.message}, status: :unprocessable_entity
+      #If exceptions are rescued without re-raising, the transaction commits all previous successful operations, resulting in partial changes.
+      raise ActiveRecord::Rollback
     end
   end
 
