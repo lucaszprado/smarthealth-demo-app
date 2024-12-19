@@ -51,7 +51,7 @@ class MeasuresController < ApplicationController
 
 
     # Transform into JSON and formatting dates to "%d/%m/%Y"
-    @human_biomarker_measures_json = @human_biomarker_measures.map {|key, value| [key.strftime("%d/%m/%Y"), value]}.to_h.to_json
+    @human_biomarker_measures_json = @human_biomarker_measures.map {|key, value| [key.strftime("%m/%Y"), value]}.to_h.to_json
     @human_biomarker_upper_band_measures_json = @human_biomarker_upper_band_measures.map {|key, value| [key.strftime("%d/%m/%Y"), value]}.to_h.to_json
     @human_biomarker_lower_band_measures_json = @human_biomarker_lower_band_measures.map {|key, value| [key.strftime("%d/%m/%Y"), value]}.to_h.to_json
 
