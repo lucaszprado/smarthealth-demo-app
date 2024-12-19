@@ -10,3 +10,9 @@ $gray: #0E0000;
 $light-gray: #F4F4F4;
 $background-color: #f5f5f5;
 $text-color: #333;
+
+// Define global scss variables to make them accessible in javascript
+:root {
+  --green: #4caf50;
+  --yellow: #ffc107;
+}

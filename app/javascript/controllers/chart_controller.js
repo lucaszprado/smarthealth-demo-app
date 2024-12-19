@@ -56,12 +56,17 @@ export default class extends Controller {
       const upperBandY = biomarkerUpperBandSeries[context.dataIndex];
       const lowerBandY = biomarkerLowerBandSeries[context.dataIndex];
 
+      // Getting colors from css root
+      const rootStyles = getComputedStyle(document.documentElement);
+      const yellow = rootStyles.getPropertyValue('--yellow').trim();
+      const green = rootStyles.getPropertyValue('--green').trim();
+
           if (value > upperBandY) {
-            return '#E7EE33'
+            return yellow;
           } else if (value < lowerBandY) {
-            return '#E7EE33'
+            return yellow;
           } else {
-            return '#044E0C'
+            return green;
           }
     };
 
