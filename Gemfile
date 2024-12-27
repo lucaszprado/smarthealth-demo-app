@@ -82,3 +82,4 @@ gem "simple_form"
 
 gem "autoprefixer-rails"
 
+gem 'aws-sdk-s3', '~> 1.114'
