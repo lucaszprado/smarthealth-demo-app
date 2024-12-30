@@ -15,16 +15,19 @@ class MeasuresController < ApplicationController
     @measures.each do |measure|
       biomarker_value = (measure.value/unit_factor).round(decimal_places = 2)
       measure_date = measure.date
+      measure_source = measure.source
 
-      # Initialize the hash for the biomarker measures and biomarker ranges
+      # Initialize the hash for the biomarker measures, sources and biomarker ranges
       @human_biomarker_measures ||= {}
       @human_biomarker_upper_band_measures ||= {}
       @human_biomarker_lower_band_measures ||= {}
 
 
       # Add the date as key and biomarker original value inside the hash
-      @human_biomarker_measures[measure_date] = biomarker_value
+      @human_biomarker_measures[measure_date] = [biomarker_value, measure_source]
 
+      # Create source references for each measure
+      #@human_biomarker_measures_sources[measure_date] = measure_source
 
       # Add the date as key and biomarker range values inside the hash
       # 1. Which age should be searched?
@@ -50,14 +53,19 @@ class MeasuresController < ApplicationController
     @human_biomarker_lower_band_measures = @human_biomarker_lower_band_measures.sort_by { |key, value| key}.to_h
 
 
-    # Transform into JSON and formatting dates to "%d/%m/%Y"
-    @human_biomarker_measures_json = @human_biomarker_measures.map {|key, value| [key.strftime("%m/%Y"), value]}.to_h.to_json
+    # Get the values and sources for a given measure
+    @human_biomarker_measures_values = @human_biomarker_measures.transform_values {|array| array.first}
+    @human_biomarker_measures_sources = @human_biomarker_measures.transform_values {|array| array[1]}
+    #debugger
+
+    # Transform measures into JSON and formatting dates to "%d/%m/%Y"
+    @human_biomarker_measures_values_json = @human_biomarker_measures_values.map {|key, value| [key.strftime("%m/%Y"), value]}.to_h.to_json
     @human_biomarker_upper_band_measures_json = @human_biomarker_upper_band_measures.map {|key, value| [key.strftime("%d/%m/%Y"), value]}.to_h.to_json
     @human_biomarker_lower_band_measures_json = @human_biomarker_lower_band_measures.map {|key, value| [key.strftime("%d/%m/%Y"), value]}.to_h.to_json
 
 
     # Last measure value
-    @last_biomarker_measure = @human_biomarker_measures[@human_biomarker_measures.keys.last]
+    @last_biomarker_measure_values = @human_biomarker_measures_values[@human_biomarker_measures_values.keys.last]
     @last_biomarker_upper_band_measure = @human_biomarker_upper_band_measures[@human_biomarker_upper_band_measures.keys.last]
     @last_biomarker_lower_band_measure = @human_biomarker_lower_band_measures[@human_biomarker_lower_band_measures.keys.last]
 

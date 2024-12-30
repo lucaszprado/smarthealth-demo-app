@@ -11,15 +11,15 @@
       <!-- Last measure div -->
       <div class="elements-flex-start">
         <% if !@last_biomarker_upper_band_measure.nil? %>
-          <% if @last_biomarker_measure > @last_biomarker_upper_band_measure %>
-            <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big yellow"> </span> <p> Acima </p>
-          <% elsif @last_biomarker_measure < @last_biomarker_lower_band_measure %>
-            <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big yellow"></span> <p> Abaixo </p>
+          <% if @last_biomarker_measure_values > @last_biomarker_upper_band_measure %>
+            <h5> Valor atual: <%= @last_biomarker_measure_values %> <%= @unit.name %> </h5> <span class="status-big yellow"> </span> <p> Acima </p>
+          <% elsif @last_biomarker_measure_values < @last_biomarker_lower_band_measure %>
+            <h5> Valor atual: <%= @last_biomarker_measure_values %> <%= @unit.name %> </h5> <span class="status-big yellow"></span> <p> Abaixo </p>
           <% else %>
-            <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big green"></span> <p> Normal </p>
+            <h5> Valor atual: <%= @last_biomarker_measure_values %> <%= @unit.name %> </h5> <span class="status-big green"></span> <p> Normal </p>
           <% end %>
         <% else %>
-          <h5> Valor atual: <%= @last_biomarker_measure %> <%= @unit.name %> </h5> <span class="status-big green"></span> <p> Normal </p>
+          <h5> Valor atual: <%= @last_biomarker_measure_values %> <%= @unit.name %> </h5> <span class="status-big green"></span> <p> Normal </p>
         <% end %>
       </div>
 
@@ -36,7 +36,7 @@
       </div>
 
       <!-- JavaScript Chart-->
-      <div class="box-container-central" id="biomarker-chart" data-controller="chart" data-chart-biomarker-measures-value="<%= @human_biomarker_measures_json%>" data-chart-biomarker-upper-band-value="<%=@human_biomarker_upper_band_measures_json%>" data-chart-biomarker-lower-band-value="<%=@human_biomarker_lower_band_measures_json%>">
+      <div class="box-container-central" id="biomarker-chart" data-controller="chart" data-chart-biomarker-measures-values-value="<%= @human_biomarker_measures_values_json%>" data-chart-biomarker-upper-band-value="<%=@human_biomarker_upper_band_measures_json%>" data-chart-biomarker-lower-band-value="<%=@human_biomarker_lower_band_measures_json%>">
         <div>
           <h5> Evolução do Biomarcador </h5>
         </div>
@@ -52,13 +52,15 @@
               <tr>
                 <td class="small text-center"> Data </td>
                 <td class="small text-center"> Medida </td>
+                <td class="small text-center"> Origem </td>
               </tr>
             </thead>
             <tbody>
                 <% @human_biomarker_measures.each do |key, value| %>
                   <tr>
                     <td class="small text-secondary text-center"> <%= key.strftime("%d/%m/%Y") %> </td>
-                    <td class="small text-secondary text-center"> <%= value %> </td>
+                    <td class="small text-secondary text-center"> <%= value[0] %> </td>
+                    <td class="small text-secondary text-center"> <%= link_to url_for(value[1].file) %> </td>
                   </tr>
                 <% end %>
 
