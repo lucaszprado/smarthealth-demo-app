@@ -11,7 +11,7 @@ ActiveAdmin.register Synonym do
   #
   permit_params do
     permitted = [:name, :biomarker_id, :language]
-    permitted << :other if params[:action] == 'create' && current_user.admin?
+    permitted << :other if params[:action] == 'create' ## && current_user.admin? -> LP: Removed authorization
     permitted
   end
 
