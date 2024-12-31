@@ -57,12 +57,18 @@
             </thead>
             <tbody>
                 <% @human_biomarker_measures.each do |key, value| %>
+                <!-- @human biomarker_measures is hash which values are arrays.
+                First value is measure value. Second value is the measure source. -->
                   <tr>
                     <td class="small text-secondary text-center"> <%= key.strftime("%d/%m/%Y") %> </td>
                     <td class="small text-secondary text-center"> <%= value[0] %> </td>
                     <td class="small text-secondary text-center">
-                      <%= link_to rails_blob_path(value[1].file, disposition: "inline"), target: "_blank" do %>
-                        <i class="fa-solid fa-file-pdf gray-icon"></i>
+                      <% if value[1].file.attached?%>
+                        <%= link_to rails_blob_path(value[1].file, disposition: "inline"), target: "_blank" do %>
+                          <i class="fa-solid fa-file-pdf gray-icon"></i>
+                        <% end %>
+                      <% else %>
+                        "No File"
                       <% end %>
                     </td>
                   </tr>
