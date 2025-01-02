@@ -1282,6 +1282,10 @@
                   "language": "PT"
               },
               {
+                  "title": "Hemácias",
+                  "language": "PT"
+              },
+              {
                   "title": "Eritrócitos",
                   "language": "PT"
               }
@@ -4159,6 +4163,10 @@
               },
               {
                   "title": "MPV (Volume Plaquetário Médio)",
+                  "language": "PT"
+              },
+              {
+                  "title": "VMP",
                   "language": "PT"
               },
               {

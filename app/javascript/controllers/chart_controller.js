@@ -60,13 +60,18 @@ export default class extends Controller {
       const rootStyles = getComputedStyle(document.documentElement);
       const yellow = rootStyles.getPropertyValue('--yellow').trim();
       const green = rootStyles.getPropertyValue('--green').trim();
+      const gray = rootStyles.getPropertyValue('--text-gray').trim();
 
-          if (value > upperBandY) {
-            return yellow;
-          } else if (value < lowerBandY) {
-            return yellow;
+          if (upperBandY == null) {
+            return gray;
           } else {
-            return green;
+            if (value > upperBandY) {
+              return yellow;
+            } else if (value < lowerBandY) {
+              return yellow;
+            } else {
+              return green;
+            }
           }
     };
 
