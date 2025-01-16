@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_16_171631) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_16_005446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,7 +94,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_16_171631) do
     t.datetime "updated_at", null: false
     t.integer "external_ref"
     t.bigint "parent_id"
+    t.string "context_type"
     t.index ["parent_id"], name: "index_categories_on_parent_id"
+  end
+
+  create_table "health_professionals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "health_providers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "humans", force: :cascade do |t|
@@ -103,6 +116,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_16_171631) do
     t.date "birthdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_labels_on_category_id"
   end
 
   create_table "measures", force: :cascade do |t|
@@ -121,13 +142,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_16_171631) do
     t.index ["unit_id"], name: "index_measures_on_unit_id"
   end
 
+  create_table "source_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sources", force: :cascade do |t|
     t.string "file"
-    t.string "source_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "human_id", null: false
+    t.bigint "parent_id"
+    t.bigint "source_type_id"
+    t.bigint "health_professional_id"
+    t.bigint "health_provider_id"
+    t.index ["health_professional_id"], name: "index_sources_on_health_professional_id"
+    t.index ["health_provider_id"], name: "index_sources_on_health_provider_id"
     t.index ["human_id"], name: "index_sources_on_human_id"
+    t.index ["parent_id"], name: "index_sources_on_parent_id"
+    t.index ["source_type_id"], name: "index_sources_on_source_type_id"
   end
 
   create_table "synonyms", force: :cascade do |t|
@@ -174,11 +208,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_16_171631) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "biomarkers_ranges", "biomarkers"
   add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "labels", "categories"
   add_foreign_key "measures", "biomarkers"
   add_foreign_key "measures", "categories"
   add_foreign_key "measures", "sources"
   add_foreign_key "measures", "units"
+  add_foreign_key "sources", "health_professionals"
+  add_foreign_key "sources", "health_providers"
   add_foreign_key "sources", "humans"
+  add_foreign_key "sources", "source_types"
+  add_foreign_key "sources", "sources", column: "parent_id"
   add_foreign_key "synonyms", "biomarkers"
   add_foreign_key "unit_factors", "biomarkers"
   add_foreign_key "unit_factors", "units"
