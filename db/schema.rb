@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_16_005446) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,6 +118,37 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_16_005446) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "imaging_diagnostics", force: :cascade do |t|
+    t.string "name"
+    t.string "method"
+    t.text "summary_report"
+    t.text "full_report"
+    t.bigint "source_id", null: false
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_id"], name: "index_imaging_diagnostics_on_source_id"
+  end
+
+  create_table "label_assignments", force: :cascade do |t|
+    t.bigint "label_id", null: false
+    t.string "labelable_type", null: false
+    t.bigint "labelable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_label_assignments_on_label_id"
+    t.index ["labelable_type", "labelable_id"], name: "index_label_assignments_on_labelable"
+  end
+
+  create_table "label_relationships", force: :cascade do |t|
+    t.bigint "parent_label_id", null: false
+    t.bigint "child_label_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_label_id"], name: "index_label_relationships_on_child_label_id"
+    t.index ["parent_label_id"], name: "index_label_relationships_on_parent_label_id"
+  end
+
   create_table "labels", force: :cascade do |t|
     t.string "name"
     t.bigint "category_id", null: false
@@ -208,6 +239,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_16_005446) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "biomarkers_ranges", "biomarkers"
   add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "imaging_diagnostics", "sources"
+  add_foreign_key "label_assignments", "labels"
+  add_foreign_key "label_relationships", "labels", column: "child_label_id"
+  add_foreign_key "label_relationships", "labels", column: "parent_label_id"
   add_foreign_key "labels", "categories"
   add_foreign_key "measures", "biomarkers"
   add_foreign_key "measures", "categories"

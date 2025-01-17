@@ -1,6 +1,8 @@
 class Source < ApplicationRecord
   belongs_to :human
   has_many :measures, dependent: :destroy
+  has_many :imaging_diagnostics, dependent: :destroy
+
   has_one_attached :file
 
   # Self-referential associations
