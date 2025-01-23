@@ -1,13 +1,10 @@
 class Source < ApplicationRecord
   belongs_to :human
   has_many :measures, dependent: :destroy
-  has_many :imaging_diagnostics, dependent: :destroy
+  has_many :imaging_reports, dependent: :destroy
+  has_many_attached :files
 
-  has_one_attached :file
 
-  # Self-referential associations
-  belongs_to :parent, class_name: "Source", optional: true
-  has_many :children, class_name: "Source", foreign_key: "parent_id", dependent: :destroy
 
   # Association with SourceType
   belongs_to :source_type

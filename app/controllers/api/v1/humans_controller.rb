@@ -39,8 +39,9 @@ class Api::V1::HumansController < ActionController::API
       raise "Missing files" unless csv_file && pdf_file && human
 
       # Create the source and attah the PDF file
-      source = human.sources.create!
-      source.file.attach(pdf_file)
+      source = human.sources.new
+      source.files.attach(pdf_file)
+      source.source_type = SourceType.find(1) #Bioimpedance is Source Type 1
 
       # Process the CSV file -> Create associated Measures and references
       csv_data = CSV.parse(csv_file.read, headers: true)
@@ -54,6 +55,11 @@ class Api::V1::HumansController < ActionController::API
         # Determining age to create ranges
         date = Time.at(row["date"].to_i).to_date
         age = ((date - human.birthdate)/365.25).floor
+
+        # Read and save source parameters depending on Operator Input
+        source.health_professional = HealthProfessional.find(row["health_professional_id"])
+        source.health_provider = HealthProvider.find(row["health_provider_id"])
+        source.save
 
         Measure.create!(
           biomarker: biomarker,

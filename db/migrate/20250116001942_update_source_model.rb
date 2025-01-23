@@ -1,8 +1,5 @@
 class UpdateSourceModel < ActiveRecord::Migration[7.1]
   def change
-    # Add parent_id for self-referential relationship
-    add_reference :sources, :parent, foreign_key: { to_table: :sources } , null: true
-
     # Remove source_type column
     remove_column :sources, :source_type, :string
 

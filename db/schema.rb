@@ -94,7 +94,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
     t.datetime "updated_at", null: false
     t.integer "external_ref"
     t.bigint "parent_id"
-    t.string "context_type"
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
@@ -118,16 +117,23 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "imaging_diagnostics", force: :cascade do |t|
+  create_table "imaging_methods", force: :cascade do |t|
     t.string "name"
-    t.string "method"
-    t.text "summary_report"
-    t.text "full_report"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "imaging_reports", force: :cascade do |t|
+    t.string "content"
     t.bigint "source_id", null: false
+    t.bigint "imaging_method_id", null: false
+    t.bigint "report_summary_id", null: false
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["source_id"], name: "index_imaging_diagnostics_on_source_id"
+    t.index ["imaging_method_id"], name: "index_imaging_reports_on_imaging_method_id"
+    t.index ["report_summary_id"], name: "index_imaging_reports_on_report_summary_id"
+    t.index ["source_id"], name: "index_imaging_reports_on_source_id"
   end
 
   create_table "label_assignments", force: :cascade do |t|
@@ -173,6 +179,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
     t.index ["unit_id"], name: "index_measures_on_unit_id"
   end
 
+  create_table "report_summaries", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "source_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -184,14 +196,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "human_id", null: false
-    t.bigint "parent_id"
     t.bigint "source_type_id"
     t.bigint "health_professional_id"
     t.bigint "health_provider_id"
     t.index ["health_professional_id"], name: "index_sources_on_health_professional_id"
     t.index ["health_provider_id"], name: "index_sources_on_health_provider_id"
     t.index ["human_id"], name: "index_sources_on_human_id"
-    t.index ["parent_id"], name: "index_sources_on_parent_id"
     t.index ["source_type_id"], name: "index_sources_on_source_type_id"
   end
 
@@ -239,7 +249,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "biomarkers_ranges", "biomarkers"
   add_foreign_key "categories", "categories", column: "parent_id"
-  add_foreign_key "imaging_diagnostics", "sources"
+  add_foreign_key "imaging_reports", "imaging_methods"
+  add_foreign_key "imaging_reports", "report_summaries"
+  add_foreign_key "imaging_reports", "sources"
   add_foreign_key "label_assignments", "labels"
   add_foreign_key "label_relationships", "labels", column: "child_label_id"
   add_foreign_key "label_relationships", "labels", column: "parent_label_id"
@@ -252,7 +264,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
   add_foreign_key "sources", "health_providers"
   add_foreign_key "sources", "humans"
   add_foreign_key "sources", "source_types"
-  add_foreign_key "sources", "sources", column: "parent_id"
   add_foreign_key "synonyms", "biomarkers"
   add_foreign_key "unit_factors", "biomarkers"
   add_foreign_key "unit_factors", "units"

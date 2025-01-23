@@ -1,5 +1,4 @@
 class Label < ApplicationRecord
-  belongs_to :category
   has_many :label_assignments, dependent: :destroy
   has_many :labelables, through: :label_assignments, source: :labelable
 

@@ -3,6 +3,8 @@ class Measure < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :unit, optional: true
   belongs_to :source, optional: true
+  has_many :label_assignments, as: :labelable, dependent: :destroy
+  has_many :labels, through: :label_assignments
 
   def self.ransackable_associations(auth_object = nil)
     %w[source unit category biomarker]

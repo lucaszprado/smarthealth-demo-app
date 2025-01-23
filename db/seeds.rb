@@ -14,6 +14,6 @@ puts "Running the main seed file..."
 load Rails.root.join('db/seeds/blood_exam_seeds.rb')
 
 # Load bioimpedance seed file
-# load Rails.root.join('db/seeds/bioimpedance_seeds.rb')
+load Rails.root.join('db/seeds/bioimpedance_seeds.rb')
 
 puts "All seed data loaded!"
