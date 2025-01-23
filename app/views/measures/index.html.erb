@@ -32,7 +32,7 @@
           <p class="small text-secondary"> Referência: <%= @gender=="M" ? "Homem" : "Mulher" %> de <%= @age%> anos </p>
           <div class="text-elements-flex-start">
             <p>Normal: </p>
-            <p> <span class="status-big green"></span> <%= @last_biomarker_lower_band_measure %> - <%= @last_biomarker_upper_band_measure %> <%= @unit.name %> </p>
+            <p> <%= @last_biomarker_lower_band_measure %> - <%= @last_biomarker_upper_band_measure %> <%= @unit.name %> </p>
           </div>
         </div>
       <% end %>
