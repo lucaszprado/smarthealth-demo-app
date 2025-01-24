@@ -10,7 +10,7 @@ ActiveAdmin.register Source do
   # or
   #
   permit_params do
-    permitted = [:file, :source_type, :human_id]
+    permitted = [:files, :source_type, :human_id]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end
@@ -31,8 +31,8 @@ ActiveAdmin.register Source do
     column :created_at
     column :updated_at
     column "PDF File" do |source|
-      if source.file.attached?
-        link_to "View PDF", rails_blob_path(source.file, disposition: "inline"), target: "_blank"
+      if source.files.attached?
+        link_to "View PDF", rails_blob_path(source.files.first, disposition: "inline"), target: "_blank"
       else
         "No File"
       end
@@ -48,8 +48,8 @@ ActiveAdmin.register Source do
       row :created_at
       row :updated_at
       row :file do |source|
-        if source.file.attached?
-          link_to "View PDF", rails_blob_path(source.file, disposition: "inline"), target: "_blank"
+        if source.files.attached?
+          link_to "View PDF", rails_blob_path(source.files.first, disposition: "inline"), target: "_blank"
         else
           "No File"
         end
