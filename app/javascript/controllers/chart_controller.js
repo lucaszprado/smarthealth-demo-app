@@ -160,6 +160,7 @@ export default class extends Controller {
 
     const options = {
       responsive: true, // This makes the chart automatically resize to fit its container
+      devicePixelRatio: window.devicePixelRatio || 1,
       maintainAspectRatio: false, // Allows the chart to fill its container’s width and height
       scales: {
         x: {
