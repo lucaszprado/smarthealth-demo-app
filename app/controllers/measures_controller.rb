@@ -69,5 +69,8 @@ class MeasuresController < ApplicationController
     @last_biomarker_upper_band_measure = @human_biomarker_upper_band_measures[@human_biomarker_upper_band_measures.keys.last]
     @last_biomarker_lower_band_measure = @human_biomarker_lower_band_measures[@human_biomarker_lower_band_measures.keys.last]
 
+    # Last measure date
+    @last_age = ((@human_biomarker_measures_values.keys.last.to_date - birthdate)/365.25).floor
+    
   end
 end

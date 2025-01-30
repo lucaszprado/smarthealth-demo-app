@@ -1,16 +1,26 @@
 class Api::V1::HumansController < ActionController::API
   def get_human_measures
+    pdf_file = params[:pdf_file]
+    health_professional_id = params[:health_professional_id]
+    health_provider_id = params[:health_provider_id]
     human = Human.find(params[:id])
 
+
     # Step 1: Create a new Source and store the uploaded PDF
-    data_source = human.sources.create!
-    data_source.file.attach(params[:file])
+    debugger
+    data_source = human.sources.new
+    data_source.source_type = SourceType.find(2) #Bioimpedance is Source Type 1
+    data_source.health_professional = HealthProfessional.find(health_professional_id)
+    data_source.health_provider = HealthProvider.find(health_provider_id)
+    data_source.files.attach(pdf_file)
+
     data_source.save!
 
     # Step 2: Send the PDF for parsing via vendor OR via internal service
     # TODO in the future
 
     # Step 3: Get parsed information from parsing process
+
     # Differenciate by male and female
     gender = human.gender
     hash_data = VendorApi.get_parsed_data(gender)
