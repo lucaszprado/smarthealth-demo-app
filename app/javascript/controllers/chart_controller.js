@@ -5,7 +5,7 @@ Chart.register(...registerables);
 
 // Connects to data-controller="chart"
 export default class extends Controller {
-  static targets = ["canvas"];
+  static targets = ["measures"];
   static values = {
     biomarkerMeasuresValues: Object,
     biomarkerUpperBand: Object,
@@ -14,7 +14,7 @@ export default class extends Controller {
 
   connect() {
     console.log("Entrei");
-    const ctx = this.canvasTarget.getContext("2d");
+    const ctx = this.measuresTarget.getContext("2d");
     const biomarkerMeasures = this.biomarkerMeasuresValuesValue;
     const biomarkerUpperBand = this.biomarkerUpperBandValue;
     const biomarkerLowerBand = this.biomarkerLowerBandValue;
