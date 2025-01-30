@@ -7,9 +7,9 @@ class Api::V1::HumansController < ActionController::API
 
 
     # Step 1: Create a new Source and store the uploaded PDF
-    
+
     data_source = human.sources.new
-    data_source.source_type = SourceType.find(2) #Bioimpedance is Source Type 1
+    data_source.source_type = SourceType.find_by(name: "Blood")
     data_source.health_professional = HealthProfessional.find(health_professional_id)
     data_source.health_provider = HealthProvider.find(health_provider_id)
     data_source.files.attach(pdf_file)
@@ -50,7 +50,7 @@ class Api::V1::HumansController < ActionController::API
       # Create the source and attah the PDF file
       source = human.sources.new
       source.files.attach(pdf_file)
-      source.source_type = SourceType.find(1) #Bioimpedance is Source Type 1
+      source.source_type = SourceType.find_by(name: "Bioimpedance")
 
       # Process the CSV file -> Create associated Measures and references
       csv_data = CSV.parse(csv_file.read, headers: true)
