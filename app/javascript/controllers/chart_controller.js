@@ -18,7 +18,7 @@ export default class extends Controller {
     const biomarkerMeasures = this.biomarkerMeasuresValuesValue;
     const biomarkerUpperBand = this.biomarkerUpperBandValue;
     const biomarkerLowerBand = this.biomarkerLowerBandValue;
-    debugger
+    
     // X-axis, biomaerker series, upper band and lower band series
     const labels = Object.keys(biomarkerMeasures);
     const biomarkerMeasuresSeries = Object.values(biomarkerMeasures);
