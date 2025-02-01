@@ -9,10 +9,10 @@ ActiveAdmin.register HealthProvider do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:name]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  permit_params do
+    permitted = [:name]
+    permitted << :other if params[:action] == 'create' # && current_user.admin? -> LP: Removed authorization
+    permitted
+  end
+
 end
