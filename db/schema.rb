@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_03_181145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,10 +157,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
 
   create_table "labels", force: :cascade do |t|
     t.string "name"
-    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_labels_on_category_id"
   end
 
   create_table "measures", force: :cascade do |t|
@@ -255,7 +253,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_17_103150) do
   add_foreign_key "label_assignments", "labels"
   add_foreign_key "label_relationships", "labels", column: "child_label_id"
   add_foreign_key "label_relationships", "labels", column: "parent_label_id"
-  add_foreign_key "labels", "categories"
   add_foreign_key "measures", "biomarkers"
   add_foreign_key "measures", "categories"
   add_foreign_key "measures", "sources"

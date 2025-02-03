@@ -1,3 +1,3 @@
 class ImagingMethod < ApplicationRecord
-  belongs_to :imaging_report
+  has_many :imaging_report
 end
