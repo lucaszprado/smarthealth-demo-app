@@ -85,3 +85,5 @@ gem "autoprefixer-rails"
 gem 'aws-sdk-s3', '~> 1.114'
 
 gem 'image_processing', '~> 1.2'
+
+gem 'roo'
