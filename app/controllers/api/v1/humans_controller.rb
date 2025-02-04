@@ -99,9 +99,13 @@ class Api::V1::HumansController < ActionController::API
       puts "Cleaned backtrace:"
       puts Rails.backtrace_cleaner.clean(e.backtrace)
       render json: {error: e.message}, status: :unprocessable_entity
-      #If exceptions are rescued without re-raising, the transaction commits all previous successful operations, resulting in partial changes.
+      #If exceptions are rescued without re-raising (raise an error), the transaction commits all previous successful operations, resulting in partial changes.
       raise ActiveRecord::Rollback
     end
+  end
+
+  def upload_bioimpedance
+
   end
 
 end
