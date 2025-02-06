@@ -104,8 +104,42 @@ class Api::V1::HumansController < ActionController::API
     end
   end
 
-  def upload_bioimpedance
+  def upload_image_exam
+    ActiveRecord::Base.transaction do
+      source = SourceCreator.create_source(source_params)
 
+      if source.nil?
+        render json: { error: "Failed to create Source" }, status: :unprocessable_entity
+        raise ActiveRecord::Rollback
+      end
+
+      imaging_report = ImagingReport.new(
+        imaging_method_id: params[:imaging_method_id],
+        report_summary_id: nil, # Placeholder
+        source_id: source.id,
+        content: params[:content],
+        date: params[:date]
+      )
+
+      if imaging_report.save
+        render json: { message: "Imaging report and source successfully created", imaging_report_id: imaging_report.id, source_id: source.id }, status: :created
+      else
+        render json: { error: "Failed to create ImagingReport: #{imaging_report.errors.full_messages.join(', ')}" }, status: :unprocessable_entity
+        raise ActiveRecord::Rollback
+      end
+    end
+  end
+
+  private
+
+  def source_params
+    params.permit(
+      :human_id,
+      :health_professional_id,
+      :health_provider_id,
+      pdf_files: [],
+      metadata: [:file_type]
+    )
   end
 
 end
