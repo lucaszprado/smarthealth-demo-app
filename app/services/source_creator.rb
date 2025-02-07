@@ -1,43 +1,50 @@
 class SourceCreator
-  # using keys as arguments allows you to change the arguments when calling the method
-  def self.create_source(human:, source_type_id:, health_professional_id:, health_provider_id:, files:, metadata:)
+  # params is parameter that receives a hash as an argument
+  def self.create_source(params)
+    debugger
+    source_type = SourceType.find_by(name: "Image")
+    raise StandardError, "SourceType 'image' not found" unless source_type
 
-    # Instantiate source object
-    source = human.sources.new(
-      source_type: SourceType.find(source_type_id),
-      health_professional: HealthProfessional.find(health_professional_id),
-      health_provider: HealthProvider.find(health_provider_id)
+    source = Source.new(
+      source_type_id: source_type.id,
+      human_id: params[:id],
+      health_professional_id: params[:health_professional_id],
+      health_provider_id: params[:health_provider_id],
     )
 
-    # Loop through all the attached files linked to source and add them to instantiated source object
-    debugger
-    puts files.map(&:class)
-    files.each_with_index do |file, index|
-      file_metadata = extract_metadata(metadata, index)
-      source.files.attach(
-        io: File.open(file[:path]),   # Open the file from the provided path
-        filename: file[:filename],    # Extract filename
-        content_type: file[:content_type], # Extract content type
-        metadata: file_metadata.to_json   # Ensure metadata is JSON
-      )
+    Rails.logger.debug "Metadata: #{params[:metadata].inspect}"
+    # Rails.logger.debug "Index: #{index}"
+    # Rails.logger.debug "Metadata at index: #{params[:metadata][index].inspect}"
+
+    ActiveRecord::Base.transaction do
+      if source.save
+        attach_files_with_metadata(source, params[:pdf_files], params[:metadata])
+        return source
+      else
+        raise ActiveRecord::Rollback, "Failed to create Source: #{source.errors.full_messages.join(', ')}"
+      end
     end
 
-    if source.save
-      {success: true, source: source}
-    else
-      {success: false, errors: source.error.full_messages}
-    end
+  rescue => e
+    Rails.logger.error "SourceCreator Error: #{e.message}"
+    nil
   end
 
   private
-  # Extract metadata per file
-  # "Self" represents the class which this method will be called on
-  # metadata_param receives as an argument a hash params[:metadata] from Postman, which is a hash which index are stingfied numbers.
 
-  def self.extract_metadata(metadata_param, index)
-    return {} unless metadata_param.present? && metadata_param[index.to_s].present?
+  def self.attach_files_with_metadata(source, pdf_files, metadata)
+    pdf_files.each_with_index do |uploaded_file, index|
+      # Attach file along with metadata
+      attachment = source.files.attach(
+        io: uploaded_file,
+        filename: uploaded_file.original_filename,
+        content_type: uploaded_file.content_type,
+        metadata: { file_type: metadata[index.to_s]["file_type"] }
+      )
 
-    # Since metadata_param comes from params. Its class is an ActionController::Parameters. We must convert it to a hash.
-    metadata_param[index.to_s] #.permit!.to_h
+      if attachment.blank?
+        raise ActiveRecord::Rollback, "Failed to attach file: #{uploaded_file.original_filename}"
+      end
+    end
   end
 end

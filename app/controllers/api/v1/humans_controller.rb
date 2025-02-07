@@ -106,8 +106,10 @@ class Api::V1::HumansController < ActionController::API
 
   def upload_image_exam
     ActiveRecord::Base.transaction do
-      source = SourceCreator.create_source(source_params)
+      #Rails.logger.debug "Params received: #{params.inspect}"
 
+
+      source = SourceCreator.create_source(source_params)
       if source.nil?
         render json: { error: "Failed to create Source" }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
@@ -115,10 +117,10 @@ class Api::V1::HumansController < ActionController::API
 
       imaging_report = ImagingReport.new(
         imaging_method_id: params[:imaging_method_id],
-        report_summary_id: nil, # Placeholder
+        report_summary_id: 1, # Placeholder
         source_id: source.id,
         content: params[:content],
-        date: params[:date]
+        date: Date.parse(params[:date])
       )
 
       if imaging_report.save
@@ -132,14 +134,30 @@ class Api::V1::HumansController < ActionController::API
 
   private
 
+  # This method returns a hash that matches matches the keyword arguments expected by create_source in SourceCreator service
   def source_params
-    params.permit(
-      :human_id,
+
+    # Debugging: Log the type of `pdf_files`
+    #Rails.logger.debug "Before Processing: pdf_files is a #{params[:pdf_files].class}"
+
+    # Ensure `pdf_files` is always an array (handles single & multiple file uploads)
+    if params[:pdf_files].present?
+      params[:pdf_files] = params[:pdf_files].is_a?(Array) ? params[:pdf_files] : [params[:pdf_files]]
+    end
+
+    permitted_params = params.permit(
+      :id,
       :health_professional_id,
       :health_provider_id,
-      pdf_files: [],
+      :imaging_method_id,
+      :date,
+      :content,
+      {pdf_files: []},
       metadata: [:file_type]
     )
+
+    # # Debugging: Log the final permitted parameters
+    # Rails.logger.debug "Permitted Params: #{permitted_params.inspect}"
   end
 
 end

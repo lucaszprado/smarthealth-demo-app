@@ -1,7 +1,7 @@
 class ImagingReport < ApplicationRecord
   belongs_to :source
   belongs_to :imaging_method
-  belongs_to :report_summary
+  belongs_to :report_summary, optional: true
   has_many :label_assignments, as: :labelable, dependent: :destroy
   has_many :labels, through: :label_assignments
 
