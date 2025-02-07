@@ -115,9 +115,11 @@ class Api::V1::HumansController < ActionController::API
         raise ActiveRecord::Rollback
       end
 
+
+
       imaging_report = ImagingReport.new(
         imaging_method_id: params[:imaging_method_id],
-        report_summary_id: 1, # Placeholder
+        # report_summary_id: 1, # Placeholder -> To
         source_id: source.id,
         content: params[:content],
         date: Date.parse(params[:date])
