@@ -9,4 +9,8 @@ class ImagingReport < ApplicationRecord
     ["content", "created_at", "date", "id", "id_value", "imaging_method_id", "report_summary_id", "source_id", "updated_at"]
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    ["imaging_method", "label_assignments", "labels", "report_summary", "source"]
+  end
+
 end

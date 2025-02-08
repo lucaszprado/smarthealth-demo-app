@@ -1,6 +1,6 @@
 class Label < ApplicationRecord
   has_many :label_assignments, dependent: :destroy
-  has_many :labelables, through: :label_assignments, source: :labelable
+  has_many :imaging_reports, through: :label_assignments, source: :labelable, source_type: "ImagingReport"
 
   # Child labels (Downward relationship)
   has_many :child_relationships, class_name: "LabelRelationship", foreign_key: "parent_label_id", dependent: :destroy

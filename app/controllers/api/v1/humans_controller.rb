@@ -104,7 +104,7 @@ class Api::V1::HumansController < ActionController::API
     end
   end
 
-  def upload_image_exam
+  def upload_imaging_report
     ActiveRecord::Base.transaction do
       #Rails.logger.debug "Params received: #{params.inspect}"
 
@@ -131,6 +131,15 @@ class Api::V1::HumansController < ActionController::API
         render json: { error: "Failed to create ImagingReport: #{imaging_report.errors.full_messages.join(', ')}" }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
       end
+
+      labels = LabelAssignmentService.create(imaging_report, params)
+      if labels.nil?
+        render json: { error: "Failed to create Labels" }, status: :unprocessable_entity
+        raise ActiveRecord::Rollback
+      else
+        render json: { message: "Labels successfully created", labels: labels}, status: :created
+      end
+
     end
   end
 
@@ -155,7 +164,12 @@ class Api::V1::HumansController < ActionController::API
       :date,
       :content,
       {pdf_files: []},
-      metadata: [:file_type]
+      metadata: [:file_type],
+      {label_system_id: []},
+      :label_organ_id,
+      :label_part_id,
+      :label_spacial_group_id,
+      :label_positioning_id
     )
 
     # # Debugging: Log the final permitted parameters

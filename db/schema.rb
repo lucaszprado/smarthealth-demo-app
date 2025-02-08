@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_03_181145) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_07_134214) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,7 +127,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_03_181145) do
     t.string "content"
     t.bigint "source_id", null: false
     t.bigint "imaging_method_id", null: false
-    t.bigint "report_summary_id", null: false
+    t.bigint "report_summary_id"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

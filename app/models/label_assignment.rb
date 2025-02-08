@@ -7,7 +7,7 @@ class LabelAssignment < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["measure", "label"]
+    ["measure", "label", "imaging_report"]
   end
 
 end

@@ -1,7 +1,7 @@
 class SourceCreator
   # params is parameter that receives a hash as an argument
   def self.create_source(params)
-    debugger
+
     source_type = SourceType.find_by(name: "Image")
     raise StandardError, "SourceType 'image' not found" unless source_type
 
@@ -27,7 +27,7 @@ class SourceCreator
 
   rescue => e
     Rails.logger.error "SourceCreator Error: #{e.message}"
-    nil
+    return nil
   end
 
   private
