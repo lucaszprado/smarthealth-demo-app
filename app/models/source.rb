@@ -4,8 +4,6 @@ class Source < ApplicationRecord
   has_many :imaging_reports, dependent: :destroy
   has_many_attached :files
 
-
-
   # Association with SourceType
   belongs_to :source_type
 
