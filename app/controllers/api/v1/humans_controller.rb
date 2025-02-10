@@ -109,7 +109,7 @@ class Api::V1::HumansController < ActionController::API
       #Rails.logger.debug "Params received: #{params.inspect}"
 
 
-      source = SourceCreator.create_source(source_params)
+      source = SourceCreator.create_source(api_params)
       if source.nil?
         render json: { error: "Failed to create Source" }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
@@ -125,19 +125,17 @@ class Api::V1::HumansController < ActionController::API
         date: Date.parse(params[:date])
       )
 
-      if imaging_report.save
-        render json: { message: "Imaging report and source successfully created", imaging_report_id: imaging_report.id, source_id: source.id }, status: :created
-      else
+      unless imaging_report.save
         render json: { error: "Failed to create ImagingReport: #{imaging_report.errors.full_messages.join(', ')}" }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
       end
 
-      labels = LabelAssignmentService.create(imaging_report, params)
+      labels = LabelAssignmentService.create(imaging_report, api_params)
       if labels.nil?
         render json: { error: "Failed to create Labels" }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
       else
-        render json: { message: "Labels successfully created", labels: labels}, status: :created
+        render json: { message: "Imaging report, source and Labels successfully created", imaging_report_id: imaging_report.id, source_id: source.id, labels: labels}, status: :created
       end
 
     end
@@ -146,7 +144,7 @@ class Api::V1::HumansController < ActionController::API
   private
 
   # This method returns a hash that matches matches the keyword arguments expected by create_source in SourceCreator service
-  def source_params
+  def api_params
 
     # Debugging: Log the type of `pdf_files`
     #Rails.logger.debug "Before Processing: pdf_files is a #{params[:pdf_files].class}"
@@ -163,13 +161,13 @@ class Api::V1::HumansController < ActionController::API
       :imaging_method_id,
       :date,
       :content,
-      {pdf_files: []},
-      metadata: [:file_type],
-      {label_system_id: []},
-      :label_organ_id,
-      :label_part_id,
-      :label_spacial_group_id,
-      :label_positioning_id
+      {pdf_files: []}, # Allow multiple files (array)
+      {metadata: [:file_type]}, # Allow nested metadata -> In hash format.
+      {label_system_id: []}, # Allow multiple labels ID (array)
+      {label_organ_id: []},
+      {label_part_id: []},
+      {label_spacial_group_id: []},
+      {label_positioning_id: []}
     )
 
     # # Debugging: Log the final permitted parameters

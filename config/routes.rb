@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         # It's an endpoint nested under human. It's a Post because it's a POST request to upload the file.
         post :upload_bioimpedance, on: :member
 
-        post :upload_image_exam, on: :member
+        post :upload_imaging_report, on: :member
       end
     end
   end
