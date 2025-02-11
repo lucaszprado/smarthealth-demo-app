@@ -1,5 +1,6 @@
 class BiomarkersController < ApplicationController
   def index
+    debugger
     @human = Human.find(params[:human_id])
     birthdate = @human.birthdate.strftime('%Y-%m-%d')
 
