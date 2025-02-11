@@ -19,12 +19,14 @@
     <div class="container pt-5">
       <div class="row justify-content-center">
         <div class="col-12 col-lg-9">
+          <!-- Search bar -->
           <div class="d-flex justify-content-center search-bar">
               <%= form_with url: human_biomarkers_path(@human), method: :get, class: "d-flex w-100 mb-3" do %>
                 <%= text_field_tag :query, params[:query], class: "form-control me-2", placeholder:"Digite um biomarcador"%>
                 <%= submit_tag "Buscar", name: "", class: "btn btn-primary"%>
               <% end %>
           </div>
+          <!-- Result Card -->
           <% @last_measures.each do |measure| %>
             <%= link_to human_biomarker_measures_path(@human.id, measure.biomarker.id), class: "text-decoration-none link-dark" do %>
               <div class="card-justify border-bottom ps-3">

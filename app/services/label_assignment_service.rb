@@ -2,7 +2,7 @@ class LabelAssignmentService
   def self.create(labelable, label_params)
     label_categories_id = [:label_system_id, :label_organ_id, :label_part_id, :label_spacial_group_id, :label_positioning_id]
     created_labels = []
-    debugger
+    
     ActiveRecord::Base.transaction do
       label_categories_id.each do |category|
         if label_params[category] != [""]
