@@ -31,10 +31,11 @@
             <%= render "shared/result_card",
               link: human_biomarkers_path(@human.id),
               icon_path: "fa-solid fa-chart-line",
-              title: imaging_report[:imaging_method]
-              # key_info:
-              # date:
-              # labels: 
+              title: "#{imaging_report[:title][0]} #{imaging_report[:title][1]}",
+              key_info: imaging_report[:imaging_method],
+              status: nil,
+              date: imaging_report[:date],
+              labels: imaging_report[:label_system]
             %>
           <% end %>
         </div>

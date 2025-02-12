@@ -12,11 +12,13 @@
       <% end %>
     </div>
 
+  <!-- Key info component + Status + Date Component -->
     <div class="flexbox-text-right">
       <div class="card-justify">
         <!-- Key info component -->
         <p class="fs-6"><%= "#{TT key_info TT}"  %></p>
-        <% if TT status TT.present? %>
+        <!-- Status component -->
+        <% if status.present? %>
           <span class="TT status TT"></span>
         <%end%>
       </div>

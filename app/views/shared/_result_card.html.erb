@@ -9,7 +9,30 @@
       <!-- Title Component -->
       <p class="fs-6"> <%= title %> </p>
       <!-- Label Component -->
+      <% if labels.present? %>
+        <div class="flexbox-left-center">
+          <% labels.each do |label| %>
+            <p class="label"> <%= label %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
+    <!-- Key info component + Status + Date Component -->
+    <div class="flexbox-text-right">
+      <div class="card-justify">
+        <!-- Key info component -->
+        <p class="fs-6"><%= key_info %></p>
+        <!-- Status component -->
+        <% if status.present? %>
+          <span class="TT status TT"></span>
+        <%end%>
+      </div>
+
+      <!-- Date component -->
+      <div>
+        <p><%= date %></p>
+      </div>
     </div>
 
   </div>
