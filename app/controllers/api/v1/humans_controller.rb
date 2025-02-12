@@ -104,8 +104,4 @@ class Api::V1::HumansController < ActionController::API
     end
   end
 
-  def upload_bioimpedance
-
-  end
-
 end
