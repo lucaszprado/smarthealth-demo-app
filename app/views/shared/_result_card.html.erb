@@ -5,14 +5,14 @@
       <i class=" <%= icon_path %> "></i>
     </div>
     <!-- Title + Label Component -->
-    <div class="card-item-center text-left">
+    <div class="card-item-center">
       <!-- Title Component -->
       <p class="fs-6"> <%= title %> </p>
       <!-- Label Component -->
       <% if labels.present? %>
         <div class="flexbox-left-center">
           <% labels.each do |label| %>
-            <p class="label"> <%= label %></p>
+            <p class="label <%= label_class(label) %>"> <%= label %></p>
           <% end %>
         </div>
       <% end %>
@@ -31,7 +31,7 @@
 
       <!-- Date component -->
       <div>
-        <p><%= date %></p>
+        <p><%= date_dd_mm_aaaa(date) %></p>
       </div>
     </div>
 

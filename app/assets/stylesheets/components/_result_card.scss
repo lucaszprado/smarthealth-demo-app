@@ -4,9 +4,9 @@
   align-items: center;
   // It also applies to the p and span elements inside the .card-justify
   p{
-    padding: 0rem;
+    //padding: 0rem;
     margin: 0rem;
-    font-size:0.8rem;
+    //font-size:0.8rem;
   }
   span{
     margin-left: 0.3rem;
@@ -33,10 +33,40 @@
 }
 
 .flexbox-left-center {
-  display: flex;
-  justify-content: space-evenly;
+  display: flex; /* Turning div into a flexbox container */
+  flex-wrap: nowrap; /* Ensure items stay on the same line */
+  gap: 0.5rem; /* Small gap between labels */
+  align-items: center; /* Centers items vertically */
 
+  // border: 1px solid red;
 }
+
+.label {
+  display: flex; /* Ensures proper alignment */
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+  font-weight: normal;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  white-space: nowrap; /* Prevents multi-line wrapping */
+
+  // border: 1px solid blue;
+}
+
+.label-type-1 { background-color: $teal; }
+.label-type-2 { background-color: $green; }
+.label-type-3 { background-color: $cian; }
+.label-type-4 { background-color: $yellow; }
+.label-type-5 { background-color: $blue }
+.label-type-6 { background-color: $purple; }
+.label-type-7 { background-color: $pink; }
+.label-type-8 { background-color: $turquoise; }
+.label-type-9 { background-color: $blue-light; }
+.label-type-10 { background-color: $brown; }
+.label-type-11 { background-color: $orange; }
+.label-default { background-color: $magenta }
 
 .card-justify.border-bottom.ps-3:hover {
   transform: translateY(2px); /* Moves the button down by 2px */
@@ -47,7 +77,7 @@
 .card-item-center {
   flex-grow: 1;
   padding: 1rem;
-  min-width: 0; /* Enables shrinking and wrapping for long names */
+  min-width: auto; /* Enables shrinking and wrapping for long names */
   white-space: normal; /* Allows text wrapping */
 }
 
@@ -105,8 +135,8 @@
   }
 }
 
-.card-justify.border-bottom.ps-3 .fa-chart-line{
-  font-size: 3em;
+.card-justify.border-bottom.ps-3 i{
+  font-size: 2.5em;
 }
 
 // Adjusting font size for mobile devices

@@ -44,7 +44,4 @@ class ImagingReportsController < ApplicationController
       end
     end
   end
-
-
-
 end

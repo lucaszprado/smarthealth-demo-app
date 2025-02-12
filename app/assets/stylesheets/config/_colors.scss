@@ -1,16 +1,36 @@
 // Define variables for your color scheme
 
-// For example:
+// Primary Colors:
 $red: #f44336;
 $blue: #0D6EFD;
+$blue-light: #61c3f5;
 $yellow: #ffc107;
 $orange: #E67E22;
 $green: #4caf50;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
-$background-color: #f5f5f5;
+$cian: #00FFFF;
+$turquoise: #22f19e;
+$purple: #934caf;
+$brown:  #61440b;
+$pink: #f16cce;
+$teal: #17a2b8;
+$magenta: #8c1946;
+$gray: #706e6e;
+$black: #010101;
+
+
+
+// Pallete Colors: -> TBU
+
+
+
+// Text colors
 $text-color: #333;
-$text-gray: #8c8c8c
+$text-gray: #8c8c8c;
+
+// Background Color
+$background-color: #f5f5f5;
+$light-gray: #F4F4F4;
+
 
 // Define global scss variables to make them accessible in javascript
 :root {
