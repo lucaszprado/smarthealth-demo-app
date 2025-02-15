@@ -12,10 +12,11 @@
   // Title element inside ResultCard
   &-title {
     font-weight: normal;
-    overflow: hidden; /* Hides overflowing text */
-    text-overflow: ellipsis; /* Adds "..." when text is too long */
+    //overflow: hidden; /* Hides overflowing text */
+    //text-overflow: ellipsis; /* Adds "..." when text is too long */
     min-width: 0;
     flex-shrink: 1; /* Allows it to shrink inside flexbox */
+    white-space: wrap;
   }
 
   // Any content inside the ResultCard
@@ -23,9 +24,7 @@
     flex-grow: 1; // Makes the element expand to take up available space inside the flex container
     min-width: 0; // Allows text to shrink properly instead of overflowing || Sets the minimum width an element can have. || Possible: 0 | auto | ...
     white-space: normal; /* Allows text wrapping || Possible: nowrap | normal | ... / */
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
+    flex-shrink: 1; /* Allows shrinking */
 
   }
 
