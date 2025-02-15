@@ -4,18 +4,18 @@ module ApplicationHelper
   def label_class(label_name)
   # Returns label-type to be use by scss to render label color
     case label_name
-    when "Muscoesquelético" then "label-type-1"
-    when "Digestivo" then "label-type-2"
-    when "Respiratório" then "label-type-3"
-    when "Urinário" then "label-type-4"
-    when "Reprodutor" then "label-type-5"
-    when "Endócrino" then "label-type-6"
-    when "Circulatório" then "label-type-7"
-    when "Linfático" then "label-type-8"
-    when "Nervoso Central" then "label-type-9"
-    when "Nervoso Periférico" then "label-type-10"
-    when "Tegumentar" then "label-type-11"
-    else "label-default"
+    when "Muscoesquelético" then "type1"
+    when "Digestivo" then "type2"
+    when "Respiratório" then "type3"
+    when "Urinário" then "type4"
+    when "Reprodutor" then "type5"
+    when "Endócrino" then "type6"
+    when "Circulatório" then "type7"
+    when "Linfático" then "type8"
+    when "Nervoso Central" then "type9"
+    when "Nervoso Periférico" then "type10"
+    when "Tegumentar" then "type11"
+    else "default"
     end
   end
 

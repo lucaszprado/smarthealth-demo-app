@@ -1,0 +1,85 @@
+// COMPONENT: ResultCard
+
+// External card layout
+.ResultCard {
+  display: flex;                  // Enables Flexbox
+  justify-content: space-between; // Distributes items with max space between them. First child aligns left, last child aligns right.
+  align-items: center;            // Aligns items vertically in the center
+  padding: 0.1rem;                // Adds space inside the element
+  gap: 1rem;
+  height: 6rem;
+
+  // Title element inside ResultCard
+  &-title {
+    font-weight: normal;
+    overflow: hidden; /* Hides overflowing text */
+    text-overflow: ellipsis; /* Adds "..." when text is too long */
+    min-width: 0;
+    flex-shrink: 1; /* Allows it to shrink inside flexbox */
+  }
+
+  // Any content inside the ResultCard
+  &-content {
+    flex-grow: 1; // Makes the element expand to take up available space inside the flex container
+    min-width: 0; // Allows text to shrink properly instead of overflowing || Sets the minimum width an element can have. || Possible: 0 | auto | ...
+    white-space: normal; /* Allows text wrapping || Possible: nowrap | normal | ... / */
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+
+  }
+
+  // Container wrapping labels
+  &-labels {
+    display: flex; //Turns .ResultCard-labels into a flex container, aligning all child elements in a row.
+    flex-wrap: nowrap; /* Allows labels to move to the next line if necessary */
+    gap: 0.4rem;
+    align-items: center; //Ensures labels are vertically centered inside the row.
+    min-width: 0;
+    flex-shrink: 1;
+    padding: 0.1rem;
+  }
+
+  // keyInfos Layout container
+  &-keyInfos {
+    display: flex; // Turns .ResultCard-status into a flex container, so its child elements align in a row.
+    flex-direction: column; // How flex items will be aligned. They will be stacked.
+    align-items: flex-end; // How flex items are aligned along the cross-axis. They will be on the right.
+    // justify-content: flex-end; // Pushes the status content to the right side of its container.
+    padding: 0.1rem; // Adds inner spacing around the content.
+    flex-shrink: 0; // Prevents shrinking when placed inside a flex container.
+    white-space: normal; //Allow flex items to wrap.
+    width: 22vw; // width takes 20% of view port.
+    margin-top: 0.5rem;
+
+    // Status layout ball
+    &Indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block; // Allows the dot to sit next to text instead of forcing a new line.
+      margin-left: 0.3rem;
+    }
+
+  }
+
+  // ResultCard hover effect
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: var(--Primary, #F5F5F5);
+  }
+
+  // Elements inside ResultCard that will be adjusted from a min-width: 576px (large devices)
+  @media (min-width: 768px) {
+    // &-title {
+    //   font-size: 1.15rem;
+
+    // }
+
+    i {
+      font-size: 2em; /* Adjust the size as needed */
+    }
+  }
+
+}

@@ -1,37 +1,41 @@
 <%= link_to link, class: "text-decoration-none link-dark" do %>
-  <div class="card-justify border-bottom ps-3">
+  <div class="ResultCard border-bottom ps-3 u-flex u-flex--justifyBetween u-flex--alignCenter"> <!--ps-3-->
     <!-- Icon component -->
     <div>
       <i class=" <%= icon_path %> "></i>
     </div>
+
     <!-- Title + Label Component -->
-    <div class="card-item-center">
+    <div class="ResultCard-content">
       <!-- Title Component -->
-      <p class="fs-6"> <%= title %> </p>
+      <p class="ResultCard-title u-fontSize--primary mb-2"> <%= title %> </p>
+
       <!-- Label Component -->
       <% if labels.present? %>
-        <div class="flexbox-left-center">
+        <div class="ResultCard-labels">
           <% labels.each do |label| %>
-            <p class="label <%= label_class(label) %>"> <%= label %></p>
+            <p class="Label Label--<%= label_class(label) %> u-fontSize--secondary mb-2"> <%= label %></p>
           <% end %>
         </div>
       <% end %>
     </div>
 
-    <!-- Key info component + Status + Date Component -->
-    <div class="flexbox-text-right">
-      <div class="card-justify">
+    <!-- Key Infos = Source Specific info + Status + Date Component -->
+    <div class="ResultCard-keyInfos u-textAlign--right u-fontSize--secondary mt-1 mb-1">
+      <div class="">
+
         <!-- Key info component -->
-        <p class="fs-6"><%= key_info %></p>
+        <p class="u-fontSize--secondary mb-1"><%= key_info %></p>
+
         <!-- Status component -->
         <% if status.present? %>
-          <span class="TT status TT"></span>
+          <span class="ResultCard-statusIndicator is-status--<%= status %>"></span>
         <%end%>
       </div>
 
       <!-- Date component -->
       <div>
-        <p><%= date_dd_mm_aaaa(date) %></p>
+        <p class="u-fontSize--terciary"> Último exame: <%= date_dd_mm_aaaa(date) %></p>
       </div>
     </div>
 

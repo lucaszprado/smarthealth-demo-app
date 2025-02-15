@@ -1,10 +1,12 @@
 class Api::V1::HumansController < ActionController::API
-  def get_human_measures
+  def get_human_measures #create
+    #measures_controller
     pdf_file = params[:pdf_file]
     health_professional_id = params[:health_professional_id]
     health_provider_id = params[:health_provider_id]
     human = Human.find(params[:id])
-
+    # Fifo: Create measures dentro do namespace do human
+    # api/v1/humans/:id/measures#create
 
     # Step 1: Create a new Source and store the uploaded PDF
 

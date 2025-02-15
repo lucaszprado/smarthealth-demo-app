@@ -1,0 +1,29 @@
+.u-flex {
+  display: flex;
+}
+
+.u-flex--justifyBetween {
+  justify-content: space-between; // child elements are evenly spaced across the main axis.
+}
+
+.u-flex--justifyStart {
+  justify-content: flex-start; // Aligns all child elements to the start of the main axis.
+}
+
+.u-flex--alignCenter {
+  align-items: center; // Child elements are centered along the cross-axis
+}
+
+.u-flex--wrap {
+  flex-wrap: wrap; // Allows wrap inside flexbox
+}
+
+/* Text Alignment */
+.u-textAlign--right {
+  text-align: right;
+}
+
+.u-textAlign--center {
+  text-align: center;
+}
+
