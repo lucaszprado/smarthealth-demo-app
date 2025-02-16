@@ -7,7 +7,7 @@
   align-items: center;            // Aligns items vertically in the center
   padding: 0.1rem;                // Adds space inside the element
   gap: 1rem;
-  height: 6rem;
+  height: 6.5rem;
 
   // Title element inside ResultCard
   &-title {
@@ -19,7 +19,7 @@
     white-space: wrap;
   }
 
-  // Any content inside the ResultCard
+  // Content inside the ResultCard
   &-content {
     flex-grow: 1; // Makes the element expand to take up available space inside the flex container
     min-width: 0; // Allows text to shrink properly instead of overflowing || Sets the minimum width an element can have. || Possible: 0 | auto | ...
