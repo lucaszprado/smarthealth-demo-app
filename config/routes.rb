@@ -29,8 +29,6 @@ Rails.application.routes.draw do
     #another syntax: resources("biomarkers", {"only" => ["index", "show"]}) || resources("biomarkers") --> Hash is a change argument for the function.
       resources :measures, only: [:index]
     end
-
-    resources :imaging_reports, only: [:index]
-
+    resources :imaging_reports, only: [:index, :show] # url_helper: human_imaging_report_path(human_id: @human.id, id: @imaging_report.id)
   end
 end

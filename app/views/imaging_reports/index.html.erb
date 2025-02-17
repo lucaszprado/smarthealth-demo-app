@@ -29,7 +29,7 @@
           <!-- Result Card -->
           <% @imaging_reports.each do |imaging_report| %>
             <%= render "shared/result_card",
-              link: human_biomarkers_path(@human.id),
+              link: human_imaging_report_path(human_id: @human.id, id: imaging_report[:id]),
               icon_path: "fa-solid fa-circle-radiation", #fa-solid fa-chart-line fa-light fa-x-ray fa-regular fa-image
               title: "#{imaging_report[:title][0]} #{imaging_report[:title][1]}",
               key_info: imaging_report[:imaging_method],
