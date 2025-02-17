@@ -14,6 +14,10 @@
   align-items: center; // Child elements are centered along the cross-axis
 }
 
+.u-flex--alignStart {
+  align-items: start; // Child elements are centered along the cross-axis
+}
+
 .u-flex--wrap {
   flex-wrap: wrap; // Allows wrap inside flexbox
 }
@@ -26,4 +30,3 @@
 .u-textAlign--center {
   text-align: center;
 }
-
