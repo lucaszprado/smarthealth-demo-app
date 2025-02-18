@@ -14,7 +14,7 @@
       <% if labels.present? %>
         <div class="ResultCard-labels">
           <% labels.each do |label| %>
-            <p class="Label Label--<%= label_class(label) %> u-fontSize--terciary"> <%= label %></p>
+            <p class="Label Label--<%= label_class(label) %> u-fontSize--quaternary"> <%= label %></p>
           <% end %>
         </div>
       <% end %>
@@ -35,7 +35,7 @@
 
       <!-- Date component -->
       <div>
-        <p class="u-fontSize--terciary u-textMargin--noMargin"> Último exame: <%= date_dd_mm_aaaa(date) %></p>
+        <p class="u-fontSize--tertiary u-textMargin--noMargin"> Último exame: <%= date_dd_mm_aaaa(date) %></p>
       </div>
     </div>
 
