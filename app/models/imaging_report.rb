@@ -46,8 +46,7 @@ class ImagingReport < ApplicationRecord
         end
       end
     end
-
-    title[1] = adjust_gender(title[0], title[1])
+    title[1] = adjust_gender(title[0], title[1]) if title[0] && title[1]
 
     {
       id: id,

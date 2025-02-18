@@ -7,7 +7,7 @@ class HealthProfessional < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["sources"]
+    ["sources", "imaging_reports"]
   end
 
 end
