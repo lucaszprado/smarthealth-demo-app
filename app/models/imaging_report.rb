@@ -83,6 +83,7 @@ class ImagingReport < ApplicationRecord
     if gender == :masculine
       return target_word
     elsif gender == :feminine
-      return target_word = target_word.gsub(/o$/, "a")
+      target_word = target_word.gsub(/o$/, "a")
     end
   end
+end
