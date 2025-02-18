@@ -21,6 +21,9 @@
     min-width: 0; // Ensures the element can shrink properly inside a flex container
     flex-shrink: 1; /* Allows it to shrink inside flexbox */
 
+    /* Fallback for browsers that don't support -webkit-line-clamp */
+    max-height: 4.5em; /* Approx. 3 lines (adjust based on font-size and line-height) */
+    line-height: 1.5em; /* Ensures correct height calculation */
   }
 
   // Content inside the ResultCard
