@@ -47,6 +47,8 @@ class ImagingReport < ApplicationRecord
       end
     end
 
+    title[1] = adjust_gender(title[0], title[1])
+
     {
       id: id,
       content: content,
@@ -67,4 +69,20 @@ class ImagingReport < ApplicationRecord
     # only_path: true gives the relative URL (without the domain name), which is useful for rendering in your views
     source.files.map { |file| Rails.application.routes.url_helpers.rails_blob_path(file, only_path: true) }
   end
-end
+
+  # Transforms Label "Direito" in "Direita" if Label title [0] is feminine.
+  def adjust_gender (reference_word, target_word)
+    exceptions = {
+      "mão" => :feminine,
+      "pé" => :masculine,
+    }
+
+    # The || operator returns the first truthy value it encounters.
+    gender = exceptions[reference_word.downcase] || (reference_word.end_with?("o") ? :masculine : :feminine)
+
+    if gender == :masculine
+      return target_word
+    elsif gender == :feminine
+      return target_word = target_word.gsub(/o$/, "a")
+    end
+  end
