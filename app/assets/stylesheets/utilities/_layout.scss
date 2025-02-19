@@ -22,7 +22,7 @@
   flex-wrap: wrap; // Allows wrap inside flexbox
 }
 
-/* Text Alignment */
+/* ===== Text Alignment ===== */
 .u-textAlign--right {
   text-align: right;
 }
@@ -30,3 +30,13 @@
 .u-textAlign--center {
   text-align: center;
 }
+
+.u-textAlign--justify{
+  text-align: justify;
+}
+
+
+// ===== Bootstrap utility classes =====
+// class = "container"
+// class = "row justify-content-center">
+// class = "col-12 col-lg-9"

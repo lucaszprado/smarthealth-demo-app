@@ -1,5 +1,17 @@
 // COMPONENT: Label (Used across multiple cards)
 
+// Container where labels are placed
+.LabelsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 1;
+  margin-top: 0.25rem;
+}
+
+// Label cards
 .Label {
   display: flex;
   align-items: center;
@@ -13,7 +25,7 @@
   margin-bottom: 0rem;
 }
 
-/* Fixed Label Colors */
+// Label card colors
 .Label--type1 { background-color: $teal; }
 .Label--type2 { background-color: $green; }
 .Label--type3 { background-color: $cyan; }

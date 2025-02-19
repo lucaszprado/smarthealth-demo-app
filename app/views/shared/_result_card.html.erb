@@ -12,7 +12,7 @@
 
       <!-- Label Component -->
       <% if labels.present? %>
-        <div class="ResultCard-labels">
+        <div class="LabelsContainer">
           <% labels.each do |label| %>
             <p class="Label Label--<%= label_class(label) %> u-fontSize--quaternary"> <%= label %></p>
           <% end %>

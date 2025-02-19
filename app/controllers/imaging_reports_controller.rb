@@ -12,15 +12,16 @@ class ImagingReportsController < ApplicationController
 
     # Since imaging_reports ActiveRecord collection of ImagingReports, Rails (Ruby specifically) looks for a method inside ImagingReport Class (model)
     # @imaging_reports is an array of hashs
-    # @imaging_reports = imaging_reports_collection.map(&:structured_data)
-    @imaging_reports = imaging_reports_collection.map do |report|
-      puts "===================================="
-      puts "===================================="
-      report.labels.each {|label| puts label.name}
-      puts "===================================="
-      puts "===================================="
-      report.structured_data
-    end
+    @imaging_reports = imaging_reports_collection.map(&:structured_data)
+    # For @imaging_report debug
+    # @imaging_reports = imaging_reports_collection.map do |report|
+    #   puts "===================================="
+    #   puts "===================================="
+    #   report.labels.each {|label| puts label.name}
+    #   puts "===================================="
+    #   puts "===================================="
+    #   report.structured_data
+    # end
   end
 
   def show

@@ -26,15 +26,6 @@
   line-height: 1.5em; /* Ensures correct height calculation */
 }
 
-.ResultCard-labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.2rem;
-  align-items: center;
-  min-width: 0;
-  flex-shrink: 1;
-  margin-top: 0.25rem;
-}
 
 .ResultCard-keyInfos {
   display: flex;
