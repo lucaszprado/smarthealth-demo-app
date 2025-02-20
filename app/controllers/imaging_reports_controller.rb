@@ -27,7 +27,6 @@ class ImagingReportsController < ApplicationController
   def show
     human = Human.find(params[:human_id])
     @imaging_report = ImagingReport.find(params[:id]).structured_data
-    debugger
   end
 
 end
