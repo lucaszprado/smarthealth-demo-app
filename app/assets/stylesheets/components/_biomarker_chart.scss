@@ -1,6 +1,6 @@
 .chart-container {
   min-height: 20rem; // Default for larger screens
-  background: #fbfbfb;
+  background: $light-gray;
 
 
   @include media-breakpoint-down(sm) {

@@ -8,24 +8,24 @@
     <!-- Title + Label Component -->
     <div class="ResultCard-content">
       <!-- Title Component -->
-      <p class="ResultCard-title u-fontSize--primary u-textMargin--noMargin"> <%= title %> </p>
+      <p class="ResultCard-title u-fontSizeVW--primary u-textMargin--noMargin"> <%= title %> </p>
 
       <!-- Label Component -->
       <% if labels.present? %>
         <div class="LabelsContainer">
           <% labels.each do |label| %>
-            <p class="Label Label--<%= label_class(label) %> u-fontSize--quaternary"> <%= label %></p>
+            <p class="Label Label--<%= label_class(label) %> u-fontSizeVW--quaternary"> <%= label %></p>
           <% end %>
         </div>
       <% end %>
     </div>
 
     <!-- Key Infos = Source Specific info + Status + Date Component -->
-    <div class="ResultCard-keyInfos u-textAlign--right u-fontSize--secondary mb-1">
+    <div class="ResultCard-keyInfos u-textAlign--right u-fontSizeVW--secondary mb-1">
 
 
       <!-- Key info component -->
-      <p class="u-fontSize--secondary mb-1"><%= key_info %></p>
+      <p class="u-fontSizeVW--secondary mb-1"><%= key_info %></p>
 
       <!-- Status component -->
       <% if status.present? %>
@@ -35,7 +35,7 @@
 
       <!-- Date component -->
       <div>
-        <p class="u-fontSize--tertiary u-textMargin--noMargin"> Último exame: <%= stddate(date) %></p>
+        <p class="u-fontSizeVW--tertiary u-textMargin--noMargin"> Último exame: <%= stddate(date) %></p>
       </div>
     </div>
 

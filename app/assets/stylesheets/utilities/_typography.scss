@@ -1,23 +1,30 @@
-.u-fontSize--primary {
+.u-fontSizeVW--primary {
   font-size: clamp(0.75rem, 1.75vw, 1.0rem);
   // font-size: 1.1rem;
 }
 
-.u-fontSize--secondary {
+.u-fontSizeVW--secondary {
   font-size: clamp(0.65rem, 1.5vw, 0.8rem);
   // font-size: 0.9rem;
 }
 
-.u-fontSize--tertiary {
+.u-fontSizeVW--tertiary {
   font-size: clamp(0.5rem, 1.25vw, 0.75rem);
   // font-size: 0.7rem;
 }
 
-.u-fontSize--quaternary {
+.u-fontSizeVW--quaternary {
   font-size: clamp(0.34rem, 1.1vw, 0.6rem);
   // font-size: 0.7rem;
 }
 
+.u-fontSizeREM--primary {
+  font-size: $font-size-base;
+}
+
+.u-fontSizeREM--secondary {
+  font-size: 0.8 * $font-size-base;
+}
 
 
 .u-textMargin--noMargin {

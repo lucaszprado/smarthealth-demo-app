@@ -26,3 +26,13 @@
   border-radius: 0.5px;                        /* Small radius */
   box-shadow: 0 10px 30px rgba(0,0,0,.1);
 }
+
+
+.BoxElevated--twoColumnContent {
+  background: white;                         /* White background */
+  padding: 0% 50% 0 0;                               /* Internal space */
+  border-radius: 0.5px;                        /* Small radius */
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  display: flex;
+  justify-content: space-between;
+}

@@ -14,6 +14,10 @@
   justify-content: flex-start; // Aligns all child elements to the start of the main axis.
 }
 
+.u-flex--justifyEvenly {
+  justify-content: space-evenly; // child elements are evenly spaced across the main axis.
+}
+
 .u-flex--alignCenter {
   align-items: center; // Child elements are centered along the cross-axis
 }

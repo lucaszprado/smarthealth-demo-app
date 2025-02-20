@@ -15,31 +15,37 @@
         <fs-6> Local do exame: <%= @imaging_report[:health_provider].name %> </fs-6>
       </div>
 
-      <h3> Laudo:</h3>
+      <h3 class="border-top pt-4"> Laudo </h3>
       <div class="BoxElevated u-flex u-flex--column mb-4">
         <p class="u-textAlign--justify"> <%= @imaging_report[:content] %> </p>
       </div>
 
-      <h5> Exames </h5>
-      <div class="BoxElevated u-flex u-flex--column mb-4">
-        <div class="table">
-          Laudos originais
-          <div class="laudo">
-            <% @imaging_report[:report_urls].each_with_index do |url, index| %>
-              <%= link_to url, class:"u-linkStdDisable" do %>
-                <p class="u-textMargin--noMargin">
-                  <i class="fa-solid fa-file-pdf gray-icon"></i>
-                  Laudo <%= index + 1 %> de <%= @imaging_report[:report_urls].count %>
-                </p>
+      <h3> Exames </h3>
+      <div class="BoxElevated mb-5">
+        <div class="row">
+          <div class="col-12 col-lg-6 u-flex">
+            <div class="">
+              <p class="mb-1"> Laudos originais </p>
+              <% @imaging_report[:report_urls].each_with_index do |url, index| %>
+                <%= link_to url, class:"u-linkStdDisable" do %>
+                  <p class="u-textMargin--noMargin u-fontSizeREM--secondary u-textColor--gray">
+                    <i class="fa-solid fa-file-pdf gray-icon"></i>
+                    Laudo <%= index + 1 %> de <%= @imaging_report[:report_urls].count %>
+                  </p>
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
-          <div class="Imagens">
-            <% @imaging_report[:image_urls].each do |url| %>
-              <%= link_to url do %>
-              <p> <i class="fa-solid fa-file-pdf gray-icon"></i> Imagens </p>
-            <% end %>
-          <% end %>
+            </div>
+            <div class="ms-3 ps-3 border-start">
+              <p class="mb-1"> Imagens originais </p>
+              <% @imaging_report[:image_urls].each_with_index do |url, index| %>
+                <%= link_to url, class:"u-linkStdDisable" do %>
+                  <p class="u-textMargin--noMargin u-fontSizeREM--secondary u-textColor--gray">
+                    <i class="fa-solid fa-file-pdf gray-icon"></i>
+                    Imagem <%= index + 1 %> de <%= @imaging_report[:image_urls].count %>
+                  </p>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
