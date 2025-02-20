@@ -19,7 +19,7 @@ module ApplicationHelper
     end
   end
 
-  def date_dd_mm_aaaa(date)
+  def stddate(date)
     date.strftime("%d/%m/%Y")
   end
 end

@@ -56,17 +56,22 @@ class ImagingReport < ApplicationRecord
       labels: labels.map { |label| { id: label.id, name: label.name } }, # [:labels] will be an Array of hashs
       label_system: label_system,
       title: title,
-      image_urls: image_urls
+      health_professional: health_professional,
+      health_provider: health_provider,
+      report_urls: image_urls("report"),
+      image_urls: image_urls("image")
     }
   end
 
   private
 
-  def image_urls
+  def image_urls(metadata)
     # Ensure you retrieve the files attached to the source
     # rails_blob_path generates a URL for the file, which can be used in the frontend.
     # only_path: true gives the relative URL (without the domain name), which is useful for rendering in your views
-    source.files.map { |file| Rails.application.routes.url_helpers.rails_blob_path(file, only_path: true) }
+    report_image_urls = source.files
+      .select { |file| file.blob.metadata["file_type"] == metadata }
+      .map { |file| Rails.application.routes.url_helpers.rails_blob_path(file, only_path: true) }
   end
 
   # Transforms Label "Direito" in "Direita" if Label title [0] is feminine.

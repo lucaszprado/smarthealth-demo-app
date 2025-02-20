@@ -19,3 +19,10 @@
     margin: 0rem;
   }
 }
+
+.BoxElevated {
+  background: white;                         /* White background */
+  padding: 1rem;                               /* Internal space */
+  border-radius: 0.5px;                        /* Small radius */
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}

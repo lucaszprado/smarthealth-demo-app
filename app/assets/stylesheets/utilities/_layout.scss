@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.u-flex--column{
+  flex-direction: column;
+}
+
 .u-flex--justifyBetween {
   justify-content: space-between; // child elements are evenly spaced across the main axis.
 }
