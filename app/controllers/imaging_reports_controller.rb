@@ -2,7 +2,7 @@ class ImagingReportsController < ApplicationController
   def index
     @human = Human.find(params[:human_id])
     # 1. Build ActiveRecord collection of imaging_reports -> Simillar an array
-    
+
     if params[:query].present?
       #Pre fixing matching with OR conditions
       search_query = params[:query].split.map {|term| "#{term}:*"}.join(" | ")
@@ -13,7 +13,9 @@ class ImagingReportsController < ApplicationController
         .left_joins(:labels)
         .where(sources: {human_id: @human.id})
         .where(
-          "to_tsvector('portuguese', imaging_reports.content) @@ to_tsquery('portuguese', :query) OR to_tsvector('portuguese', COALESCE(labels.name, '')) @@ to_tsquery('portuguese', :query)",
+          "(to_tsvector('portuguese', unaccent(imaging_reports.content)) ||
+          to_tsvector('portuguese', unaccent(labels.name)) ||
+          to_tsvector('portuguese', unaccent(imaging_methods.name))) @@ to_tsquery('portuguese', unaccent(:query))",
           query: search_query
         )
         .distinct
@@ -41,6 +43,12 @@ class ImagingReportsController < ApplicationController
     #   puts "===================================="
     #   report.structured_data
     # end
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "imaging_reports/list", locals: {imaging_reports: @imaging_reports}, formats: [:html] }
+    end
+
   end
 
   def show
