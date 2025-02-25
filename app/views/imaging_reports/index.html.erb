@@ -26,18 +26,35 @@
                 <%= submit_tag "Buscar", name: "", class: "btn btn-primary"%>
               <% end %>
           </div>
+
+          <div data-controller="refresh-list">
+            <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'mb-5', data: { refresh_list_target: 'form' } } do |f| %>
+              <%= f.text_field :query,
+                              class: "form-control",
+                              placeholder: 'Type a movie title',
+                              value: params[:query],
+                              data: {
+                                refresh_list_target: 'searchInput',
+                                action: "keyup->refresh-list#update"
+                              } %>
+            <% end %>
+            <div data-refresh-list-target="list">
+              <% @imaging_reports.each do |imaging_report| %>
+                <%= render "shared/result_card",
+                  link: human_imaging_report_path(@human.id, imaging_report[:id]),
+                  icon_path: "fa-solid fa-circle-radiation", #fa-solid fa-chart-line fa-light fa-x-ray fa-regular fa-image
+                  title: "#{imaging_report[:title][0]} #{imaging_report[:title][1]}",
+                  key_info: imaging_report[:imaging_method],
+                  status: nil,
+                  date: imaging_report[:date],
+                  labels: imaging_report[:label_system]
+                %>
+              <% end %>
+            </div>
+          </div>
+
           <!-- Result Card -->
-          <% @imaging_reports.each do |imaging_report| %>
-            <%= render "shared/result_card",
-              link: human_imaging_report_path(@human.id, imaging_report[:id]),
-              icon_path: "fa-solid fa-circle-radiation", #fa-solid fa-chart-line fa-light fa-x-ray fa-regular fa-image
-              title: "#{imaging_report[:title][0]} #{imaging_report[:title][1]}",
-              key_info: imaging_report[:imaging_method],
-              status: nil,
-              date: imaging_report[:date],
-              labels: imaging_report[:label_system]
-            %>
-          <% end %>
+
         </div>
       </div>
     </div>
