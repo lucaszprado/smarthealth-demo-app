@@ -49,7 +49,13 @@ ActiveAdmin.register Source do
       row :updated_at
       row :file do |source|
         if source.files.attached?
-          link_to "View PDF", rails_blob_path(source.files.first, disposition: "inline"), target: "_blank"
+          ul do
+            source.files.each do |file|
+              li do
+               link_to file.filename, rails_blob_path(source.files.first, disposition: "inline"), target: "_blank"
+              end
+            end
+          end
         else
           "No File"
         end
