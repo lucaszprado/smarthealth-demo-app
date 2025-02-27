@@ -15,29 +15,29 @@
       </div>
     </div>
 
-
     <div class="container pt-5">
       <div class="row justify-content-center">
         <div class="col-12 col-lg-9">
           <!-- Search bar -->
-          <div class="d-flex justify-content-center search-bar">
-              <%= form_with url: human_biomarkers_path(@human), method: :get, class: "d-flex w-100 mb-3" do %>
-                <%= text_field_tag :query, params[:query], class: "form-control me-2", placeholder:"Digite um biomarcador"%>
-                <%= submit_tag "Buscar", name: "", class: "btn btn-primary"%>
-              <% end %>
-          </div>
-
           <div data-controller="refresh-list">
-            <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'mb-5', data: { refresh_list_target: 'form' } } do |f| %>
-              <%= f.text_field :query,
-                              class: "form-control",
-                              placeholder: 'Type a movie title',
-                              value: params[:query],
-                              data: {
-                                refresh_list_target: 'searchInput',
-                                action: "keyup->refresh-list#update"
-                              } %>
-            <% end %>
+            <div class="SearchBar-container">
+              <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: '', data: { refresh_list_target: 'form' } } do |f| %>
+                <div class="position-relative">
+                  <%= f.text_field :query,
+                                class: "form-control rounded-pill ps-3 pe-5",
+                                placeholder: 'Órgão, parte corporal ou tipo de exame',
+                                value: params[:query],
+                                data: {
+                                  refresh_list_target: 'searchInput',
+                                  action: "keyup->refresh-list#update"
+                                } %>
+                  <span class="position-absolute top-50 end-0 translate-middle-y pe-3">
+                    <i class="fa fa-search text-muted"></i>
+                  </span>
+                </div>
+
+              <% end %>
+            </div>
             <div data-refresh-list-target="list">
               <% @imaging_reports.each do |imaging_report| %>
                 <%= render "shared/result_card",

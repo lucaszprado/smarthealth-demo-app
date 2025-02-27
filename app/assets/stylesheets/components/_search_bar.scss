@@ -18,3 +18,13 @@
 .search-bar .btn {
   margin-left: 0.5rem;
 }
+
+.SearchBar-container {
+  position: sticky;
+  top: 6rem; /* Adjust this value according to your navbar height */
+  z-index: 1020; /* Ensures it stays above other elements */ /* Match your page background */
+  padding-top: 1rem; /* Optional padding */
+  padding-bottom: 1rem;
+  //border-bottom: 1px solid #ddd; /* Optional: Adds separation */
+  background: $light-gray;
+}
