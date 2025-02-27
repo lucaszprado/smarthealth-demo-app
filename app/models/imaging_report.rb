@@ -16,6 +16,40 @@ class ImagingReport < ApplicationRecord
   end
 
 
+  def self.find_structured(id)
+    find(id).to_structured_data
+  end
+
+  # Search imaging reports for a given human and return structured data
+  def self.search_for_human(human_id, query = nil)
+    # 1. Build ActiveRecord collection of imaging_reports -> Simillar an array
+    base_query = joins(source: :human) # As we're definig a class method in ImagingRport -> This join will be called on ImagingReport when this method is called.
+      .joins(:imaging_method)
+      .where(sources: {human_id: human_id})
+      .includes(:labels)
+      .order(date: :desc)
+
+    # 2. Structure the data
+    # # Since base_query is an ActiveRecord collection of ImagingReports, Rails (Ruby specifically) looks for a method inside ImagingReport Class (model)
+    # base_query is an array of hashs
+    return base_query.map(&:to_structured_data) unless query.present?
+
+    # Execute que search_query if there's a query.
+    search_query = query.split.map {|term| "#{term}:*"}.join(" | ") # :* Postgress Operator for pre-fixing match
+
+    base_query
+      .left_joins(:labels)
+      .where(
+        "(to_tsvector('portuguese', unaccent(imaging_reports.content)) ||
+          to_tsvector('portuguese', unaccent(labels.name)) ||
+          to_tsvector('portuguese', unaccent(imaging_methods.name))) @@
+          to_tsquery('portuguese', unaccent(:query))",
+        query: search_query
+      )
+      .distinct # Get just one result of ImagingReport (no matter how many labels)
+      .map(&:to_structured_data)
+  end
+
   # This method transforms each ActiveRecord ImagingReport collection into a structured hash.
   # Output example:
   #   {
@@ -27,7 +61,8 @@ class ImagingReport < ApplicationRecord
   #     label_system: ["Musculoskeletal"],
   #     title: ["Elbow", "Sagittal Plane"]
   #   }
-  def structured_data
+
+  def to_structured_data
     label_system = []
     title = []
     # Label is an ActiveRecord Label::ActiveRecord_Associations_CollectionProxy.
