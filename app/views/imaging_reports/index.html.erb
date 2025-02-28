@@ -20,22 +20,21 @@
         <div class="col-12 col-lg-9">
           <!-- Search bar -->
           <div data-controller="refresh-list">
-            <div class="SearchBar-container">
-              <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: '', data: { refresh_list_target: 'form' } } do |f| %>
-                <div class="position-relative">
+            <div class="SearchBar">
+              <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
+                <div class="SearchBar-inputWrapper">
                   <%= f.text_field :query,
-                                class: "form-control rounded-pill ps-3 pe-5",
+                                class: "SearchBar-input",
                                 placeholder: 'Órgão, parte corporal ou tipo de exame',
                                 value: params[:query],
                                 data: {
                                   refresh_list_target: 'searchInput',
                                   action: "keyup->refresh-list#update"
                                 } %>
-                  <span class="position-absolute top-50 end-0 translate-middle-y pe-3">
-                    <i class="fa fa-search text-muted"></i>
+                  <span class="SearchBar-icon">
+                    <i class="fa fa-search SearchBar-iconElement"></i>
                   </span>
                 </div>
-
               <% end %>
             </div>
             <div data-refresh-list-target="list">
