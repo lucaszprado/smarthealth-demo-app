@@ -2087,7 +2087,12 @@
       {
           "id": 43,
           "title": "Cortisol",
-          "synonyms": [],
+          "synonyms": [
+            {
+                "title": "Cortisol",
+                "language": "PT"
+            }
+        ],
           "possibleValueMax": 2758.9,
           "possibleValueMin": 13.7945,
           "isAllowAutounit": true,
