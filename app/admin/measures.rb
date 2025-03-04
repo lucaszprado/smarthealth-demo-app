@@ -75,7 +75,6 @@ ActiveAdmin.register Measure do
   }, label: "Source (ID - Human Name)"
 
   filter :source_human_name_cont, as: :string, label: "Human Name"
-  filter :biomarker, as: :select, collection: -> { Biomarker.order(:name).pluck(:name, :id) }
-
+  filter :biomarker, as: :select, collection: -> { Biomarker.order(:name).map {|b| ["#{b.id} | #{b.name}", b.id]}}
 
 end
