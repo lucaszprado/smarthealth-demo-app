@@ -4,10 +4,10 @@ class Human < ApplicationRecord
   has_many :imaging_reports, through: :sources
 
   def self.ransackable_associations(auth_object = nil)
-    ["sources"]
+    ["sources", "measures", "imaging_reports"]
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["birthdate", "created_at", "gender", "id", "id_value", "name", "updated_at", "measures_id"]
+    ["birthdate", "created_at", "gender", "id", "id_value", "name", "updated_at"]
   end
 end
