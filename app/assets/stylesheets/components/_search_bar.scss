@@ -39,10 +39,16 @@
   @extend .ps-3; /* Adds left padding (1rem) */
   @extend .pe-5; /* Adds right padding (to prevent text from overlapping icon) */
   width: 100%; /* Ensures full-width input */
-  font-size: $font-size-base; /* Ensures a base size */
-  transform: scale(0.8); /* Shrinks visual appearance to ~14px */
-  transform-origin: left center;
+  text-transform: scale(0.8); // Shrink input text "cheating" the browser
 }
+
+// Style only the pseudo element ::placeholder
+.SearchBar-input::placeholder {
+  transform: scale(0.8); /* Shrinks placeholder text */
+  transform-origin: left center;
+  display: inline-block; /* Ensures proper scaling */
+}
+
 
 /* Element: Icon Container */
 .SearchBar-icon {
