@@ -24,7 +24,7 @@
               <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
                 <div class="SearchBar-inputWrapper">
                   <%= f.text_field :query,
-                                class: "SearchBar-input",
+                                class: "SearchBar-input u-fontSizeVW--tertiary",
                                 placeholder: 'Órgão, parte corporal ou tipo de exame',
                                 value: params[:query],
                                 data: {
