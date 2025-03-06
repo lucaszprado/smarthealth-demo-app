@@ -6,7 +6,7 @@
       <div class="u-flex u-flex--justifyStart LabelsContainer mb-4">
           <fs-6 class="u-textMargin--noMargin">Sitema:</fs-6>
           <% @imaging_report[:label_system].each do |label| %>
-            <fs-6 class="Label Label--<%=label_class(label)%>"> <%= label %> </fs-6>
+            <p class="u-fontSizeVW--tertiary Label Label--<%=label_class(label)%>"> <%= label %> </p>
           <% end %>
       </div>
 
@@ -17,7 +17,7 @@
 
       <h3 class="border-top pt-4"> Laudo </h3>
       <div class="BoxElevated u-flex u-flex--column mb-4">
-        <p class="u-textAlign--justify"> <%= @imaging_report[:content] %> </p>
+        <p class="u-textAlign--justify"> <%= simple_format(@imaging_report[:content]) %> </p>
       </div>
 
       <h3> Exames </h3>
