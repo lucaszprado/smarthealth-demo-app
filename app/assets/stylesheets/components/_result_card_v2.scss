@@ -22,8 +22,8 @@
   flex-shrink: 1; /* Allows it to shrink inside flexbox */
 
   /* Fallback for browsers that don't support -webkit-line-clamp */
-  max-height: 4.5em; /* Approx. 3 lines (adjust based on font-size and line-height) */
-  line-height: 1.5em; /* Ensures correct height calculation */
+  max-height: 4.5rem; /* Approx. 3 lines (adjust based on font-size and line-height) */
+  line-height: 1.5rem; /* Ensures correct height calculation */
 }
 
 
@@ -65,10 +65,6 @@
 
   // Elements inside ResultCard that will be adjusted from a min-width: 576px (large devices)
   @media (min-width: 768px) {
-    // &-title {
-    //   font-size: 1.15rem;
-
-    // }
 
     i {
       font-size: 2.5em; /* Adjust the size as needed */
