@@ -87,7 +87,7 @@
         </div>
       </div>
 
-      <%= link_to human_biomarkers_path(@human.id) do %>
+      <%= link_to human_biomarkers_path(@human.id, include_last_measure: true) do %>
         <div class="navigation-button-left mt-3 ms-1 mb-5">
           <%= image_tag "arrow-left.svg", class: "button-icon"%>
         </div>
