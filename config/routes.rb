@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :humans, only: [:show] do
     resources :biomarkers, only: [:index, :show] do #{only => [:index, :show]} || Chamando uma funcao resources e de argumento passando uma string e um hash.
     #another syntax: resources("biomarkers", {"only" => ["index", "show"]}) || resources("biomarkers") --> Hash is a change argument for the function.
+      get 'search', on: :collection
       resources :measures, only: [:index]
     end
     resources :imaging_reports, only: [:index, :show] # url_helper: human_imaging_report_path(human_id: @human.id, id: @imaging_report.id)

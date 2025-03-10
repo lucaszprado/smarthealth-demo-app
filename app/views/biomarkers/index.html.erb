@@ -1,70 +1,61 @@
-<html>
-  <head>
-  </head>
-  <body>
-    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
-      <div class="container-fluid d-flex justify-content-start">
-        <%= link_to "#", class: "navbar-brand" do %>
-          <!--Uncomment when you have a logo -->
-          <!--%= image_tag "logo.svg" %-->
-          <!--Uncomment when you have a logo -->
-          <div>
-            <p class="fs-3"> <%= @human.name %> </p>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+  <div class="container-fluid d-flex justify-content-start">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <!--Uncomment when you have a logo -->
+      <!--%= image_tag "logo.svg" %-->
+      <!--Uncomment when you have a logo -->
+      <div>
+        <p class="fs-3"> <%= @human.name %> </p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+      <!-- Search bar -->
+      <div class="d-flex justify-content-center search-bar">
+          <%= form_with url: human_biomarkers_path(@human), method: :get, class: "d-flex w-100 mb-3" do %>
+            <%= text_field_tag :query, params[:query], class: "form-control me-2", placeholder:"Digite um biomarcador"%>
+            <%= submit_tag "Buscar", name: "", class: "btn btn-primary"%>
+          <% end %>
+      </div>
+      <!-- Result Card -->
+      <% @biomarkers.each do |biomarker| %>
+        <%= link_to human_biomarker_measures_path(@human.id, biomarker["biomarker_id"]), class: "text-decoration-none link-dark" do %>
+          <div class="card-justify border-bottom ps-3">
+            <div>
+              <!-- https://fontawesome.com/icons/chart-line?f=classic&s=solid -->
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="card-item-center text-left">
+              <p class="fs-6"> <%= biomarker["name"] %> </p>
+            </div>
+
+            <div class="flexbox-text-right">
+              <div class="card-justify">
+                <!-- Verifying if biomarker has a range reference -->
+                <% if !biomarker["same_unit_possible_max_value"].nil?%>
+                  <% if biomarker["original_value"] > biomarker["same_unit_possible_max_value"].round(2)%>
+                    <p class="fs-6"><%= "#{biomarker["original_value"]} #{biomarker["unit_id"]}"  %></p><span class="status-small yellow"></span>
+                  <%elsif biomarker["original_value"] < biomarker["same_unit_possible_min_value"].round(2) %>
+                    <p class="fs-6"><%= "#{biomarker["original_value"]} #{biomarker["unit_id"]}"  %></p><span class="status-small yellow"></span>
+                  <%else%>
+                    <p class="fs-6"><%= "#{biomarker["original_value"]} #{biomarker["unit_id"]}"  %></p><span class="status-small green"></span>
+                  <% end %>
+                <% else %>
+                  <p class="fs-6"><%= "#{biomarker["original_value"]} #{biomarker["unit_id"]}"  %></p><span class="status-small green"></span>
+                <% end %>
+              </div>
+              <div>
+                <p><%= biomarker["date"].strftime("%Y-%m-%d") %></p>
+              </div>
+            </div>
           </div>
         <% end %>
-      </div>
+      <% end %>
     </div>
-
-
-    <div class="container pt-5">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-9">
-          <!-- Search bar -->
-          <div class="d-flex justify-content-center search-bar">
-              <%= form_with url: human_biomarkers_path(@human), method: :get, class: "d-flex w-100 mb-3" do %>
-                <%= text_field_tag :query, params[:query], class: "form-control me-2", placeholder:"Digite um biomarcador"%>
-                <%= submit_tag "Buscar", name: "", class: "btn btn-primary"%>
-              <% end %>
-          </div>
-          <!-- Result Card -->
-          <% @last_measures.each do |measure| %>
-            <%= link_to human_biomarker_measures_path(@human.id, measure.biomarker.id), class: "text-decoration-none link-dark" do %>
-              <div class="card-justify border-bottom ps-3">
-                <div>
-                  <!-- https://fontawesome.com/icons/chart-line?f=classic&s=solid -->
-                  <i class="fa-solid fa-chart-line"></i>
-                </div>
-                <div class="card-item-center text-left">
-                  <% if !measure.biomarker.synonyms.find_by(language: "PT").nil? %>
-                    <p class="fs-6"> <%= measure.biomarker.synonyms.find_by(language: "PT").name %> </p>
-                  <% else %>
-                    <p class="fs-6"><%= measure.biomarker.name %></p>
-                  <% end %>
-                </div>
-
-                <div class="flexbox-text-right">
-                  <div class="card-justify">
-                    <!-- Verifying if biomarker has a range reference -->
-                    <% if !measure.same_unit_possible_max_value.nil?%>
-                      <% if measure.original_value > measure.same_unit_possible_max_value.round(2)%>
-                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small yellow"></span>
-                      <%elsif measure.original_value < measure.same_unit_possible_min_value.round(2) %>
-                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small yellow"></span>
-                      <%else%>
-                        <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small green"></span>
-                      <% end %>
-                    <% else %>
-                      <p class="fs-6"><%= "#{measure.original_value} #{measure.unit.name}"  %></p><span class="status-small green"></span>
-                    <% end %>
-                  </div>
-                  <div>
-                    <p><%= measure.date.strftime("%Y-%m-%d") %></p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </body>
+  </div>
+</div>
