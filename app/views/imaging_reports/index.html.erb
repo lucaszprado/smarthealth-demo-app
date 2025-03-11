@@ -20,13 +20,14 @@
           <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
             <div class="SearchBar-inputWrapper">
               <%= f.text_field :query,
-                            class: "SearchBar-input",
-                            placeholder: 'Parte corporal, exame ou laudo',
-                            value: params[:query],
-                            data: {
-                              refresh_list_target: 'searchInput',
-                              action: "keyup->refresh-list#update"
-                            } %>
+                                class: "SearchBar-input",
+                                placeholder: 'Parte corporal, exame ou laudo',
+                                value: params[:query],
+                                data: {
+                                      refresh_list_target: 'searchInput',
+                                      action: "keyup->refresh-list#update"
+                                }
+              %>
               <span class="SearchBar-icon">
                 <i class="fa fa-search SearchBar-iconElement"></i>
               </span>

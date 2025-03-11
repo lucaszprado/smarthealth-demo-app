@@ -1,15 +1,13 @@
 class BiomarkersController < ApplicationController
 
+  # Index brings all the biomarkers with their last measure
   def index
     @human = Human.find(params[:human_id])
     birthdate = @human.birthdate.strftime('%Y-%m-%d')
     gender = @human.gender
+    @biomarkers = Biomarker.with_last_measure_for_human(@human.id, birthdate, gender)
 
-    if params[:include_last_measure] == "true"
-      @biomarkers = Biomarker.last_measure_for_human(@human.id, birthdate, gender)
-    else
-      @biomarkers = @human.biomarkers # TBV
-    end
+
   end
 
 
