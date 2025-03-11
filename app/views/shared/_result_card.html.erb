@@ -23,14 +23,17 @@
     <!-- Key Infos = Source Specific info + Status + Date Component -->
     <div class="ResultCard-keyInfos u-textAlign--right mb-1">
 
+      <div class="u-flex u-flex--justifyBetween u-flex--alignCenter">
+        <!-- Source specific component -->
+        <p class="u-fontSizeVW--secondary mb-1"><%= key_info %></p>
 
-      <!-- Source specific component -->
-      <p class="u-fontSizeVW--secondary mb-1"><%= key_info %></p>
+        <!-- Status component -->
+        <% if status.present? %>
+          <span class="ResultCard-statusIndicator is-status--<%= status %> mb-1"></span>
+        <%end%>
 
-      <!-- Status component -->
-      <% if status.present? %>
-        <span class="ResultCard-statusIndicator is-status--<%= status %>"></span>
-      <%end%>
+      </div>
+
 
 
       <!-- Date component -->

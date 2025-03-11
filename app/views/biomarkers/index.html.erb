@@ -11,64 +11,58 @@
   </div>
 </div>
 
-
 <div class="container pt-5">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-9">
       <!-- Search bar -->
-      <div class="SearchBar">
-          <%= form_with url: search_human_biomarkers_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
-            <div class="SearchBar-inputWrapper">
-              <%= f.text_field :query,
-                                class: "SearchBar-input",
-                                placeholder:"Digite um biomarcador",
-                                value: params[:query],
-                                data: {
-                                      refresh_list_target:'search_input',
-                                      action: "keyup->refresh-list#update"
-                                }
+      <div data-controller='refresh-list'>
+        <div class="SearchBar">
+            <%= form_with url: search_human_biomarkers_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
+              <div class="SearchBar-inputWrapper">
+                <%= f.text_field :query,
+                                  class: "SearchBar-input",
+                                  placeholder:"Digite um biomarcador",
+                                  value: params[:query],
+                                  data: {
+                                        refresh_list_target:'search_input',
+                                        action: "keyup->refresh-list#update"
+                                  }
+                %>
+                <span class="SearchBar-icon">
+                  <i class="fa fa-search SearchBar-iconElement"></i>
+                </span>
+              </div>
+            <% end %>
+        </div>
+
+        <!-- Biomarkers list -->
+        <div data-refresh-list-target='list'>
+          <% @biomarkers.each do |biomarker| %>
+            <!-- Result Card -->
+            <% if biomarker[:unit_value_type] == 1 %>
+              <%= render "shared/result_card",
+                link: human_biomarker_measures_path(@human.id, biomarker[:biomarker_id]),
+                icon_path: "fa-solid fa-circle-radiation", #fa-solid fa-chart-line fa-light fa-x-ray fa-regular fa-image
+                title: biomarker[:synonym_name],
+                key_info: "#{biomarker[:original_value]} #{biomarker[:unit_name]}",
+                status: biomarker[:measure_status],
+                date: biomarker[:date],
+                labels: nil
               %>
-
-              <span class="SearchBar-icon">
-                <i class="fa fa-search SearchBar-iconElement"></i>
-              </span>
-            </div>
+            <% else %>
+                <%= render "shared/result_card",
+                link: human_biomarker_measures_path(@human.id, biomarker[:biomarker_id]),
+                icon_path: "fa-solid fa-circle-radiation", #fa-solid fa-chart-line fa-light fa-x-ray fa-regular fa-image
+                title: biomarker[:synonym_name],
+                key_info: biomarker[:measure_text],
+                status: nil,
+                date: biomarker[:date],
+                labels: nil
+              %>
+            <% end %>
           <% end %>
+        </div>
       </div>
-      <!-- Result Card -->
-      <% @biomarkers.each do |biomarker| %>
-        <%= link_to human_biomarker_measures_path(@human.id, biomarker[:biomarker_id]), class: "text-decoration-none link-dark" do %>
-          <div class="card-justify border-bottom ps-3">
-            <div>
-              <!-- https://fontawesome.com/icons/chart-line?f=classic&s=solid -->
-              <i class="fa-solid fa-chart-line"></i>
-            </div>
-            <div class="card-item-center text-left">
-              <p class="fs-6"> <%= biomarker[:synonym_name] %> </p>
-            </div>
-
-            <div class="flexbox-text-right">
-              <div class="card-justify">
-                <!-- Verifying if biomarker has a range reference -->
-                <% if !biomarker[:same_unit_possible_max_value].nil?%>
-                  <% if biomarker[:original_value] > biomarker[:same_unit_possible_max_value].round(2)%>
-                    <p class="fs-6"><%= "#{biomarker[:original_value]} #{biomarker[:unit_name]}"  %></p><span class="status-small yellow"></span>
-                  <%elsif biomarker[:original_value] < biomarker[:same_unit_possible_min_value].round(2) %>
-                    <p class="fs-6"><%= "#{biomarker[:original_value]} #{biomarker[:unit_name]}"  %></p><span class="status-small yellow"></span>
-                  <%else%>
-                    <p class="fs-6"><%= "#{biomarker[:original_value]} #{biomarker[:unit_name]}"  %></p><span class="status-small green"></span>
-                  <% end %>
-                <% else %>
-                  <p class="fs-6"><%= "#{biomarker[:original_value]} #{biomarker[:unit_name]}"  %></p><span class="status-small green"></span>
-                <% end %>
-              </div>
-              <div>
-                <p><%= biomarker[:date].strftime("%Y-%m-%d") %></p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>

@@ -26,7 +26,6 @@
   line-height: 1.5rem; /* Ensures correct height calculation */
 }
 
-
 .ResultCard-keyInfos {
   display: flex;
   flex-direction: column;
@@ -35,7 +34,7 @@
   padding: 0.1rem;
   flex-shrink: 0;
   white-space: normal;
-  width: 22vw;
+  width: 35vw;
   margin-left: 1.25rem;
 }
 
@@ -46,6 +45,27 @@
   display: inline-block;
   margin-left: 0.3rem;
 }
+
+.ResultCard-statusIndicator{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 0.3rem;
+}
+
+.is-status--green{
+  background-color: $green;
+}
+
+
+.is-status--yellow{
+  background-color: $yellow;
+}
+
+
+
+
 
 // External card layout
 .ResultCard {

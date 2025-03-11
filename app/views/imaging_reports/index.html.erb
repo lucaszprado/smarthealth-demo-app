@@ -34,8 +34,11 @@
             </div>
           <% end %>
         </div>
+
+        <!-- Biomarkers list -->
         <div data-refresh-list-target="list">
           <% @imaging_reports.each do |imaging_report| %>
+            <!-- Result Card -->
             <%= render "shared/result_card",
               link: human_imaging_report_path(@human.id, imaging_report[:id]),
               icon_path: "fa-solid fa-circle-radiation", #fa-solid fa-chart-line fa-light fa-x-ray fa-regular fa-image
@@ -48,9 +51,6 @@
           <% end %>
         </div>
       </div>
-
-      <!-- Result Card -->
-
     </div>
   </div>
 </div>

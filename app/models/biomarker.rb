@@ -27,15 +27,15 @@ class Biomarker < ApplicationRecord
       .where("synonyms.language = 'PT'")
       # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
       .select('DISTINCT ON (measures.biomarker_id) measures.*, biomarkers.name, synonyms.name AS synonym_name, units.name AS unit_name, units.value_type AS unit_value_type,'\
-      'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_possible_min_value, '\
-      'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_possible_max_value')
+      'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
+      'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value')
       .order('measures.biomarker_id, measures.date DESC')
 
     # 2. Order collection by synonym or name, structure the data with all select selection and not just AR defult class and transform strings into symbols as keys.
     base_query = sort_by_synonym_or_name(base_query).map(&:attributes).map(&:symbolize_keys)
 
     # 3. Transform dataset for rendering
-    base_query = add_measure_text(base_query)
+    base_query = add_measure_text(base_query).yield_self{ |query| add_measure_status(query) }
 
     return base_query
   end
@@ -92,4 +92,21 @@ class Biomarker < ApplicationRecord
       end
     end
   end
+
+  def self.add_measure_status(collection)
+    collection.each do |biomarker|
+      if biomarker[:unit_value_type] == 1
+        if biomarker[:original_value] > biomarker[:same_unit_original_value_possible_max_value]
+          biomarker[:measure_status] = "yellow"
+        elsif biomarker[:original_value] < biomarker[:same_unit_original_value_possible_min_value]
+          biomarker[:measure_status] = "yellow"
+        else
+          biomarker[:measure_status] = "green"
+        end
+      else
+        biomarker[:measure_status] = nil
+      end
+    end
+  end
+
 end
