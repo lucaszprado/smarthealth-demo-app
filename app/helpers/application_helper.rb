@@ -22,4 +22,9 @@ module ApplicationHelper
   def stddate(date)
     date.strftime("%d/%m/%Y")
   end
+
+  def formatted_value_2_decimals(value)
+    return "-" if value.nil? # Handle nil case
+    '%.2f' % value
+  end
 end
