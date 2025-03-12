@@ -21,7 +21,7 @@
 
 .SearchBar-container {
   position: sticky;
-  top: 6rem; /* Adjust this value according to your navbar height */
+  top: 4rem; /* Adjust this value according to your navbar height */
   z-index: 1020; /* Ensures it stays above other elements */ /* Match your page background */
   padding: 1rem 0;
   background: $light-gray;
