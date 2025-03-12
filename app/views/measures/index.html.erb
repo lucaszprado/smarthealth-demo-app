@@ -1,7 +1,14 @@
 <div class = "container">
   <div class = "row justify-content-center">
     <div class = "col-12 col-lg-9">
-      <!--! The page content goes inside this div -->
+       <!-- Back button -->
+      <%= link_to human_biomarkers_path(@human.id) do %>
+        <div class="NavigationCircleButton">
+          <%= image_tag "arrow-left.svg", class: "NavigationCircleButton-icon"%>
+        </div>
+      <% end %>
+
+      <!-- Biomarker name -->
       <% if !@biomarker.synonyms.find_by(language: "PT").nil? %>
         <h2> <%= @biomarker.synonyms.find_by(language: "PT").name %></h2>
       <% else %>
@@ -86,13 +93,6 @@
           e Centro de Controle e Prevenção de Doenças dos EUA - <a href="https://www.cdc.gov/health-topics.html" target="_blank">CDC</a>.</p>
         </div>
       </div>
-
-      <%= link_to human_biomarkers_path(@human.id, include_last_measure: true) do %>
-        <div class="navigation-button-left mt-3 ms-1 mb-5">
-          <%= image_tag "arrow-left.svg", class: "button-icon"%>
-        </div>
-      <% end %>
-
     </div>
   </div>
 </div>

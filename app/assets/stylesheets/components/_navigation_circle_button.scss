@@ -1,0 +1,44 @@
+.NavigationCircleButton {
+  display: flex;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0.625rem;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 6.25rem;
+  background: #FFFFFF;
+  margin: 1.5rem 0 2rem 0.1rem;
+  /* Shadow/01 */
+  // box-shadow: 0px 8px 16px 16px rgba(0, 0, 0, 0.02);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1), /* Main shadow */
+              0px 4px 10px rgba(0, 0, 0, 0.05); /* Soft secondary shadow */
+  transform: translateY(-2px);
+  //transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.NavigationCircleButton:hover {
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15),
+  0px 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+
+}
+
+.NavigationCircleButton-icon {
+  width: 120%; /* Takes the full width of the button */
+  height: auto; /* Maintains aspect ratio */
+}
+
+// Media Query for screens smaller than 600px
+@media (max-width: 600px) {
+  .NavigationCircleButton {
+    width: 2.7rem; /* Smaller width */
+    height: 2.7rem; /* Smaller height */
+    padding: 0.5rem; /* Smaller padding */
+    border-radius: 3rem; /* Adjusted to keep the circular shape */
+  }
+
+ 
+}

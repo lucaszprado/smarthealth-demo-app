@@ -1,6 +1,13 @@
 <div class = "container">
   <div class = "row justify-content-center">
     <div class = "col-12 col-lg-9">
+      <!-- Back button -->
+      <%= link_to human_imaging_reports_path(@human.id) do %>
+        <div class="NavigationCircleButton">
+          <%= image_tag "arrow-left.svg", class: "NavigationCircleButton-icon"%>
+        </div>
+      <% end %>
+
       <h1> <%= " #{@imaging_report[:imaging_method]} #{@imaging_report[:title][0]} #{@imaging_report[:title][1]}"%> </h1>
       <h5> Data exame: <%= stddate(@imaging_report[:date]) %> </h5>
       <div class="u-flex u-flex--justifyStart LabelsContainer mb-4">

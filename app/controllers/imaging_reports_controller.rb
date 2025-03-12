@@ -14,7 +14,7 @@ class ImagingReportsController < ApplicationController
   end
 
   def show
-    human = Human.find(params[:human_id])
+    @human = Human.find(params[:human_id])
     @imaging_report = ImagingReport.find_structured(params[:id])
   end
 
