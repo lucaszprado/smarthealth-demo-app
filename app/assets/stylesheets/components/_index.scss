@@ -1,19 +1,18 @@
 // Import your components CSS files here.
-// Refactored CSS
-// - search_bar
-// - result_card
 
+// SUIT COMPLIANT
+@import "search_bar";
+@import "result_card";
+@import "navigation_circle_button";
+@import "labels";
 
+// To be refactored
 @import "alert";
 @import "avatar";
 @import "form_legend_clear";
 @import "navbar";
-@import "labels";
 @import "logo";
-@import "result_card";
 @import "header";
-@import "navigation_circle_button";
-@import "search_bar";
 @import "survey_pop_up";
 @import "box_container";
 @import "biomarker_chart";

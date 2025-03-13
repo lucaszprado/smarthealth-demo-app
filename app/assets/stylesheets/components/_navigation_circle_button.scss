@@ -9,19 +9,25 @@
   border-radius: 6.25rem;
   background: #FFFFFF;
   margin: 1.5rem 0 2rem 0.1rem;
-  /* Shadow/01 */
-  // box-shadow: 0px 8px 16px 16px rgba(0, 0, 0, 0.02);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1), /* Main shadow */
-              0px 4px 10px rgba(0, 0, 0, 0.05); /* Soft secondary shadow */
-  transform: translateY(-2px);
-  //transition: background 0.3s ease, box-shadow 0.3s ease;
-  transition: all 0.2s ease-in-out;
-}
 
+  // Two level blur: main and secondary
+  // Both have only vertical shift. Main shadow has a very soft, spread-out shadow. And Secondary has a smaller and sharper shadow but barely visible.
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1), // Main shadow
+              0px 4px 10px rgba(0, 0, 0, 0.05); // Secondary shadow
+  transform: translateY(-2px);
+
+  // Transition makes the effect (to hover state) smooth and natural instead of happening instantly.
+  // all → Applies the transition to all properties (shadow + transform). We can select a specif property if we want.
+  // 0.2s → The effect takes 0.2 seconds (fast but visible).
+  // ease-in-out → The animation starts slow, speeds up, and slows down again at the end.
+  transition: all 0.2s ease-in-out; //
+}
 
 .NavigationCircleButton:hover {
   box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15),
   0px 6px 12px rgba(0, 0, 0, 0.1);
+
+  // This property moves the button upwards by 2 pixels when hovered => pressable, floating effect
   transform: translateY(-2px);
 
 }
@@ -40,5 +46,5 @@
     border-radius: 3rem; /* Adjusted to keep the circular shape */
   }
 
- 
+
 }
