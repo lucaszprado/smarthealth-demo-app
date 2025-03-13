@@ -56,6 +56,7 @@ class Biomarker < ApplicationRecord
     .where("unit_factors.unit_id = measures.unit_id")
     .where("biomarkers_ranges.age = FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))", birthdate)
     .where("biomarkers_ranges.gender = ?", gender)
+    .where("synonyms.language = 'PT'")
     # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
     .select('DISTINCT ON (measures.biomarker_id) measures.*, biomarkers.name, synonyms.name AS synonym_name, units.name AS unit_name, units.value_type AS unit_value_type,'\
     'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\

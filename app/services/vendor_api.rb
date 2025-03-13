@@ -2,6 +2,7 @@ require 'net/http'
 require 'uri'
 
 class VendorApi
+  
   PID_MALE = '1a270e28-804a-44b8-8f09-3fa42b0e3975'
   PID_FEMALE = '3650b54e-1a82-400c-be9b-d625c2cb2ad2'
 
