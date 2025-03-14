@@ -29,7 +29,7 @@ class Measure < ApplicationRecord
   # Once we're going to iterate over a collection, it's better to use a class method
   # Instead of an instance method, otherwise we would need to call the instance method
   # on each instance (object) of the measure collection.
-  def self.human_biomarker_converted(measures, unit_factor)
+  def self.for_human_biomarker_in_last_measure_unit(measures, unit_factor)
     measures.each_with_object({}) do |measure, hash| # .each_with_object({}) initializes an empty hash ({}) and passes it into the block.
       biomarker_value = (measure.value / unit_factor).round(2)
       measure_date = measure.date
@@ -47,15 +47,11 @@ class Measure < ApplicationRecord
     .first
   end
 
-  # Review this method
-  def self.last_age(measures, birthdate)
-    last_measure = measures.last
-    ((last_measure.date.to_date - birthdate) / 365.25).floor
+
+  # Format hash to be sent as an html attribute in the view for charts
+  def self.format_measures_mm_yy_and_2_decimals(measure)
+    measure.map { |key, value| [key.strftime("%m/%Y"), value.round(2)] }.to_h
   end
 
-  # Decide where to put this formatting method
-  def formatted_biomarker_measures(data)
-    data.map { |key, value| [key.strftime("%m/%Y"), value] }.to_h
-  end
 
 end

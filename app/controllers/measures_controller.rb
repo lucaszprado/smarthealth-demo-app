@@ -1,76 +1,51 @@
 class MeasuresController < ApplicationController
   def index
-    @human_biomarker_measures = {}
+
     @human = Human.find(params[:human_id])
-    @gender = @human.gender
-    birthdate = @human.birthdate
     @biomarker = Biomarker.find(params[:biomarker_id])
-    @measures = @human.measures.where(biomarker: @biomarker)
-    # chart will be on the last measure unit
-    most_recent_measure = @measures.order(date: :desc).first
+
+    # Get the unit for the most recent measure
+    most_recent_measure = Measure.most_recent(@human, @biomarker)
     @unit = most_recent_measure.unit
-    unit_factor = UnitFactor.find_by(biomarker: @biomarker, unit: @unit).factor
+    @measure_type = most_recent_measure.unit.value_type
 
+    # Last recorded age in the system
+    last_age_for_human_recorded = @human.age_at_last_measure
 
-    @measures.each do |measure|
-      biomarker_value = (measure.value/unit_factor).round(decimal_places = 2)
-      measure_date = measure.date
-      measure_source = measure.source
+    # Get the unit factor for the biomarker and unit
+    @unit_factor = UnitFactor.find_by(biomarker: @biomarker, unit: @unit).factor
 
-      # Initialize the hash for the biomarker measures, sources and biomarker ranges
-      @human_biomarker_measures ||= {}
-      @human_biomarker_upper_band_measures ||= {}
-      @human_biomarker_lower_band_measures ||= {}
+    # Fetch Biomarker measures via the source associated with a human
+    # Return an Active Record Collection of measures
+    @human_biomarker_measures = Measure.for_human_biomarker(@human, @biomarker)
 
+    # Convert human biomarker measures to the last unit. Receives a hash.
+    @human_biomarker_measures_in_last_unit = Measure.for_human_biomarker_in_last_measure_unit(@human_biomarker_measures, @unit_factor)
 
-      # Add the date as key and biomarker original value inside the hash
-      @human_biomarker_measures[measure_date] = [biomarker_value, measure_source]
+    # Fetch biomarkers range for each measure data point
+    ranges = BiomarkersRange.bands_by_date(@human, @biomarker, @unit_factor, @human_biomarker_measures)
+    @human_biomarker_upper_band_measures_in_last_unit = ranges[0]
+    @human_biomarker_lower_band_measures_in_last_unit = ranges[1]
 
-      # Create source references for each measure
-      #@human_biomarker_measures_sources[measure_date] = measure_source
+    # Create Hash with measure values as value
+    # transform_values replaces only the vale in the hash key value pair
+    @human_biomarker_measures_values_in_last_unit = @human_biomarker_measures_in_last_unit.transform_values { |array| array.first }
 
-      # Add the date as key and biomarker range values inside the hash
-      # 1. Which age should be searched?
-      @age = ((measure.date.to_date - birthdate)/365.25).floor
-      # 2. Find the most recent range
-      biomarker_range = BiomarkersRange
-        .where(biomarker: @biomarker, gender: @gender, age: @age)
-        .order(created_at: :desc)
-        .first
+    # Create Hash with source values as value
+    # transform_values replaces only the vale in the hash key value pair
+    @human_biomarker_measures_sources = @human_biomarker_measures_in_last_unit.transform_values { |array| array[1] }
 
-      if !biomarker_range.possible_min_value.nil?
-        @human_biomarker_upper_band_measures[measure_date] = (biomarker_range.possible_max_value/unit_factor).round(decimal_places = 2)
-        @human_biomarker_lower_band_measures[measure_date] = (biomarker_range.possible_min_value/unit_factor).round(decimal_places = 2)
-      else
-        @human_biomarker_upper_band_measures[measure_date] = nil
-        @human_biomarker_lower_band_measures[measure_date] = nil
-      end
-    end
+    # JSON Formatting to and number formating for html data attributes
+    @human_biomarker_measures_values_in_last_unit_json = Measure.format_measures_mm_yy_and_2_decimals(@human_biomarker_measures_values_in_last_unit).to_json
+    @human_biomarker_upper_band_measures_in_last_unit_json = Measure.format_measures_mm_yy_and_2_decimals(@human_biomarker_upper_band_measures_in_last_unit).to_json
+    @human_biomarker_lower_band_measures_in_last_unit_json = Measure.format_measures_mm_yy_and_2_decimals(@human_biomarker_lower_band_measures_in_last_unit).to_json
 
-    # Order the hash by date
-    @human_biomarker_measures = @human_biomarker_measures.sort_by { |key, value| key}.to_h
-    @human_biomarker_upper_band_measures = @human_biomarker_upper_band_measures.sort_by { |key, value| key}.to_h
-    @human_biomarker_lower_band_measures = @human_biomarker_lower_band_measures.sort_by { |key, value| key}.to_h
+    # Last measure data
+    @last_biomarker_measure_values = @human_biomarker_measures_values_in_last_unit[@human_biomarker_measures_values_in_last_unit.keys.last]
+    @last_biomarker_upper_band_measure = @human_biomarker_upper_band_measures_in_last_unit[@human_biomarker_upper_band_measures_in_last_unit.keys.last]
+    @last_biomarker_lower_band_measure = @human_biomarker_lower_band_measures_in_last_unit[@human_biomarker_lower_band_measures_in_last_unit.keys.last]
 
+    debugger
 
-    # Get the values and sources for a given measure
-    @human_biomarker_measures_values = @human_biomarker_measures.transform_values {|array| array.first}
-    @human_biomarker_measures_sources = @human_biomarker_measures.transform_values {|array| array[1]}
-    #debugger
-
-    # Transform measures into JSON and formatting dates to "%d/%m/%Y"
-    @human_biomarker_measures_values_json = @human_biomarker_measures_values.map {|key, value| [key.strftime("%m/%Y"), value]}.to_h.to_json
-    @human_biomarker_upper_band_measures_json = @human_biomarker_upper_band_measures.map {|key, value| [key.strftime("%d/%m/%Y"), value]}.to_h.to_json
-    @human_biomarker_lower_band_measures_json = @human_biomarker_lower_band_measures.map {|key, value| [key.strftime("%d/%m/%Y"), value]}.to_h.to_json
-
-
-    # Last measure value
-    @last_biomarker_measure_values = @human_biomarker_measures_values[@human_biomarker_measures_values.keys.last]
-    @last_biomarker_upper_band_measure = @human_biomarker_upper_band_measures[@human_biomarker_upper_band_measures.keys.last]
-    @last_biomarker_lower_band_measure = @human_biomarker_lower_band_measures[@human_biomarker_lower_band_measures.keys.last]
-
-    # Last measure date
-    @last_age = ((@human_biomarker_measures_values.keys.last.to_date - birthdate)/365.25).floor
-    
   end
 end

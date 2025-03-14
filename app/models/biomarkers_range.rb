@@ -41,7 +41,7 @@ class BiomarkersRange < ApplicationRecord
     range&.possible_max_value ? (range.possible_max_value / unit_factor).round(2) : nil
   end
 
-  # Fetch upper band measures for a given biomarker, gender, and age
+  # Fetch lower band measures for a given biomarker, gender, and age
   def self.lower_band(biomarker, gender, age, unit_factor)
     range = where(biomarker: biomarker, gender: gender, age: age).order(created_at: :desc).first
     range&.possible_min_value ? (range.possible_min_value / unit_factor).round(2) : nil

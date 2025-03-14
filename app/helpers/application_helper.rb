@@ -23,7 +23,7 @@ module ApplicationHelper
     date.strftime("%d/%m/%Y")
   end
 
-  def formatted_value_2_decimals(value)
+  def format_value_2_decimals(value)
     return "-" if value.nil? # Handle nil case
     '%.2f' % value
   end
