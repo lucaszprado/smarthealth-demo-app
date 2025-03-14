@@ -71,6 +71,12 @@ class Biomarker < ApplicationRecord
 
   end
 
+  # Instance method
+  # Return biomarker PT synonym or its name in english
+  def title
+    synonyms.find_by(language: "PT")&.name || name
+  end
+
   private
 
   def self.sort_by_synonym_or_name(collection)

@@ -7,6 +7,24 @@
   background: $light-gray
 }
 
-u.textColor--gray{
+.u-textColor--gray{
   color: $gray;
+}
+
+.u-statusIndicator--title{
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 0.3rem;
+}
+
+
+.is-status--green{
+  background-color: $green;
+}
+
+
+.is-status--yellow{
+  background-color: $yellow;
 }

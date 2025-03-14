@@ -14,44 +14,67 @@ class Measure < ApplicationRecord
     ["biomarker_id", "category_id", "created_at", "date", "human_id", "id", "id_value", "original_value", "unit_id", "updated_at", "value", "source"]
   end
 
-  # Fetch measures for a given human and biomarker
-  # Returns an AR collection of Measure Objects
-  def self.for_human_biomarker(human, biomarker)
-    human.sources.flat_map {|source| source.measures.where(biomarker: biomarker)}
+  # Fetch Measures from a given human for a specific biomarker
+  #
+  # Rails best practics
+  # This's a scope. Very similar to a class method
+  scope :for_human_biomarker, ->(human, biomarker) {
+    joins(:source).where(sources: { human_id: human.id }, biomarker: biomarker)
+  }
+
+  # Fetch the most recent measure for a biomarker for a given human
+  def self.most_recent(human, biomarker)
+    for_human_biomarker(human, biomarker).order(date: :desc).first
   end
 
-  # Fetch human biomarker measures, adjusted by the unit factor
-  # Transforms the ActiveRecrod collection into a Hash where
-  # Keys are measure.date
-  # Values are an array with two elements: biomarker_value and measure_source
-  #
-  # Ruby Best Practices
-  # Once we're going to iterate over a collection, it's better to use a class method
-  # Instead of an instance method, otherwise we would need to call the instance method
-  # on each instance (object) of the measure collection.
+  # Tranform measure object into a hash with:
+  # Key: Measure date
+  # Value: Measure value
   def self.for_human_biomarker_in_last_measure_unit(measures, unit_factor)
-    measures.each_with_object({}) do |measure, hash| # .each_with_object({}) initializes an empty hash ({}) and passes it into the block.
-      biomarker_value = (measure.value / unit_factor).round(2)
-      measure_date = measure.date
-      measure_source = measure.source
-      hash[measure_date] = [biomarker_value, measure_source]
+    measures.each_with_object({}) do |measure, hash|
+      hash[measure.date] = [(measure.value / unit_factor).round(DECIMAL_PLACES), measure.source]
     end
   end
 
-  # Returns the most recent date ActiveRecord object
-  def self.most_recent(human, biomarker)
-    joins(:source)
-    .where(sources: { human_id: human.id }, biomarker: biomarker)
-    .order(date: :desc)
-    .limit(1)
-    .first
+
+
+
+
+  # Queries all the required data for the controller send to the view
+  def self.process_biomarker_data(human, biomarker)
+    most_recent_measure = most_recent(human, biomarker)
+    return {} unless most_recent_measure
+
+    unit = most_recent_measure.unit
+    unit_factor = UnitFactor.find_by(biomarker: biomarker, unit: unit)&.factor || 1
+
+    measures = for_human_biomarker(human, biomarker)
+    converted_measures = for_human_biomarker_in_last_measure_unit(measures, unit_factor)
+
+    ranges = BiomarkersRange.bands_by_date(human, biomarker, unit_factor, measures)
+    upper_band_measures = ranges[0]
+    lower_band_measures = ranges[1]
+
+    last_date = converted_measures.keys.last
+
+
+    {
+      last_measure_attributes: {
+        unit_name: unit.name,
+        unit_value_type: unit.value_type,
+        value: converted_measures[last_date]&.first,
+        upper_band: upper_band_measures[last_date],
+        lower_band: lower_band_measures[last_date],
+        biomarker_title: biomarker.title, # <- NEW METHOD in `Biomarker` Model
+        biomarker_band_type: upper_band_measures.values.first ? 1 : 0,
+        gender: human.gender=="M" ? "Homem" : "Mulher",
+        human_age: human.age_at_measure(last_date)
+      },
+      measure_series: {
+        measures_with_sources: converted_measures,
+        upper_band: upper_band_measures,
+        lower_band: lower_band_measures
+      }
+    }
   end
-
-
-  # Format hash to be sent as an html attribute in the view for charts
-  def self.format_measures_mm_yy_and_2_decimals(measure)
-    measure.map { |key, value| [key.strftime("%m/%Y"), value.round(2)] }.to_h
-  end
-
-
 end

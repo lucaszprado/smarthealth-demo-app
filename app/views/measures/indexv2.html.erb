@@ -9,33 +9,37 @@
       <% end %>
 
       <!-- Biomarker name -->
-      <h2> <%= @measure_data[:last_measure_attributes][:biomarker_title] %> </h2>
+      <% if !@biomarker.synonyms.find_by(language: "PT").nil? %>
+        <h2> <%= @biomarker.synonyms.find_by(language: "PT").name %></h2>
+      <% else %>
+        <h2><%= @biomarker.name %></h2>
+      <% end %>
 
       <!-- Last measure div -->
-      <div class="u-flex u-flex--justifyStart u-flex--alignCenter mb-4">
-        <% if @measure_data[:last_measure_attributes][:biomarker_band_type] == 1 %>
-          <% if @measure_data[:last_measure_attributes][:value] > @measure_data[:last_measure_attributes][:upper_band] %>
-            <h5 class="u-textMargin--noMargin"> Última Medição: <%= '%.2f' % @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5> <span class="u-statusIndicator--title is-status--yellow ms-3 me-1"> </span> <p class="u-textMargin--noMargin"> Acima </p>
-          <% elsif @measure_data[:last_measure_attributes][:value] < @measure_data[:last_measure_attributes][:lower_band] %>
-            <h5> Última Medição: <%= @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5> <span class="u-statusIndicator--title is-status--yellow"></span> <p> Abaixo </p>
+      <div class="elements-flex-start mb-4">
+        <% if !@last_biomarker_upper_band_measure.nil? %>
+          <% if @last_biomarker_measure_values > @last_biomarker_upper_band_measure %>
+            <h5> Última Medição: <%= '%.2f' % @last_biomarker_measure_values %> <%= @unit.name %> </h5> <span class="status-big yellow"> </span> <p> Acima </p>
+          <% elsif @last_biomarker_measure_values < @last_biomarker_lower_band_measure %>
+            <h5> Última Medição: <%=  '%.2f' % @last_biomarker_measure_values %> <%= @unit.name %> </h5> <span class="status-big yellow"></span> <p> Abaixo </p>
           <% else %>
-            <h5> Última Medição: <%= @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5> <span class="status-big green"></span> <p> Normal </p>
+            <h5> Última Medição: <%= '%.2f' % @last_biomarker_measure_values %> <%= @unit.name %> </h5> <span class="status-big green"></span> <p> Normal </p>
           <% end %>
         <% else %>
-          <h5> Última Medição: <%= '%.2f' % @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5>
+          <h5> Última Medição: <%= '%.2f' % @last_biomarker_measure_values %> <%= @unit.name %> </h5>
         <% end %>
       </div>
 
 
 
       <!-- Reference Values Div -->
-      <% if @measure_data[:last_measure_attributes][:biomarker_band_type] == 1 %>
+      <% if !@last_biomarker_upper_band_measure.nil? %>
         <div class="box-container-central mb-2 pb-0" id="reference-values">
           <h5>Valores de referência</h5>
-          <p class="small text-secondary"> Referência: <%= @measure_data[:last_measure_attributes][:gender] %> de <%= @measure_data[:last_measure_attributes][:human_age] %> anos </p>
+          <p class="small text-secondary"> Referência: <%= @gender=="M" ? "Homem" : "Mulher" %> de <%= @last_age%> anos </p>
           <div class="text-elements-flex-start">
             <p>Normal: </p>
-            <p> <%= @measure_data[:last_measure_attributes][:lower_band] %> - <%= @measure_data[:last_measure_attributes][:upper_band] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </p>
+            <p> <%= @last_biomarker_lower_band_measure %> - <%= @last_biomarker_upper_band_measure %> <%= @unit.name %> </p>
           </div>
         </div>
       <% end %>
@@ -43,9 +47,9 @@
       <!-- JavaScript Chart-->
       <div class="box-container-central" id="biomarker-chart"
         data-controller="chart"
-        data-chart-biomarker-measures-values-value="<%= get_only_hash_values(format_date_measures_mm_dd(@measure_data[:measure_series][:measures_with_sources])).to_json%>"
-        data-chart-biomarker-upper-band-value="<%= format_date_measures_mm_dd(@measure_data[:measure_series][:upper_band]).to_json %>"
-        data-chart-biomarker-lower-band-value="<%= format_date_measures_mm_dd(@measure_data[:measure_series][:lower_band]).to_json %>">
+        data-chart-biomarker-measures-values-value="<%= @human_biomarker_measures_values_json%>"
+        data-chart-biomarker-upper-band-value="<%=@human_biomarker_upper_band_measures_json%>"
+        data-chart-biomarker-lower-band-value="<%=@human_biomarker_lower_band_measures_json%>">
 
         <div>
           <h5> Evolução do Biomarcador </h5>
@@ -66,7 +70,7 @@
               </tr>
             </thead>
             <tbody>
-                <% @measure_data[:measure_series][:measures_with_sources].each do |key, value| %>
+                <% @human_biomarker_measures.each do |key, value| %>
                 <!-- @human biomarker_measures is hash which values are arrays.
                 First value is measure value. Second value is the measure source. -->
                   <tr>
