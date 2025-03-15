@@ -7,6 +7,9 @@ module MeasuresHelper
 
   def get_only_hash_values(measures)
     measures = measures.map {|key, value| [key, value[0]]}.to_h
+  end
 
+  def view_type(measure)
+    measure[:last_measure_attribute][:unit_value_type] == 1 ? "_numeric" ? "non_numeric"
   end
 end
