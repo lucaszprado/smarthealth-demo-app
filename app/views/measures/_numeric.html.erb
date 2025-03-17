@@ -1,100 +1,39 @@
-<div class = "container">
-  <div class = "row justify-content-center">
-    <div class = "col-12 col-lg-9">
-       <!-- Back button -->
-      <%= link_to human_biomarkers_path(@human.id) do %>
-        <div class="NavigationCircleButton">
-          <%= image_tag "arrow-left.svg", class: "NavigationCircleButton-icon"%>
-        </div>
-      <% end %>
+<% measure = locals[:measure] %>
 
-      <!-- Biomarker name -->
-      <h2> <%= @measure_data[:last_measure_attributes][:biomarker_title] %> </h2>
+<!-- Last measure div -->
+<div class="u-flex u-flex--justifyStart u-flex--alignCenter mb-4">
+  <%= last_measure_type(measure) %>
+</div>
 
+<!-- Reference Values Div -->
+<div class="box-container-central mb-2 pb-0" id="reference-values">
+  <h5>Valores de referência</h5>
+  <p class="small text-secondary"> Referência: <%= measure[:last_measure_attributes][:gender] %> de <%= measure[:last_measure_attributes][:human_age] %> anos </p>
+  <div class="text-elements-flex-start">
+    <p>Normal: </p>
+    <p> <%= measure[:last_measure_attributes][:lower_band] %> - <%= measure[:last_measure_attributes][:upper_band] %> <%= measure[:last_measure_attributes][:unit_name] %> </p>
+  </div>
+</div>
 
-      <!-- Last measure div -->
-      <div class="u-flex u-flex--justifyStart u-flex--alignCenter mb-4">
-        <% if @measure_data[:last_measure_attributes][:biomarker_band_type] == 1 %>
-          <% if @measure_data[:last_measure_attributes][:value] > @measure_data[:last_measure_attributes][:upper_band] %>
-            <h5 class="u-textMargin--noMargin"> Última Medição: <%= @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5> <span class="u-statusIndicator--title is-status--yellow ms-3 me-1"> </span> <p class="u-textMargin--noMargin"> Acima </p>
-          <% elsif @measure_data[:last_measure_attributes][:value] < @measure_data[:last_measure_attributes][:lower_band] %>
-            <h5> Última Medição: <%= @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5> <span class="u-statusIndicator--title is-status--yellow"></span> <p> Abaixo </p>
-          <% else %>
-            <h5> Última Medição: <%= @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5> <span class="status-big green"></span> <p> Normal </p>
-          <% end %>
-        <% else %>
-          <h5> Última Medição: <%= @measure_data[:last_measure_attributes][:value] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </h5>
-        <% end %>
-      </div>
+<!-- JavaScript Chart-->
+<div class="box-container-central mb-5" id="biomarker-chart"
+  data-controller="chart"
+  data-chart-biomarker-measures-values-value="<%= get_only_first_hash_value(format_date_measures_mm_dd(measure[:measure_series][:measures_with_sources])).to_json%>"
+  data-chart-biomarker-upper-band-value="<%= format_date_measures_mm_dd(measure[:measure_series][:upper_band]).to_json %>"
+  data-chart-biomarker-lower-band-value="<%= format_date_measures_mm_dd(measure[:measure_series][:lower_band]).to_json %>">
 
-
-
-      <!-- Reference Values Div -->
-      <% if @measure_data[:last_measure_attributes][:biomarker_band_type] == 1 %>
-        <div class="box-container-central mb-2 pb-0" id="reference-values">
-          <h5>Valores de referência</h5>
-          <p class="small text-secondary"> Referência: <%= @measure_data[:last_measure_attributes][:gender] %> de <%= @measure_data[:last_measure_attributes][:human_age] %> anos </p>
-          <div class="text-elements-flex-start">
-            <p>Normal: </p>
-            <p> <%= @measure_data[:last_measure_attributes][:lower_band] %> - <%= @measure_data[:last_measure_attributes][:upper_band] %> <%= @measure_data[:last_measure_attributes][:unit_name] %> </p>
-          </div>
-        </div>
-      <% end %>
-
-      <!-- JavaScript Chart-->
-      <div class="box-container-central" id="biomarker-chart"
-        data-controller="chart"
-        data-chart-biomarker-measures-values-value="<%= get_only_hash_values(format_date_measures_mm_dd(@measure_data[:measure_series][:measures_with_sources])).to_json%>"
-        data-chart-biomarker-upper-band-value="<%= format_date_measures_mm_dd(@measure_data[:measure_series][:upper_band]).to_json %>"
-        data-chart-biomarker-lower-band-value="<%= format_date_measures_mm_dd(@measure_data[:measure_series][:lower_band]).to_json %>">
-
-        <div>
-          <h5> Evolução do Biomarcador </h5>
-        </div>
-        <div>
-          <canvas class="chart-container" data-chart-target="measures"></canvas>
-        </div>
-
-
-        <!-- Historic Table Div -->
-        <div class="table-div mt-5 mb-5">
-          <table class="table measures-table table-hover align-middle">
-            <thead>
-              <tr>
-                <td class="small text-center"> Data </td>
-                <td class="small text-center"> Medida </td>
-                <td class="small text-center"> Exame </td>
-              </tr>
-            </thead>
-            <tbody>
-                <% @measure_data[:measure_series][:measures_with_sources].each do |key, value| %>
-                <!-- @human biomarker_measures is hash which values are arrays.
-                First value is measure value. Second value is the measure source. -->
-                  <tr>
-                    <td class="small text-secondary text-center"> <%= key.strftime("%d/%m/%Y") %> </td>
-                    <td class="small text-secondary text-center"> <%= '%.2f' % value[0] %> </td> <!--Format number to string with two decimal places -->
-                    <td class="small text-secondary text-center">
-                      <% if value[1].files.attached?%>
-                        <%= link_to rails_blob_path(value[1].files.first, disposition: "inline") do %>
-                          <i class="fa-solid fa-file-pdf gray-icon"></i>
-                        <% end %>
-                      <% else %>
-                        -
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-
-            </tbody>
-          </table>
-        </div>
-        <!-- Page Footnotes Div -->
-        <div class="small-letters">
-          <p> Fontes de informação: Nossas referências são baseadas em instiuições de pesquisa e associações médicas. <br>
-          Principais fontes: Biblioteca de Saúde da <a href= "https://www.mayoclinic.org/diseases-conditions" target="_blank"> Clínica Mayo</a>
-          e Centro de Controle e Prevenção de Doenças dos EUA - <a href="https://www.cdc.gov/health-topics.html" target="_blank">CDC</a>.</p>
-        </div>
-      </div>
-    </div>
+  <div>
+    <h5> Evolução do Biomarcador </h5>
+  </div>
+  <div>
+    <canvas class="chart-container" data-chart-target="measures"></canvas>
+  </div>
+  <!-- Historic Table Div -->
+  <%= render 'measures/historic_table', locals: {measure: measure} %>
+  <!-- Page Footnotes Div -->
+  <div class="small-letters">
+    <p> Fontes de informação: Nossas referências são baseadas em instiuições de pesquisa e associações médicas. <br>
+    Principais fontes: Biblioteca de Saúde da <a href= "https://www.mayoclinic.org/diseases-conditions" target="_blank"> Clínica Mayo</a>
+    e Centro de Controle e Prevenção de Doenças dos EUA - <a href="https://www.cdc.gov/health-topics.html" target="_blank">CDC</a>.</p>
   </div>
 </div>

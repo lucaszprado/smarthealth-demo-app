@@ -1,6 +1,6 @@
 .SearchBar-container {
   position: sticky;
-  top: 4rem; /* Adjust this value according to your navbar height */
+  top: 3.5rem; /* Adjust this value according to your navbar height */
   z-index: 1020; /* Ensures it stays above other elements */ /* Match your page background */
   padding: 1rem 0;
   background: $light-gray;
@@ -37,4 +37,12 @@
   @extend .translate-middle-y; /* Centers vertically using transform. It shifts the element up by 50% of its own height,*/
   @extend .pe-3; /* Adds right padding to avoid overlap */
   cursor: pointer; /* Makes the icon clickable */
+}
+
+// Elements that will be adjusted from a min-width: 576px (large devices)
+@media (min-width: 768px) {
+
+  .SearchBar-container {
+    top: 6rem;
+  }
 }

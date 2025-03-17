@@ -1,0 +1,16 @@
+<% measure = locals[:measure] %>
+
+<!-- Last measure div -->
+<div class="u-flex u-flex--justifyStart u-flex--alignCenter mb-4">
+  <%= last_measure_type(measure) %>
+</div>
+
+<!-- JavaScript Chart-->
+<div class="box-container-central mb-5" id="biomarker-chart">
+  <div>
+    <h5> Evolução do Biomarcador </h5>
+  </div>
+
+  <!-- Historic Table Div -->
+  <%= render "measures/historic_table", locals: {measure: measure} %>
+</div>

@@ -14,8 +14,8 @@
 }
 
 // Push the content down in all the pages where we have a navbar
-body {
-  padding-top: 3rem;
+.has-navbar {
+  padding-top: 6rem;
 }
 
 // Adjusting NavBar Width for Mobile devices / Breakpoint: 768px
@@ -26,7 +26,7 @@ body {
   .navbar-lewagon {
     height: 4rem; // Comment when you have a logo
   }
-  body {
-    padding-top: 0.5rem;
+  .has-navbar {
+    padding-top: 3rem;
   }
 }

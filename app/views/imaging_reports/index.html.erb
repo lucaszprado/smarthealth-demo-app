@@ -1,17 +1,8 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
-  <div class="container-fluid d-flex justify-content-start">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <!--Uncomment when you have a logo -->
-      <!--%= image_tag "logo.svg" %-->
-      <!--Uncomment when you have a logo -->
-      <div>
-        <p class="fs-3"> <%= @human.name %> </p>
-      </div>
-    <% end %>
-  </div>
-</div>
+<% content_for :navbar do %>
+  <%= render 'shared/navbar', locals: {human: @human} %>
+<% end %>
 
-<div class="container pt-5">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-9">
       <!-- Search bar -->
@@ -39,7 +30,7 @@
         <div data-refresh-list-target="list">
           <% @imaging_reports.each do |imaging_report| %>
             <!-- Result Card -->
-            <%= render "shared/result_card",
+            <%= render "shared/result_card", locals: {
               link: human_imaging_report_path(@human.id, imaging_report[:id]),
               icon_path: "fa-solid fa-circle-radiation", #fa-solid fa-chart-line fa-light fa-x-ray fa-regular fa-image
               title: "#{imaging_report[:title][0]} #{imaging_report[:title][1]}",
@@ -47,6 +38,7 @@
               status: nil,
               date: imaging_report[:date],
               labels: imaging_report[:label_system]
+            }
             %>
           <% end %>
         </div>

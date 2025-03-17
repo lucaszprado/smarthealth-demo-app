@@ -34,9 +34,10 @@
 
   </head>
 
-  <body>
+  <body class="<%= content_for?(:navbar) ? 'has-navbar' : '' %>">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <%= yield :navbar %>
     <%= yield %>
 
   </body>

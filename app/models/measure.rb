@@ -37,6 +37,7 @@ class Measure < ApplicationRecord
   end
 
 
+
   # Queries all the required data for the controller send to the view
   def self.process_biomarker_data(human, biomarker)
     most_recent_measure = most_recent(human, biomarker)
@@ -54,6 +55,35 @@ class Measure < ApplicationRecord
 
     last_date = converted_measures.keys.last
 
+    if unit.value_type == 2
+      converted_measures = converted_measures.transform_values do |value|
+        if value.first == 1
+          ["Positivo", value[1]]
+        else
+          ["Negativo", value[1]]
+        end
+      end
+
+      return{
+        last_measure_attributes: {
+          unit_name: unit.name,
+          unit_value_type: unit.value_type,
+          value: converted_measures[last_date]&.first,
+          upper_band: upper_band_measures[last_date],
+          lower_band: lower_band_measures[last_date],
+          biomarker_title: biomarker.title,
+          band_type: upper_band_measures.values.first ? 1 : 0,
+          gender: human.gender == "M" ? "Homem" : "Mulher",
+          human_age: human.age_at_measure(last_date),
+          status: nil
+        },
+        measure_series: {
+          measures_with_sources: converted_measures,
+          upper_band: upper_band_measures,
+          lower_band: lower_band_measures
+        }
+      }
+    end
 
     {
       last_measure_attributes: {
@@ -62,9 +92,9 @@ class Measure < ApplicationRecord
         value: converted_measures[last_date]&.first,
         upper_band: upper_band_measures[last_date],
         lower_band: lower_band_measures[last_date],
-        biomarker_title: biomarker.title, # <- NEW METHOD in `Biomarker` Model
-        biomarker_band_type: upper_band_measures.values.first ? 1 : 0,
-        gender: human.gender=="M" ? "Homem" : "Mulher",
+        biomarker_title: biomarker.title,
+        band_type: upper_band_measures.values.first ? 1 : 0,
+        gender: human.gender == "M" ? "Homem" : "Mulher",
         human_age: human.age_at_measure(last_date),
         status: converted_measures[last_date]&.first <= upper_band_measures[last_date] &&
                 converted_measures[last_date]&.first >= lower_band_measures[last_date] ? "green" : "yellow"

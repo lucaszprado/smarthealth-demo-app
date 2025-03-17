@@ -2,6 +2,6 @@
   <% @biomarkers.each do |biomarker| %>
     <!-- Result Card -->
     <% biomarker[:unit_value_type] %>
-      <%= render "shared/result_card", result_card_attributes(@human, biomarker)%>
+      <%= render "shared/result_card", locals: result_card_attributes(@human, biomarker)%>
   <% end %>
 </div>

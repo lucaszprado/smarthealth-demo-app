@@ -1,17 +1,8 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
-  <div class="container-fluid d-flex justify-content-start">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <!--Uncomment when you have a logo -->
-      <!--%= image_tag "logo.svg" %-->
-      <!--Uncomment when you have a logo -->
-      <div>
-        <p class="fs-3"> <%= @human.name %> </p>
-      </div>
-    <% end %>
-  </div>
-</div>
+<% content_for :navbar do %>
+  <%= render 'shared/navbar', locals: {human: @human} %>
+<% end %>
 
-<div class="container pt-5">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-9">
       <!-- Search bar -->
@@ -40,7 +31,7 @@
           <% @biomarkers.each do |biomarker| %>
             <!-- Result Card -->
             <% biomarker[:unit_value_type] %>
-              <%= render "shared/result_card", result_card_attributes(@human, biomarker)%>
+              <%= render "shared/result_card", locals: result_card_attributes(@human, biomarker) %>
           <% end %>
         </div>
       </div>
