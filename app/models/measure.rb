@@ -87,7 +87,6 @@ class Measure < ApplicationRecord
     end
 
     # Treat return for numeric measures without reference values
-
     if unit.value_type == 1 && upper_band_measures[last_date] == nil
       return{
         last_measure_attributes: {

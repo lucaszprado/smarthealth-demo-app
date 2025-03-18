@@ -26,7 +26,6 @@ module MeasuresHelper
   end
 
   def last_measure_attributes(measure)
-    debugger
     if measure[:last_measure_attributes][:unit_value_type] == 1 && !measure[:last_measure_attributes][:upper_band].nil?
       if measure[:last_measure_attributes][:value] > measure[:last_measure_attributes][:upper_band]
         return {
