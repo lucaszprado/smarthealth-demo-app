@@ -26,7 +26,8 @@ module MeasuresHelper
   end
 
   def last_measure_attributes(measure)
-    if measure[:last_measure_attributes][:unit_value_type] == 1
+    debugger
+    if measure[:last_measure_attributes][:unit_value_type] == 1 && !measure[:last_measure_attributes][:upper_band].nil?
       if measure[:last_measure_attributes][:value] > measure[:last_measure_attributes][:upper_band]
         return {
           value: measure[:last_measure_attributes][:value],
@@ -50,6 +51,11 @@ module MeasuresHelper
           status_text: "Normal"
         }
       end
+    elsif measure[:last_measure_attributes][:unit_value_type] == 1 && measure[:last_measure_attributes][:upper_band].nil?
+        return {
+          value: measure[:last_measure_attributes][:value],
+          unit_name: measure[:last_measure_attributes][:unit_name]
+        }
     else
       if measure[:last_measure_attributes][:value] == 1
         return {

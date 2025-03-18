@@ -110,7 +110,7 @@ class Biomarker < ApplicationRecord
 
   def self.add_measure_status(collection)
     collection.each do |biomarker|
-      if biomarker[:unit_value_type] == 1
+      if biomarker[:unit_value_type] == 1 && !biomarker[:same_unit_original_value_possible_max_value].nil?
         if biomarker[:original_value] > biomarker[:same_unit_original_value_possible_max_value]
           biomarker[:measure_status] = "yellow"
         elsif biomarker[:original_value] < biomarker[:same_unit_original_value_possible_min_value]

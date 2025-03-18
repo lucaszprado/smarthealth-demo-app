@@ -55,6 +55,7 @@ class Measure < ApplicationRecord
 
     last_date = converted_measures.keys.last
 
+    # Treat return for non-numeric measures
     if unit.value_type == 2
       converted_measures = converted_measures.transform_values do |value|
         if value.first == 1
@@ -64,6 +65,30 @@ class Measure < ApplicationRecord
         end
       end
 
+      return{
+        last_measure_attributes: {
+          unit_name: unit.name,
+          unit_value_type: unit.value_type,
+          value: converted_measures[last_date]&.first,
+          upper_band: upper_band_measures[last_date],
+          lower_band: lower_band_measures[last_date],
+          biomarker_title: biomarker.title,
+          band_type: upper_band_measures.values.first ? 1 : 0,
+          gender: human.gender == "M" ? "Homem" : "Mulher",
+          human_age: human.age_at_measure(last_date),
+          status: nil
+        },
+        measure_series: {
+          measures_with_sources: converted_measures,
+          upper_band: upper_band_measures,
+          lower_band: lower_band_measures
+        }
+      }
+    end
+
+    # Treat return for numeric measures without reference values
+
+    if unit.value_type == 1 && upper_band_measures[last_date] == nil
       return{
         last_measure_attributes: {
           unit_name: unit.name,
