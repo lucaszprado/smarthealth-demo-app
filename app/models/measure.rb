@@ -19,7 +19,9 @@ class Measure < ApplicationRecord
   # Rails best practics
   # This's a scope. Very similar to a class method
   scope :for_human_biomarker, ->(human, biomarker) {
-    joins(:source).where(sources: { human_id: human.id }, biomarker: biomarker)
+    joins(:source)
+    .where(sources: { human_id: human.id }, biomarker: biomarker)
+    .order(:date)
   }
 
   # Fetch the most recent measure for a biomarker for a given human
