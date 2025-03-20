@@ -82,6 +82,7 @@ class Measure < ApplicationRecord
         },
         measure_series: {
           measures_with_sources: converted_measures,
+          measures_with_sources_desc: converted_measures.to_a.reverse.to_h,
           upper_band: upper_band_measures,
           lower_band: lower_band_measures
         }
@@ -105,6 +106,7 @@ class Measure < ApplicationRecord
         },
         measure_series: {
           measures_with_sources: converted_measures,
+          measures_with_sources_desc: converted_measures.to_a.reverse.to_h,
           upper_band: upper_band_measures,
           lower_band: lower_band_measures
         }
@@ -127,6 +129,7 @@ class Measure < ApplicationRecord
       },
       measure_series: {
         measures_with_sources: converted_measures,
+        measures_with_sources_desc: converted_measures.to_a.reverse.to_h,
         upper_band: upper_band_measures,
         lower_band: lower_band_measures
       }

@@ -11,7 +11,7 @@ module MeasuresHelper
 
   def view_type(measure)
     if measure[:last_measure_attributes][:unit_value_type] == 1
-       render 'measures/numeric', locals: {measure: measure}
+      render 'measures/numeric', locals: {measure: measure}
     else
       render 'measures/non_numeric', locals: {measure: measure}
     end
