@@ -26,7 +26,7 @@ class ImagingReport < ApplicationRecord
     base_query = joins(source: :human) # As we're definig a class method in ImagingRport -> This join will be called on ImagingReport when this method is called.
       .joins(:imaging_method)
       .where(sources: {human_id: human_id})
-      .includes(:labels)
+      .includes(:labels, :source)
       .order(date: :desc)
 
     # 2. Structure the data
@@ -94,7 +94,8 @@ class ImagingReport < ApplicationRecord
       health_professional: health_professional,
       health_provider: health_provider,
       report_urls: image_urls("report"),
-      image_urls: image_urls("image")
+      image_urls: image_urls("image"),
+      data_type: source.source_type.name
     }
   end
 

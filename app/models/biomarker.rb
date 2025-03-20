@@ -16,9 +16,9 @@ class Biomarker < ApplicationRecord
 
   def self.with_last_measure_for_human(human_id, birthdate, gender)
     # 1. Build ActiveRecord collection of measures
-    base_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
+    base_query = joins(measures: {source: [:human, :source_type]}) # Inner joins from biomarkers <- measures <- source <- human
     .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: :unit)
-    .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: :unit) # unit is included through measures
+    .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # unit is included through measures
     .where(sources: {human_id: human_id})
     .where("unit_factors.biomarker_id = measures.biomarker_id")
     .where("unit_factors.unit_id = measures.unit_id")
@@ -28,8 +28,9 @@ class Biomarker < ApplicationRecord
     # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
     .select('DISTINCT ON (measures.biomarker_id) measures.*, biomarkers.name, synonyms.name AS synonym_name, units.name AS unit_name, units.value_type AS unit_value_type,'\
     'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
-    'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value')
-    .order('measures.biomarker_id, measures.date DESC')
+    'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value, '\
+    'source_types.name AS source_type_name')
+    .order('measures.biomarker_id, measures.date DESC');
 
     # 2. Order collection by synonym or name, structure the data with all select selection and not just AR defult class and transform strings into symbols as keys.
     base_query = sort_by_synonym_or_name(base_query.map(&:attributes).map(&:symbolize_keys))
@@ -42,9 +43,9 @@ class Biomarker < ApplicationRecord
   end
 
   def self.search_for_human(human_id, birthdate, gender, query)
-    base_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
+    base_query = joins(measures: {source: [:human, :source_type]}) # Inner joins from biomarkers <- measures <- source <- human
     .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: :unit)
-    .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: :unit) # unit is included through measures
+    .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # unit is included through measures
     .where(sources: {human_id: human_id})
     .where(
           "(to_tsvector('portuguese', unaccent(synonyms.name)) ||
@@ -60,7 +61,8 @@ class Biomarker < ApplicationRecord
     # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
     .select('DISTINCT ON (measures.biomarker_id) measures.*, biomarkers.name, synonyms.name AS synonym_name, units.name AS unit_name, units.value_type AS unit_value_type,'\
     'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
-    'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value')
+    'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value, '\
+    'source_types.name AS source_type_name')
     .order('measures.biomarker_id, measures.date DESC');
 
     # 2. Order collection by synonym or name, structure the data with all select selection and not just AR defult class and transform strings into symbols as keys.

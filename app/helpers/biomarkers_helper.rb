@@ -8,7 +8,8 @@ module BiomarkersHelper
       key_info: biomarker[:unit_value_type] == 1 ? "#{format_value_2_decimals(biomarker[:original_value])} #{biomarker[:unit_name]}" : biomarker[:measure_text],
       status: biomarker[:unit_value_type] == 1 ? biomarker[:measure_status] : nil,
       date: biomarker[:date],
-      labels: nil
+      labels: nil,
+      data_type: biomarker[:source_type_name]
     }
   end
 end

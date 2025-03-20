@@ -27,4 +27,13 @@ module ApplicationHelper
     return "-" if value.nil? # Handle nil case
     '%.2f' % value
   end
+
+  def card_text_size(data_type)
+    case data_type
+    when "Image" then "secondary"
+    when "Blood" then "primary"
+    when "Biomimpedance" then "primary"
+    else "secondary"
+    end
+  end
 end
