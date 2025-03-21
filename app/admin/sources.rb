@@ -11,7 +11,7 @@ ActiveAdmin.register Source do
   #
   permit_params do
     permitted = [:source_type_id, :human_id]
-    permitted = {files: []}
+    permitted << {files: []}
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end
