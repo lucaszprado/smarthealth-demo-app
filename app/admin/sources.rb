@@ -68,7 +68,7 @@ ActiveAdmin.register Source do
 
   controller do
     def update
-      Rails.logger.debug("🔎 SOURCE PARAMS: #{params[:source].inspect}")
+      Rails.logger.debug "RESOURCE PARAMS: #{resource_params.inspect}"
       super
     end
   end
