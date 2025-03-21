@@ -19,11 +19,12 @@ ActiveAdmin.register Source do
 
   controller do
     def update
+      puts "🔥🔥🔥 Controller override is working"
       Rails.logger.debug "RESOURCE PARAMS: #{resource_params.inspect}"
       super
     end
   end
-  
+
   form do |f|
     f.inputs do
       f.input :human, as: :select, collection: Human.all
