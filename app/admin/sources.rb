@@ -20,7 +20,7 @@ ActiveAdmin.register Source do
   controller do
     def update
       puts "🔥🔥🔥 Controller override is working"
-      Rails.logger.debug "RESOURCE PARAMS: #{resource_params.inspect}"
+      puts "📦 RESOURCE PARAMS: #{resource_params.inspect}"
       super
     end
   end
