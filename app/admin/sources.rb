@@ -9,6 +9,7 @@ ActiveAdmin.register Source do
   #
   # or
   #
+
   permit_params do
     permitted = [:source_type_id, :human_id]
     permitted << {files: []}
@@ -16,6 +17,13 @@ ActiveAdmin.register Source do
     permitted
   end
 
+  controller do
+    def update
+      Rails.logger.debug "RESOURCE PARAMS: #{resource_params.inspect}"
+      super
+    end
+  end
+  
   form do |f|
     f.inputs do
       f.input :human, as: :select, collection: Human.all
@@ -64,13 +72,6 @@ ActiveAdmin.register Source do
       end
     end
     active_admin_comments
-  end
-
-  controller do
-    def update
-      Rails.logger.debug "RESOURCE PARAMS: #{resource_params.inspect}"
-      super
-    end
   end
 
 end
