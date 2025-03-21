@@ -66,5 +66,11 @@ ActiveAdmin.register Source do
     active_admin_comments
   end
 
+  controller do
+    def update
+      Rails.logger.debug("🔎 SOURCE PARAMS: #{params[:source].inspect}")
+      super
+    end
+  end
 
 end
