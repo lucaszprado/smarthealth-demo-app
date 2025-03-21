@@ -10,7 +10,8 @@ ActiveAdmin.register Source do
   # or
   #
   permit_params do
-    permitted = [:files, :source_type, :human_id]
+    permitted = [:source_type_id, :human_id]
+    permitted = {files: []}
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
   end
@@ -18,7 +19,8 @@ ActiveAdmin.register Source do
   form do |f|
     f.inputs do
       f.input :human, as: :select, collection: Human.all
-      f.input :file, as: :file
+      f.input :files, as: :file, input_html: {multiple: true} #input_html: { multiple: true } enables the multi-file picker.
+      f.input :source_type, as: :select, collection: SourceType.all
     end
     f.actions
   end
