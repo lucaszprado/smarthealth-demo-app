@@ -5,7 +5,7 @@ class Source < ApplicationRecord
   has_many_attached :files
 
   # Association with SourceType
-  belongs_to :source_type
+  belongs_to :source_type optional: true
 
   # Associations with HealthProfessional and HealthProvider
   belongs_to :health_professional
