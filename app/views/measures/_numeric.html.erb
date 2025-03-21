@@ -1,22 +1,11 @@
 <% measure = locals[:measure] %>
 
-<!-- Last measure div -->
-<div class="u-flex u-flex--justifyStart u-flex--alignCenter mb-4">
-  <%= last_measure_type(measure) %>
-</div>
+<!-- Last measure div + Reference Value Div-->
+<%= measure_type(measure) %>
 
-<!-- Reference Values Div -->
-<div class="box-container-central mb-2 pb-0" id="reference-values">
-  <h5>Valores de referência</h5>
-  <p class="small text-secondary"> Referência: <%= measure[:last_measure_attributes][:gender] %> de <%= measure[:last_measure_attributes][:human_age] %> anos </p>
-  <div class="text-elements-flex-start">
-    <p>Normal: </p>
-    <p> <%= measure[:last_measure_attributes][:lower_band] %> - <%= measure[:last_measure_attributes][:upper_band] %> <%= measure[:last_measure_attributes][:unit_name] %> </p>
-  </div>
-</div>
 
 <!-- JavaScript Chart-->
-<div class="box-container-central mb-5" id="biomarker-chart"
+<div class="box-container-central mt-4 mb-5" id="biomarker-chart"
   data-controller="chart"
   data-chart-biomarker-measures-values-value="<%= get_only_first_hash_value(format_date_measures_mm_dd(measure[:measure_series][:measures_with_sources])).to_json%>"
   data-chart-biomarker-upper-band-value="<%= format_date_measures_mm_dd(measure[:measure_series][:upper_band]).to_json %>"

@@ -2,16 +2,10 @@ require 'net/http'
 require 'uri'
 
 class VendorApi
-  
-  PID_MALE = '1a270e28-804a-44b8-8f09-3fa42b0e3975'
-  PID_FEMALE = '3650b54e-1a82-400c-be9b-d625c2cb2ad2'
 
-  # <attention> | LP @2024-09-30: I changed the PID FROM 7169a804-6e39-4ce3-a4b9-ff85cd8c058a TO
-  # 58fffbc4-2824-4969-961a-0edc7741b247 in order to
-  # link to the PID where we will upload and delete data all the time # We will not use # my personal account.
-  # than I changed to '1a270e28-804a-44b8-8f09-3fa42b0e3975' to match healer's account.
-  # Women PID: 3650b54e-1a82-400c-be9b-d625c2cb2ad2
-  # Men PID: 1a270e28-804a-44b8-8f09-3fa42b0e3975
+  PID_MALE = ENV['ORNAMENT_MALE_ID']
+  PID_FEMALE = ENV['ORNAMENT_FEMALE_ID']
+
   VENDOR_URL_MALE = "https://api.ornament.health/medical-data-api/public/v1.0/profile/biomarkers?pid=#{PID_MALE}"
   VENDOR_URL_FEMALE = "https://api.ornament.health/medical-data-api/public/v1.0/profile/biomarkers?pid=#{PID_FEMALE}"
 
