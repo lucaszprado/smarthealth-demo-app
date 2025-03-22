@@ -21,6 +21,10 @@ ActiveAdmin.register Source do
     def update
       puts "🔥🔥🔥 Controller override is working"
       puts "📦 RESOURCE PARAMS: #{resource_params.inspect}"
+
+       # Debug current record
+      resource.assign_attributes(resource_params)
+      puts "🧠 ASSIGNED ATTRIBUTES: #{resource.attributes.slice('source_type_id', 'human_id')}"
       super
     end
   end
