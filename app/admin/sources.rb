@@ -18,12 +18,10 @@ ActiveAdmin.register Source do
 
   controller do
     def update
-      puts "🔥🔥🔥 Controller override is working"
-      puts "📦 RESOURCE PARAMS: #{resource_params.inspect}"
-
-       # Debug current record
-      resource.assign_attributes(resource_params)
-      puts "🧠 ASSIGNED ATTRIBUTES: #{resource.attributes.slice('source_type_id', 'human_id')}"
+      puts "📦 RAW resource_params.class: #{resource_params.class}"
+      puts "📦 RAW resource_params: #{resource_params}"
+      params_hash = params.require(:source).permit(:source_type_id, :human_id, files: [], :other)
+      puts "📦 REAL PERMITTED PARAMS: #{params_hash.inspect}"
       super
     end
   end
