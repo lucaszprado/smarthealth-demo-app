@@ -5,16 +5,16 @@ ActiveAdmin.register Source do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :file, :source_type, :human_id
+  permit_params :source_type_id, :human_id, { files: [] }, :other
   #
   # or
   #
 
-  permit_params do
-    permitted = :source_type_id, :human_id, {files: []}
-    permitted << :other if params[:action] == 'create' #&& current_user.admin?
-    permitted
-  end
+  # permit_params do
+  #   permitted = :source_type_id, :human_id, {files: []}
+  #   permitted << :other if params[:action] == 'create' #&& current_user.admin?
+  #   permitted
+  # end
 
   controller do
     def update
