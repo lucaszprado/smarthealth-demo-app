@@ -18,11 +18,16 @@ ActiveAdmin.register Source do
 
   controller do
     def update
-      puts "📦 RAW resource_params.class: #{resource_params.class}"
-      puts "📦 RAW resource_params: #{resource_params}"
-      params_hash = params.require(:source).permit(:source_type_id, :human_id, files: [], :other)
-      puts "📦 REAL PERMITTED PARAMS: #{params_hash.inspect}"
-      super
+      puts "🔥🔥🔥 Controller override is working"
+
+      # Corrected param permitting
+      params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, files: [])
+      puts "📦 FINAL PARAMS: #{params_hash.inspect}"
+
+      # Update directly and redirect
+      resource.update(params_hash)
+      redirect_to resource_path(resource)
+      # super
     end
   end
 
