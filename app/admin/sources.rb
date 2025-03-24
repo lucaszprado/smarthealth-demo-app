@@ -16,20 +16,20 @@ ActiveAdmin.register Source do
   #   permitted
   # end
 
-  controller do
-    def update
-      puts "🔥🔥🔥 Controller override is working"
+  # controller do
+  #   def update
+  #     puts "🔥🔥🔥 Controller override is working"
 
-      # Corrected param permitting
-      params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, files: [])
-      puts "📦 FINAL PARAMS: #{params_hash.inspect}"
+  #     # Corrected param permitting
+  #     params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, files: [])
+  #     puts "📦 FINAL PARAMS: #{params_hash.inspect}"
 
-      # Update directly and redirect
-      resource.update(params_hash)
-      redirect_to resource_path(resource)
-      # super
-    end
-  end
+  #     # Update directly and redirect
+  #     resource.update(params_hash)
+  #     redirect_to resource_path(resource)
+  #     # super
+  #   end
+  # end
 
   form do |f|
     f.inputs do
@@ -80,5 +80,4 @@ ActiveAdmin.register Source do
     end
     active_admin_comments
   end
-
 end

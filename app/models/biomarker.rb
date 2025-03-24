@@ -75,6 +75,7 @@ class Biomarker < ApplicationRecord
 
   # Instance method
   # Return biomarker PT synonym or its name in english
+  # Used in the measure model
   def title
     synonyms.find_by(language: "PT")&.name || name
   end
