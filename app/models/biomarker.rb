@@ -16,8 +16,8 @@ class Biomarker < ApplicationRecord
 
   def self.with_last_measure_for_human(human_id, birthdate, gender)
     # 1. Build ActiveRecord collection of measures
-    base_query = joins(measures: {source: [:human, :source_type]}) # Inner joins from biomarkers <- measures <- source <- human
-    .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: :unit)
+    base_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
+    .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
     .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # unit is included through measures
     .where(sources: {human_id: human_id})
     .where("unit_factors.biomarker_id = measures.biomarker_id")
@@ -43,21 +43,21 @@ class Biomarker < ApplicationRecord
   end
 
   def self.search_for_human(human_id, birthdate, gender, query)
-    base_query = joins(measures: {source: [:human, :source_type]}) # Inner joins from biomarkers <- measures <- source <- human
-    .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: :unit)
+    base_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
+    .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
     .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # unit is included through measures
     .where(sources: {human_id: human_id})
+    .where("unit_factors.biomarker_id = measures.biomarker_id")
+    .where("unit_factors.unit_id = measures.unit_id")
+    .where("biomarkers_ranges.age = FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))", birthdate)
+    .where("biomarkers_ranges.gender = ?", gender)
+    .where("synonyms.language = 'PT'")
     .where(
           "(to_tsvector('portuguese', unaccent(synonyms.name)) ||
             to_tsvector('portuguese', unaccent(biomarkers.name))) @@
             to_tsquery('portuguese', unaccent(:query))",
           query: query
         )
-    .where("unit_factors.biomarker_id = measures.biomarker_id")
-    .where("unit_factors.unit_id = measures.unit_id")
-    .where("biomarkers_ranges.age = FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))", birthdate)
-    .where("biomarkers_ranges.gender = ?", gender)
-    .where("synonyms.language = 'PT'")
     # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
     .select('DISTINCT ON (measures.biomarker_id) measures.*, biomarkers.name, synonyms.name AS synonym_name, units.name AS unit_name, units.value_type AS unit_value_type,'\
     'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
