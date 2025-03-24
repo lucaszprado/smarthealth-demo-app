@@ -42,6 +42,8 @@ ActiveAdmin.register Source do
       f.input :human, as: :select, collection: Human.all
       f.input :files, as: :file, input_html: {multiple: true} #input_html: { multiple: true } enables the multi-file picker.
       f.input :source_type, as: :select, collection: SourceType.all
+      f.input :health_professional, as: :select, collection: HealthProfessional.all
+      f.input :health_provider, as: :select, collection: HealthProvider.all
     end
     f.actions
   end
@@ -68,6 +70,8 @@ ActiveAdmin.register Source do
       row :id
       row :human
       row :source_type
+      row :health_professional
+      row :health_provider
       row :created_at
       row :updated_at
       row :file do |source|
