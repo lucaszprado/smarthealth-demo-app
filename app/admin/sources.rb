@@ -20,7 +20,7 @@ ActiveAdmin.register Source do
     def update
       puts "🔥🔥🔥 Controller override is working"
 
-      params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, files: [])
+      params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, :health_professional_id, :health_provider_id, files: [])
       params_hash[:files]&.reject!(&:blank?)
 
       puts "📦 FINAL PARAMS: #{params_hash.inspect}"
