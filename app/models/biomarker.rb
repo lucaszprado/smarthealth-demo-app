@@ -30,7 +30,7 @@ class Biomarker < ApplicationRecord
     'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
     'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value, '\
     'source_types.name AS source_type_name')
-    .order('measures.biomarker_id, measures.date DESC');
+    .order('measures.biomarker_id, measures.date DESC, synonyms.id DESC');
 
     # 2. Order collection by synonym or name, structure the data with all select selection and not just AR defult class and transform strings into symbols as keys.
     base_query = sort_by_synonym_or_name(base_query.map(&:attributes).map(&:symbolize_keys))
@@ -63,7 +63,7 @@ class Biomarker < ApplicationRecord
     'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
     'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value, '\
     'source_types.name AS source_type_name')
-    .order('measures.biomarker_id, measures.date DESC');
+    .order('measures.biomarker_id, measures.date DESC, synonyms.id DESC');
 
     # 2. Order collection by synonym or name, structure the data with all select selection and not just AR defult class and transform strings into symbols as keys.
     base_query = sort_by_synonym_or_name(base_query.map(&:attributes).map(&:symbolize_keys))
