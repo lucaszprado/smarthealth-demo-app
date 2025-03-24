@@ -16,20 +16,26 @@ ActiveAdmin.register Source do
   #   permitted
   # end
 
-  # controller do
-  #   def update
-  #     puts "🔥🔥🔥 Controller override is working"
+  controller do
+    def update
+      puts "🔥🔥🔥 Controller override is working"
 
-  #     # Corrected param permitting
-  #     params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, files: [])
-  #     puts "📦 FINAL PARAMS: #{params_hash.inspect}"
+      params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, files: [])
+      params_hash[:files]&.reject!(&:blank?)
 
-  #     # Update directly and redirect
-  #     resource.update(params_hash)
-  #     redirect_to resource_path(resource)
-  #     # super
-  #   end
-  # end
+      puts "📦 FINAL PARAMS: #{params_hash.inspect}"
+
+      if resource.update(params_hash)
+        puts "✅ Update succeeded"
+        redirect_to resource_path(resource)
+      else
+        puts "🚨 ERRORS: #{resource.errors.full_messages.inspect}"
+        flash[:error] = resource.errors.full_messages.join(", ")
+        render :edit
+      end
+    end
+  end
+
 
   form do |f|
     f.inputs do
