@@ -2,6 +2,8 @@ class MeasureProcessor
   def self.save_measures_from_vendor(source, hash_data, human)
     begin
       ActiveRecord::Base.transaction do
+        puts "============ Hash_data=============="
+        Rails.logger.info "biomarkers: #{hash_data["biomarkers"]&.first&.inspect}"
         date = Time.at(hash_data["biomarkers"][0]["entries"][0]["date"]).to_date
         hash_data["biomarkers"].each do |biomarker_data|
           biomarker = Biomarker.find_or_create_by!(external_ref: biomarker_data["id"])
