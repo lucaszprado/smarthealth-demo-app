@@ -5,7 +5,7 @@ ActiveAdmin.register Source do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :source_type_id, :human_id, { files: [] }, :other
+  permit_params :source_type_id, :human_id, { files: [] }, :other, :health_professional_id, :health_provider_id
   #
   # or
   #
@@ -16,21 +16,32 @@ ActiveAdmin.register Source do
   #   permitted
   # end
 
+  # Override ActiveAdmin's default Controller for source resource
   controller do
+    # Override ActiveAdmin's default update action
     def update
       puts "🔥🔥🔥 Controller override is working"
 
-      params_hash = params.require(:source).permit(:source_type_id, :human_id, :other, :health_professional_id, :health_provider_id, files: [])
-      params_hash[:files]&.reject!(&:blank?)
+      # permitted_params[:source] = params.require(:source).permit(:source_type_id, :human_id, :other, :health_professional_id, :health_provider_id, files: []) => ActiveAdmin Helper
+      puts "📦 RESOURCE PARAMS: #{permitted_params[:source].inspect}"
 
-      puts "📦 FINAL PARAMS: #{params_hash.inspect}"
-
-      if resource.update(params_hash)
+      if resource.update(permitted_params[:source])
         puts "✅ Update succeeded"
         redirect_to resource_path(resource)
       else
         puts "🚨 ERRORS: #{resource.errors.full_messages.inspect}"
+
+        # Flash is a standard Rails hash, available in controllers and views.
+        # It’s used to pass one-time messages across requests (e.g., success or error notices).
+        # flash[:notice] → green success box
+        # flash[:error] → red error box
+        # flash[:alert] → yellow warning box
+        # The rendering of flash messages are done by ActiveAdmin internally: activeadmin/app/views/active_admin/base/_flashes.html.erb
+        # More at https://www.notion.so/lucaspradonotes/Mounting-Engines-1c14ac7d9d29802d9f90e0f188c2ad12?pvs=4#1c14ac7d9d29804893cfcf9e3867c39e
         flash[:error] = resource.errors.full_messages.join(", ")
+
+        # Rails renders ActiveAdmin’s own edit template, not your app’s standard
+        # activeadmin/lib/active_admin/views/pages/edit.rb
         render :edit
       end
     end

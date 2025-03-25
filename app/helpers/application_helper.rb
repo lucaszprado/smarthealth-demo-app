@@ -32,7 +32,7 @@ module ApplicationHelper
     case data_type
     when "Image" then "secondary"
     when "Blood" then "primary"
-    when "Biomimpedance" then "primary"
+    when "Bioimpedance" then "primary"
     else "secondary"
     end
   end
