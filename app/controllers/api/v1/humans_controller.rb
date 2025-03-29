@@ -110,8 +110,14 @@ class Api::V1::HumansController < ActionController::API
     ActiveRecord::Base.transaction do
       #Rails.logger.debug "Params received: #{params.inspect}"
 
+      # Until we refactor controller to use the same URL structure
+      # We will treat params to have all the humans_id key.
+      normalized_params = params.to_unsafe_h.deep_dup
+      # to_unsafe_h: converts your params from an instance of ActionController::Parameters to a plain Ruby Hash, bypassing strong parameter filterin
+      # deep_dup: creates a deep copy of the hash:
+      normalized_params[:human_id] = params[:id]
 
-      source = SourceCreator.create_source(api_params)
+      source = SourceCreatorService.create_source(normalized_params,"Image")
       if source.nil?
         render json: { error: "Failed to create Source" }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
@@ -145,7 +151,8 @@ class Api::V1::HumansController < ActionController::API
 
   private
 
-  # This method returns a hash that matches matches the keyword arguments expected by create_source in SourceCreator service
+  # This method returns a hash that matches matches the keyword arguments expected by create_source in SourceCreatorService
+  # It safely extracts and whitelists parameters from a request.
   def api_params
 
     # Debugging: Log the type of `pdf_files`

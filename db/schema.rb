@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_07_134214) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_26_180217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -197,6 +198,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_07_134214) do
     t.bigint "source_type_id"
     t.bigint "health_professional_id"
     t.bigint "health_provider_id"
+    t.integer "origin", default: 0, null: false
     t.index ["health_professional_id"], name: "index_sources_on_health_professional_id"
     t.index ["health_provider_id"], name: "index_sources_on_health_provider_id"
     t.index ["human_id"], name: "index_sources_on_human_id"

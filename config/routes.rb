@@ -15,11 +15,24 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :humans, only: [:show] do
+        resources :blood_historical_measures, only: [:create]
+        # Equals to:
+        # post '/api/v1/humans/:human_id/blood_historical_measures', to: 'blood_historical_measures#create'
+        # post :blood_historical_measures, on: :member, to: 'blood_historical_measures#create'
+
+
         post :get_human_measures, on: :member  # POST /api/v1/humans/:id/get_human_measures
         # It's an endpoint nested under human. It's a Post because it's a POST request to upload the file.
         post :upload_bioimpedance, on: :member
+        # humans is the resource
+        # :id is the dynamic segment that refers to the current human (the member)
+        # upload_bioimpedance is a custom action on that member
+        # This is the behavior when you create a memver route
+
+
 
         post :upload_imaging_report, on: :member
+
       end
     end
   end
