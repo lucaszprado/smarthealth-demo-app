@@ -8,12 +8,12 @@ class Api::V1::BloodHistoricalMeasuresController < ActionController::API
     pdf_files = params[:pdf_files]
 
     # Validate required params
-    if csv_file.blank?
-      return render json: {error: "Missing CSV file"}, status: :unprocessable_entity
+    if csv_file.blank? || pdf_files.blank?
+      return render json: {error: "Missing CSV or PDF file"}, status: :unprocessable_entity
     end
 
     # Process CSV file synchronously through deidicated service
-    result = CsvBloodHistoricalMeasuresService.process(csv_file, pdf_files)
+    result = BloodHistoricalMeasuresService.create(csv_file, pdf_files)
 
     if result[:errors].any?
       render json: { message: "Error during upload", errors: result[:errors]}, status: :unprocessable_entity

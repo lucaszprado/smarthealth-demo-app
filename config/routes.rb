@@ -18,7 +18,7 @@ Rails.application.routes.draw do
         resources :blood_historical_measures, only: [:create]
         # Equals to:
         # post '/api/v1/humans/:human_id/blood_historical_measures', to: 'blood_historical_measures#create'
-        # post :blood_historical_measures, on: :member, to: 'blood_historical_measures#create'
+        resources :imaging_reports, only: [:create]
 
 
         post :get_human_measures, on: :member  # POST /api/v1/humans/:id/get_human_measures

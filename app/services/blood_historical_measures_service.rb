@@ -1,7 +1,7 @@
 require 'csv'
 
-class CsvBloodHistoricalMeasuresService
-  def self.process(csv_file, pdf_files)
+class BloodHistoricalMeasuresService
+  def self.create(csv_file, pdf_files)
     result = {success_count: 0, errors: []}
     sources = {} # Cache for created sources by health_provider_id
 
@@ -36,7 +36,7 @@ class CsvBloodHistoricalMeasuresService
               human_id: human.id,
               source_type: SourceType.find_by(name: "Blood"),
               health_professional: nil, # Historical measures have no associated health professional
-              health_provider: health_provider,
+              health_provider_id: health_provider.id,
               pdf_files: pdf_files
             }
 

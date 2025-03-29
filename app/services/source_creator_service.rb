@@ -8,13 +8,13 @@ class SourceCreatorService
     model_source = Source.new(
       source_type_id: source_type.id,
       human_id: params[:human_id],
-      health_professional_id: params[:health_professional]&.id,
-      health_provider_id: params[:health_provider]&.id
+      health_professional_id: params[:health_professional_id],
+      health_provider_id: params[:health_provider_id]
     )
 
     puts "=================="
     Rails.logger.info "Created source: #{model_source.inspect}"
-    Rails.logger.info "params[:pdf_files]: #{params[:pdf_files].inspect}"
+    Rails.logger.info "params: #{params.inspect}"
     puts "=================="
     Rails.logger.debug "Metadata: #{params[:metadata].inspect}"
     # Rails.logger.debug "Index: #{index}"

@@ -108,7 +108,10 @@ class Api::V1::HumansController < ActionController::API
 
   def upload_imaging_report
     ActiveRecord::Base.transaction do
-      #Rails.logger.debug "Params received: #{params.inspect}"
+
+      # Rails.logger.debug "Raw Request Body: #{request.raw_post}"
+
+      # Rails.logger.debug "Params received: #{params.inspect}"
 
       # Until we refactor controller to use the same URL structure
       # We will treat params to have all the humans_id key.
@@ -138,14 +141,13 @@ class Api::V1::HumansController < ActionController::API
         raise ActiveRecord::Rollback
       end
 
-      labels = LabelAssignmentService.create(imaging_report, api_params)
+      labels = LabelAssignmentService.create(imaging_report, normalized_params)
       if labels.nil?
         render json: { error: "Failed to create Labels" }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
       else
         render json: { message: "Imaging report, source and Labels successfully created", imaging_report_id: imaging_report.id, source_id: source.id, labels: labels}, status: :created
       end
-
     end
   end
 
@@ -153,34 +155,34 @@ class Api::V1::HumansController < ActionController::API
 
   # This method returns a hash that matches matches the keyword arguments expected by create_source in SourceCreatorService
   # It safely extracts and whitelists parameters from a request.
-  def api_params
+  # def api_params
 
-    # Debugging: Log the type of `pdf_files`
-    #Rails.logger.debug "Before Processing: pdf_files is a #{params[:pdf_files].class}"
+  #   # Debugging: Log the type of `pdf_files`
+  #   #Rails.logger.debug "Before Processing: pdf_files is a #{params[:pdf_files].class}"
 
-    # Ensure `pdf_files` is always an array (handles single & multiple file uploads)
-    if params[:pdf_files].present?
-      params[:pdf_files] = params[:pdf_files].is_a?(Array) ? params[:pdf_files] : [params[:pdf_files]]
-    end
+  #   # Ensure `pdf_files` is always an array (handles single & multiple file uploads)
+  #   if params[:pdf_files].present?
+  #     params[:pdf_files] = params[:pdf_files].is_a?(Array) ? params[:pdf_files] : [params[:pdf_files]]
+  #   end
 
-    permitted_params = params.permit(
-      :id,
-      :health_professional_id,
-      :health_provider_id,
-      :imaging_method_id,
-      :date,
-      :content,
-      {pdf_files: []}, # Allow multiple files (array)
-      {metadata: [:file_type]}, # Allow nested metadata -> In hash format.
-      {label_system_id: []}, # Allow multiple labels ID (array)
-      {label_organ_id: []},
-      {label_part_id: []},
-      {label_spacial_group_id: []},
-      {label_positioning_id: []}
-    )
+  #   permitted_params = params.permit(
+  #     :id,
+  #     :health_professional_id,
+  #     :health_provider_id,
+  #     :imaging_method_id,
+  #     :date,
+  #     :content,
+  #     {pdf_files: []}, # Allow multiple files (array)
+  #     {metadata: [:file_type]}, # Allow nested metadata -> In hash format.
+  #     {label_system_id: []}, # Allow multiple labels ID (array)
+  #     {label_organ_id: []},
+  #     {label_part_id: []},
+  #     {label_spacial_group_id: []},
+  #     {label_positioning_id: []}
+  #   )
 
-    # # Debugging: Log the final permitted parameters
-    # Rails.logger.debug "Permitted Params: #{permitted_params.inspect}"
-  end
+  #   # # Debugging: Log the final permitted parameters
+  #   # Rails.logger.debug "Permitted Params: #{permitted_params.inspect}"
+  # end
 
 end
