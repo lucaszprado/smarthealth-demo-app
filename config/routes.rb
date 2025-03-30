@@ -19,7 +19,8 @@ Rails.application.routes.draw do
         # Equals to:
         # post '/api/v1/humans/:human_id/blood_historical_measures', to: 'blood_historical_measures#create'
         resources :imaging_reports, only: [:create]
-
+        resources :bioimpedance_measures, only: [:create]
+        resources :blood_measures, only: [:create]
 
         post :get_human_measures, on: :member  # POST /api/v1/humans/:id/get_human_measures
         # It's an endpoint nested under human. It's a Post because it's a POST request to upload the file.

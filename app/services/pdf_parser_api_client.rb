@@ -1,7 +1,11 @@
 require 'net/http'
 require 'uri'
 
-class VendorApi
+# This Client connects to vendor to get parsed PDF
+# The endpoint changes based on gender
+# Male gets extracted pdf with male references
+# female gets extracted pdf with female references
+class PdfParserApiClient
 
   PID_MALE = ENV['ORNAMENT_MALE_ID']
   PID_FEMALE = ENV['ORNAMENT_FEMALE_ID']
@@ -10,7 +14,7 @@ class VendorApi
   VENDOR_URL_FEMALE = "https://api.ornament.health/medical-data-api/public/v1.0/profile/biomarkers?pid=#{PID_FEMALE}"
 
 
-  def self.get_parsed_data(gender)
+  def self.fetch_parsed_data(gender)
     if gender == "M"
       uri = URI.parse(VENDOR_URL_MALE)
     else
@@ -31,9 +35,8 @@ class VendorApi
       http.request(request)
     end
 
-    # Assuming the response is JSON
     JSON.parse(response.body)
   rescue => e
-    raise "Error sending PDF to vendor: #{e.message}"
+    raise "Error fetching response from vendor: #{e.message}"
   end
 end

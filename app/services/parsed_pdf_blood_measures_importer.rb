@@ -1,5 +1,5 @@
-class MeasureProcessor
-  def self.save_measures_from_vendor(source, hash_data, human)
+class ParsedPdfBloodMeasuresImporter
+  def self.import(source, hash_data, human)
     begin
       ActiveRecord::Base.transaction do
         date = Time.at(hash_data["biomarkers"][0]["entries"][0]["date"]).to_date
