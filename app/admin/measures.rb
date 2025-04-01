@@ -77,4 +77,50 @@ ActiveAdmin.register Measure do
   filter :source_human_name_cont, as: :string, label: "Human Name"
   filter :biomarker, as: :select, collection: -> { Biomarker.order(:name).map {|b| ["#{b.id} | #{b.name}", b.id]}}
 
+
+  # Define custom csv export
+  # By default ActiveAdmin only exports model attributes
+  # If we want associantions os calculated fields we must
+  # customize the csv DSL method provided by Active Admin
+  # For each measure we bring the attribute or run the block
+  # Measure is the argument for each block statement
+  csv do
+    column :id
+    column :value
+    column :original_value
+
+    column(:date) do |measure|
+      measure.date.strftime("%Y-%m-%d") if measure.date
+    end
+
+    column("Unit ID") { |measure| measure.unit.id if measure.unit }
+    column(:unit) { |measure| measure.unit.name if measure.unit }
+    column("Biomarker ID") {|measure| measure.biomarker.id if measure.biomarker}
+    column(:biomarker_EN) {|measure| measure.biomarker.name if measure.biomarker}
+
+    column(:biomarker_PT) do |measure|
+      if measure.biomarker
+        pt_synonyms = measure.biomarker.synonyms.select { |s| s.language == "PT" }
+        pt_synonyms.map(&:name).join(", ") || measure.biomarker.name
+      end
+    end
+
+    column("Category ID") { |measure| measure.category.id if measure.category }
+    column(:category) { |measure| measure.category.name if measure.category }
+    column("Human") { |measure| measure.source.human.name if measure.source&.human }
+    column(:source_id) { |measure| measure.source.id if measure.source }
+    column :created_at
+    column :updated_at
+  end
+
+
+  # We're overriding ActiveAdmin standard controller behaviour
+  # Super returns Measure.all
+  # with_biomarker_and_synoyms is defined on the model
+  # Measure.all.includes(biomarker: :synonyms)
+  controller do
+    def scoped_collection
+      super.with_biomarker_and_synonyms
+    end
+  end
 end

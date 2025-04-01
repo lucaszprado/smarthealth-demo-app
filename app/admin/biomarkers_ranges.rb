@@ -15,4 +15,22 @@ ActiveAdmin.register BiomarkersRange do
     permitted
   end
 
+  csv do
+    column :id
+    column :gender
+    column :age
+    column :possible_min_value
+    column :possible_max_value
+    column("Biomaker ID") { |biomarkers_range| biomarkers_range.biomaker.id }
+    column(:biomaker_EN) { |biomarkers_range| biomarkers_range.biomaker.id }
+    column(:biomarker_PT) do |measure|
+      if measure.biomarker
+        pt_synonyms = measure.biomarker.synonyms.select { |s| s.language == "PT" }
+        pt_synonyms.map(&:name).join(", ") || measure.biomarker.name
+      end
+    end
+
+    column :created_at
+    column :updated_at
+  end
 end

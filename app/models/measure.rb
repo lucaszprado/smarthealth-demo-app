@@ -14,10 +14,15 @@ class Measure < ApplicationRecord
     ["biomarker_id", "category_id", "created_at", "date", "human_id", "id", "id_value", "original_value", "unit_id", "updated_at", "value", "source"]
   end
 
+
+  scope :with_biomarker_and_synonyms, -> {
+    includes(biomarker: :synonyms)
+  }
+
   # Fetch Measures from a given human for a specific biomarker
   #
   # Rails best practics
-  # This's a scope. Very similar to a class method
+  # This's a scope. Very similar to a class method. It's defined by using a lambda function
   scope :for_human_biomarker, ->(human, biomarker) {
     joins(:source)
     .where(sources: { human_id: human.id }, biomarker: biomarker)

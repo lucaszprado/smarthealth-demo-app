@@ -12,14 +12,6 @@ class SourceCreatorService
       health_provider_id: params[:health_provider_id]
     )
 
-    puts "=================="
-    Rails.logger.info "Created source: #{model_source.inspect}"
-    Rails.logger.info "params: #{params.inspect}"
-    puts "=================="
-    Rails.logger.debug "Metadata: #{params[:metadata].inspect}"
-    # Rails.logger.debug "Index: #{index}"
-    # Rails.logger.debug "Metadata at index: #{params[:metadata][index].inspect}"
-
     ActiveRecord::Base.transaction do
       if model_source.save
         attach_files_with_metadata(model_source, params[:pdf_files], params[:metadata])
