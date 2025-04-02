@@ -13,6 +13,34 @@ class Biomarker < ApplicationRecord
     ["created_at", "external_ref", "id", "id_value", "name", "updated_at"]
   end
 
+  # 1. Used in Active Admin filters
+  scope :with_distinct_pt_synonyms, -> {
+    left_joins(:synonyms) # Brings biomarkers w/ and w/o a synonym.
+      .where("synonyms.language = 'PT' OR synonyms.id IS NULL")
+      .includes(:synonyms)
+      .select("DISTINCT ON (biomarkers.id) biomarkers.*, COALESCE(synonyms.name, biomarkers.name) AS sort_name")
+      #.distinct -> distinct without proper control over which row wins can behave unpredictably in SQL
+      # Because of it we moved it to the select statement
+      .order(Arel.sql("biomarkers.id, COALESCE(synonyms.name, biomarkers.name)"))
+      # .order(...) is required by DISTINCT ON, and must start with the same fields used in DISTINCT ON (...)
+      # When you use DISTINCT ON (something) in PostgreSQL, the first part of the ORDER BY clause must exactly match the DISTINCT ON fields.
+      #
+      # Arel.sql tells Rails that it can trust this SQL. No SQL Injection.
+      # Arel is a Ruby library used internally by Rails to build SQL queries
+      # .oder method doesn't accept parameters, it accepts only column references.
+      # Because of that we can't use the placeholder ?
+      #
+      #.reorder("sort_name")
+      #.reorder(...) tells ActiveRecord/PostgreSQL how to actually order the final output
+      # However reorder messed up how distinct works -> We need second query just to reorder.
+  }
+
+  # This query return a Partial Active Record relation.
+  # Because of it it's not defined as a scope.
+  def self.with_pt_synonyms_ordered_by_name
+    from(with_distinct_pt_synonyms, :biomarkers).order("sort_name")
+  end
+
 
   def self.with_last_measure_for_human(human_id, birthdate, gender)
     # 1. Build ActiveRecord collection of measures

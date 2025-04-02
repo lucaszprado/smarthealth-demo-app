@@ -1,7 +1,11 @@
 class Source < ApplicationRecord
   belongs_to :human
   has_many :measures, dependent: :destroy
+
   has_many :imaging_reports, dependent: :destroy
+  # Deleting a source deletes its respective imaging_reports
+  # has_one :imaging_report, dependent: :destroy
+
   has_many_attached :files
 
   # Association with SourceType
@@ -22,4 +26,14 @@ class Source < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["source_type", "created_at", "id", "updated_at", "files_attachments_id", "files_blobs_id", "file_cont", "file", "origin"]
   end
+
+  def date
+    case source_type.name
+    when "Blood" then measures.first&.date
+    when "Bioimpedance" then measures.first&.date
+    when "Image" then imaging_reports.first&.date
+    else nil
+    end
+  end
+
 end

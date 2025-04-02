@@ -24,4 +24,14 @@ ActiveAdmin.register Human do
     f.actions
   end
 
+  preserve_default_filters!
+
+  filter :id, as: :select, collection: -> {
+    Human.order(:id).pluck(:id)
+  }, label: "Human ID"
+
+  filter :name, as: :select, collection: -> {
+    Human.order(:name).pluck(:name).uniq
+  }, label: "Human name"
+
 end

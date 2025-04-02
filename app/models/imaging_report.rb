@@ -7,6 +7,13 @@ class ImagingReport < ApplicationRecord
   has_one :health_professional, through: :source
   has_one :health_provider, through: :source
 
+  # Deleting an imaging_report will also delete its source
+  # Source was defined as has_many imaging_reports
+  # Because of that we can't use dependent: :destroy on ImagingReport Model
+  # Until we refactor the code, we'll do this by a callback method
+  after_destroy :destroy_source
+
+
   def self.ransackable_attributes(auth_object = nil)
     ["content", "created_at", "date", "id", "id_value", "imaging_method_id", "report_summary_id", "source_id", "updated_at"]
   end
@@ -125,5 +132,9 @@ class ImagingReport < ApplicationRecord
     elsif gender == :feminine
       target_word = target_word.gsub(/o$/, "a")
     end
+  end
+
+  def destroy_source
+    source.destroy
   end
 end

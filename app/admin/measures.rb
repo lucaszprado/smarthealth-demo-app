@@ -23,6 +23,12 @@ ActiveAdmin.register Measure do
     column :original_value
     column :date
     column :biomarker
+    column(:biomarker_PT) do |measure|
+      if measure.biomarker
+        pt_synonyms = measure.biomarker.synonyms.select { |s| s.language == "PT" }
+        pt_synonyms.map(&:name).join(", ") || measure.biomarker.name
+      end
+    end
     column :category
     column :unit
     column :source
@@ -79,41 +85,21 @@ ActiveAdmin.register Measure do
   }, label: "Human ID"
 
   filter :source_human_name_eq, as: :select, collection: -> {
-    Human.order(:name).pluck(:name, :id)
+    Human.order(:name).pluck(:name)
   }, label: "Exact Human Name"
 
   filter :biomarker, as: :select, collection: -> {
-    Biomarker.order(:name).map {|b| ["#{b.id} | #{b.name}", b.id]}
-  }
-  #  because map returns an array, and ✅ you’re returning an array on each iteration, you end up with an array of arrays.
-  filter :biomarker, as: :select, collection: -> {
-    Biomarker
-      .left_joins(:synonyms) # Brings biomarkers w/ and w/o a synonym.
-      .where("synonyms.language = 'PT' OR synonyms.id IS NULL")
-      .includes(:synonyms)
-      .select("DISTINCT ON (biomarkers.id) biomarkers.*, COALESCE(synonyms.name, biomarkers.name) AS sort_name")
-      #.distinct -> distinct without proper control over which row wins can behave unpredictably in SQL
-      # Because of it we moved it to the select statement
-      .order(Arel.sql("biomarkers.id, COALESCE(synonyms.name, biomarkers.name)"))
-      # .order(...) is required by DISTINCT ON, and must start with the same fields used in DISTINCT ON (...)
-      # When you use DISTINCT ON (something) in PostgreSQL, the first part of the ORDER BY clause must exactly match the DISTINCT ON fields.
-      #
-      # Arel.sql tells Rails that it can trust this SQL. No SQL Injection.
-      # Arel is a Ruby library used internally by Rails to build SQL queries
-      # .oder method doesn't accept parameters, it accepts only column references.
-      # Because of that we can't use the placeholder ?
-      #===.reorder("sort_name")
-      # .reorder(...) tells ActiveRecord/PostgreSQL how to actually order the final output
-      .map do |b|
-        #pt_synonym = b.synonyms.detect {|s| s.language == "PT"}
-        #label = pt_synonym ? pt_synonym.name : b.name
-        label = b.sort_name ? b.sort_name : b.name
-        # b is an instance of Biomarker
-        # .sort_name accesses the virtual attribute you defined in the .select(...) clause
-        # Even though sort_name isn’t a real column on the biomarkers table, it’s now available on the b object as a method (thanks to ActiveRecord's dynamic attributes from .select(...)).
-        [label, b.id]
-      end
+    Biomarker.order(:id).map {|b| ["#{b.id} | #{b.name}", b.id]}
+  }, label: "Biomarker ID"
+
+  filter :biomarker_synonyms_name_eq, as: :select, collection: -> {
+    Synonym.where(language: "PT").order(:name).pluck(:name).uniq
   }, label: "Biomarker PT"
+
+  # This filter can be used. Ransack only accepts one filter condition per resource.
+  # filter :biomarker, as: :select, collection: -> {
+  #   biomarker_dropdown_collection
+  # }, label: "Biomarker PT"
 
   # Define custom csv export
   # By default ActiveAdmin only exports model attributes
@@ -152,12 +138,18 @@ ActiveAdmin.register Measure do
 
 
   # We're overriding ActiveAdmin standard controller behaviour
-  # Super returns Measure.all
-  # with_biomarker_and_synoyms is defined on the model
-  # Measure.all.includes(biomarker: :synonyms)
+  # Super returns the standard controller class
   controller do
+
+  # Measure.all is the standard controller method for this resource
+  # The scope with_biomarkers_and_synonyms eager loads synonyms along with measures.all
+  # Final output: Measure.all.includes(biomarker: :synonyms)
     def scoped_collection
       super.with_biomarker_and_synonyms
     end
+
+    # Rails does not automatically include custom helper modules into ActiveAdmin DSL files
+    # This tells ActiveAdmin’s controller/view layer to include your helper
+    helper Admin::BiomarkerFilterHelper
   end
 end

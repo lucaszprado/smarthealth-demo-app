@@ -14,7 +14,6 @@ class Measure < ApplicationRecord
     ["biomarker_id", "category_id", "created_at", "date", "human_id", "id", "id_value", "original_value", "unit_id", "updated_at", "value", "source"]
   end
 
-
   scope :with_biomarker_and_synonyms, -> {
     includes(biomarker: :synonyms)
   }
