@@ -74,9 +74,46 @@ ActiveAdmin.register Measure do
     end
   }, label: "Source (ID - Human Name)"
 
-  filter :source_human_name_cont, as: :string, label: "Human Name"
-  filter :biomarker, as: :select, collection: -> { Biomarker.order(:name).map {|b| ["#{b.id} | #{b.name}", b.id]}}
+  filter :source_human_id, as: :select, collection: -> {
+    Human.order(:id).pluck(:id)
+  }, label: "Human ID"
 
+  filter :source_human_name_eq, as: :select, collection: -> {
+    Human.order(:name).pluck(:name, :id)
+  }, label: "Exact Human Name"
+
+  filter :biomarker, as: :select, collection: -> {
+    Biomarker.order(:name).map {|b| ["#{b.id} | #{b.name}", b.id]}
+  }
+  #  because map returns an array, and ✅ you’re returning an array on each iteration, you end up with an array of arrays.
+  filter :biomarker, as: :select, collection: -> {
+    Biomarker
+      .left_joins(:synonyms) # Brings biomarkers w/ and w/o a synonym.
+      .where("synonyms.language = 'PT' OR synonyms.id IS NULL")
+      .includes(:synonyms)
+      .select("DISTINCT ON (biomarkers.id) biomarkers.*, COALESCE(synonyms.name, biomarkers.name) AS sort_name")
+      #.distinct -> distinct without proper control over which row wins can behave unpredictably in SQL
+      # Because of it we moved it to the select statement
+      .order(Arel.sql("biomarkers.id, COALESCE(synonyms.name, biomarkers.name)"))
+      # .order(...) is required by DISTINCT ON, and must start with the same fields used in DISTINCT ON (...)
+      # When you use DISTINCT ON (something) in PostgreSQL, the first part of the ORDER BY clause must exactly match the DISTINCT ON fields.
+      #
+      # Arel.sql tells Rails that it can trust this SQL. No SQL Injection.
+      # Arel is a Ruby library used internally by Rails to build SQL queries
+      # .oder method doesn't accept parameters, it accepts only column references.
+      # Because of that we can't use the placeholder ?
+      #===.reorder("sort_name")
+      # .reorder(...) tells ActiveRecord/PostgreSQL how to actually order the final output
+      .map do |b|
+        #pt_synonym = b.synonyms.detect {|s| s.language == "PT"}
+        #label = pt_synonym ? pt_synonym.name : b.name
+        label = b.sort_name ? b.sort_name : b.name
+        # b is an instance of Biomarker
+        # .sort_name accesses the virtual attribute you defined in the .select(...) clause
+        # Even though sort_name isn’t a real column on the biomarkers table, it’s now available on the b object as a method (thanks to ActiveRecord's dynamic attributes from .select(...)).
+        [label, b.id]
+      end
+  }, label: "Biomarker PT"
 
   # Define custom csv export
   # By default ActiveAdmin only exports model attributes
