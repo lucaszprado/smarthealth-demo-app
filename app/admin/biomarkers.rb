@@ -15,4 +15,23 @@ ActiveAdmin.register Biomarker do
     permitted
   end
 
+  index do
+    column :id
+    column :name
+    column :external_ref
+    column(:biomarker_PT) do |biomarker|
+      pt_synonyms = biomarker.synonyms.select { |s| s.language == "PT" }
+      # pt_synonyms.map(&:name).join(", ")
+      pt_synonyms.empty? ? biomarker.name : pt_synonyms
+    end
+    column :created_at
+    column :updated_at
+  end
+
+  preserve_default_filters!
+
+  filter :id, as: :select, collection: -> {
+    Biomarker.order(:id).pluck(:id)
+  }, label: "Biomarker ID"
+
 end

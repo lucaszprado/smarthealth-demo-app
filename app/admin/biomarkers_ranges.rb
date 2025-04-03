@@ -21,8 +21,8 @@ ActiveAdmin.register BiomarkersRange do
     column :age
     column :possible_min_value
     column :possible_max_value
-    column("Biomaker ID") { |biomarkers_range| biomarkers_range.biomaker.id }
-    column(:biomaker_EN) { |biomarkers_range| biomarkers_range.biomaker.id }
+    column("Biomaker ID") { |biomarkers_range| biomarkers_range.biomarker.id }
+    column(:biomaker_EN) { |biomarkers_range| biomarkers_range.biomarker.name }
     column(:biomarker_PT) do |measure|
       if measure.biomarker
         pt_synonyms = measure.biomarker.synonyms.select { |s| s.language == "PT" }

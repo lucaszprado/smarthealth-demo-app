@@ -14,6 +14,9 @@ class Measure < ApplicationRecord
     ["biomarker_id", "category_id", "created_at", "date", "human_id", "id", "id_value", "original_value", "unit_id", "updated_at", "value", "source"]
   end
 
+  # Includes Biomarkers and Synonyms when bringing a Mesure
+  # Used @
+  # - ActiveAdmin Resource file
   scope :with_biomarker_and_synonyms, -> {
     includes(biomarker: :synonyms)
   }

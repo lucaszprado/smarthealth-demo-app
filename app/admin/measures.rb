@@ -26,7 +26,9 @@ ActiveAdmin.register Measure do
     column(:biomarker_PT) do |measure|
       if measure.biomarker
         pt_synonyms = measure.biomarker.synonyms.select { |s| s.language == "PT" }
-        pt_synonyms.map(&:name).join(", ") || measure.biomarker.name
+        # pt_synonyms.map(&:name).join(", ") || measure.biomarker.name
+        pt_synonyms || measure.biomarker
+        # It's better to return the objects. This way ActiveAdmin make them clickable.
       end
     end
     column :category
