@@ -18,7 +18,7 @@ class BioimpedanceMeasuresService
 
       source = SourceCreatorService.create_source(source_params, "Bioimpedance")
 
-      csv_data.each do |row|
+      csv_data.each_with_index do |row, index|
         row_data = row.to_h.transform_values(&:presence)
         # row.to_h converts CSV row into a hash
         # keys are the headers from the CSV
@@ -60,10 +60,10 @@ class BioimpedanceMeasuresService
           optimal_min_value: row["optimal_min"].nil? ? nil : row["optimal_min"].to_f,
           optimal_max_value: row["optimal_max"].nil? ? nil : row["optimal_max"].to_f
         )
+      rescue StandardError => e
+        result[:errors] << "Row #{index + 2} : #{e.message}"
+        raise ActiveRecord::Rollback
       end
-    rescue StandardError => e
-      result[:errors] << "Row #{index + 2} : #{e.message}"
-      raise ActiveRecord::Rollback
     end
     result
   end
