@@ -28,10 +28,10 @@ class Source < ApplicationRecord
   end
 
   def date
-    case source_type.name
-    when "Blood" then measures.first&.date
-    when "Bioimpedance" then measures.first&.date
-    when "Image" then imaging_reports.first&.date
+    case source_type&.name
+    when "Blood" then measures&.first&.date
+    when "Bioimpedance" then measures&.first&.date
+    when "Image" then imaging_reports&.first&.date
     else nil
     end
   end

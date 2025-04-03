@@ -64,7 +64,7 @@ ActiveAdmin.register Source do
     id_column
     column :human
     column :source_type
-    column(:date) {|source| source.date}
+    column(:date) {|source| source&.date}
     column :created_at
     column :updated_at
     column "PDF File" do |source|
