@@ -23,7 +23,10 @@ class SourceCreatorService
 
   rescue => e
     Rails.logger.error "SourceCreatorService Error: #{e.message}"
-    return nil
+    raise StandardError, "Source creation failed: #{e.message}"
+    # raise ActiveRecord::Rollback, "Failed to create Source: #{model_source.errors.full_messages.join(', ')}"
+    # raise Active::Record doesn't stop the transaction -> Controller will receive nil
+    # and we have measures with no source
   end
 
   private
