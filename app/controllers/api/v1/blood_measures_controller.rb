@@ -17,7 +17,7 @@ class Api::V1::BloodMeasuresController < ActionController::API
         health_professional_id: health_professional_id,
         pdf_files: pdf_file
       }
-    debugger
+  
     source = SourceCreatorService.create_source(source_params, "Blood")
 
     # Parse the pdf using external vendor
