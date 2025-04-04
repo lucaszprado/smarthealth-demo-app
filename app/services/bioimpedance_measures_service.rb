@@ -13,7 +13,8 @@ class BioimpedanceMeasuresService
         human_id: params[:human_id],
         health_provider_id: csv_data[1]["health_provider_id"],
         health_professional_id: csv_data[1]["health_professional_id"],
-        pdf_files: params[:pdf_files]
+        pdf_files: params[:pdf_files],
+        origin: :manual
       }
 
       source = SourceCreatorService.create_source(source_params, "Bioimpedance")

@@ -9,7 +9,8 @@ class SourceCreatorService
       source_type_id: source_type.id,
       human_id: params[:human_id],
       health_professional_id: params[:health_professional_id],
-      health_provider_id: params[:health_provider_id]
+      health_provider_id: params[:health_provider_id],
+      origin: params[:origin]
     )
 
     ActiveRecord::Base.transaction do

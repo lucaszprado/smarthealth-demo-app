@@ -64,6 +64,7 @@ ActiveAdmin.register Source do
     id_column
     column :human
     column :source_type
+    column :origin
     column(:date) {|source| source&.date}
     column :created_at
     column :updated_at

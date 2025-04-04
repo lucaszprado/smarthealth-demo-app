@@ -37,7 +37,8 @@ class BloodHistoricalMeasuresService
               source_type: SourceType.find_by(name: "Blood"),
               health_professional: nil, # Historical measures have no associated health professional
               health_provider_id: health_provider.id,
-              pdf_files: pdf_files
+              pdf_files: pdf_files,
+              origin: :batch
             }
 
             sources[source_key] = SourceCreatorService.create_source(source_params, "Blood")

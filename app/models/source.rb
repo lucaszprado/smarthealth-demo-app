@@ -15,9 +15,9 @@ class Source < ApplicationRecord
   belongs_to :health_professional, optional: true
   belongs_to :health_provider, optional: true
 
-  # A source can be by exam or historical
-  # Exam is the default value
-  enum origin: { exam: 0, historical: 1}
+  # A source can be by manual, batch or api
+  # Manual is the default value
+  enum origin: { manual: 0, batch: 1, api: 2}
 
   def self.ransackable_associations(auth_object = nil)
     ["measures", "human", "source_type", "health_provider", "health_professional", "imaging_reports"]
