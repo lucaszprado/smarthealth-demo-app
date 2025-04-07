@@ -22,7 +22,7 @@ ActiveAdmin.register Biomarker do
     column(:biomarker_PT) do |biomarker|
       pt_synonyms = biomarker.synonyms.select { |s| s.language == "PT" }
       # pt_synonyms.map(&:name).join(", ")
-      pt_synonyms.empty? ? biomarker.name : pt_synonyms
+      #pt_synonyms.empty? ? biomarker.name : pt_synonyms
     end
     column :created_at
     column :updated_at

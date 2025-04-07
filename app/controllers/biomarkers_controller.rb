@@ -6,8 +6,6 @@ class BiomarkersController < ApplicationController
     birthdate = @human.birthdate.strftime('%Y-%m-%d')
     gender = @human.gender
     @biomarkers = Biomarker.with_last_measure_for_human(@human.id, birthdate, gender)
-
-
   end
 
 

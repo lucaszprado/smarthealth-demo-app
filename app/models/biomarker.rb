@@ -41,64 +41,98 @@ class Biomarker < ApplicationRecord
     from(with_distinct_pt_synonyms, :biomarkers).order("sort_name")
   end
 
+  # Build ActiveRecord collection of measures with the latest measure per biomarker,
+  # Build the Inner Query to select the latest measure per biomarker,
+  def self.with_last_measure_for_human(human_id, birthdate, gender)  
+    calculated_age_sql = "FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))"
 
-  def self.with_last_measure_for_human(human_id, birthdate, gender)
-    # 1. Build ActiveRecord collection of measures
-    base_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
-    .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
-    .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # unit is included through measures
-    .where(sources: {human_id: human_id})
-    .where("unit_factors.biomarker_id = measures.biomarker_id")
-    .where("unit_factors.unit_id = measures.unit_id")
-    .where("biomarkers_ranges.age = FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))", birthdate)
-    .where("biomarkers_ranges.gender = ?", gender)
-    .where("synonyms.language = 'PT'")
-    # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
-    .select('DISTINCT ON (measures.biomarker_id) measures.*, biomarkers.name, synonyms.name AS synonym_name, units.name AS unit_name, units.value_type AS unit_value_type,'\
-    'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
-    'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value, '\
-    'source_types.name AS source_type_name')
-    .order('measures.biomarker_id, measures.date DESC, synonyms.id DESC');
+    inner_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
+      .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
+      .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # includes are often best placed on the final query if possible, but might be needed here depending on usage.
+      .where(sources: {human_id: human_id})
+      .where("(unit_factors.biomarker_id = measures.biomarker_id AND unit_factors.unit_id = measures.unit_id) OR unit_factors.id IS NULL")
+      # Allow records even if unit_factor doesn't exist
+      .where("(biomarkers_ranges.biomarker_id = biomarkers.id AND biomarkers_ranges.age = #{calculated_age_sql} AND biomarkers_ranges.gender = ?) OR biomarkers_ranges.id IS NULL", birthdate, gender)
+      # Allow records even if biomarker_range doesn't exist for the specific age/gender
+      #
+      # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
+      # Select necessary columns, calculate display_name
+      .select(<<~SQL)
+        DISTINCT ON (measures.biomarker_id)
+        measures.*,
+        biomarkers.name,
+        CASE WHEN synonyms.language = 'PT' THEN synonyms.name ELSE biomarkers.name END AS display_name,
+        units.name AS unit_name,
+        units.value_type AS unit_value_type,
+        biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value,
+        biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value,
+        source_types.name AS source_type_name
+      SQL
+      # Order strictly for DISTINCT ON correctness
+      .order(Arel.sql("measures.biomarker_id, measures.date DESC, CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END, synonyms.id DESC"))
 
-    # 2. Order collection by synonym or name, structure the data with all select selection and not just AR defult class and transform strings into symbols as keys.
-    base_query = sort_by_synonym_or_name(base_query.map(&:attributes).map(&:symbolize_keys))
-    # base_query = sort_by_synonym_or_name(base_query).map(&:attributes).map(&:symbolize_keys)
+    # 2. Build the Outer Query to apply the final sorting on display_name
+    # COLLATE \"pt_BR.UTF-8\" to treat Portuguese characters correctly
+    # The alias 'biomarkers' allows referring to columns from the inner query.
+    final_query = Biomarker.from(inner_query, :biomarkers)
+                           .order(Arel.sql("biomarkers.display_name COLLATE \"pt_BR.UTF-8\" ASC"))
 
-    # 3. Transform dataset for rendering
-    base_query = add_measure_text(base_query).yield_self{ |query| add_measure_status(query) }
+    # 3. Structure the data from the final sorted query
+    results = final_query.map(&:attributes).map(&:symbolize_keys)
 
-    return base_query
+    # 4. Transform dataset for rendering (operates on the Array of Hashes)
+    results = add_measure_text(results).yield_self{ |query| add_measure_status(query) }
+
+    return results
   end
 
   def self.search_for_human(human_id, birthdate, gender, query)
-    base_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
-    .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
-    .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # unit is included through measures
-    .where(sources: {human_id: human_id})
-    .where("unit_factors.biomarker_id = measures.biomarker_id")
-    .where("unit_factors.unit_id = measures.unit_id")
-    .where("biomarkers_ranges.age = FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))", birthdate)
-    .where("biomarkers_ranges.gender = ?", gender)
-    .where("synonyms.language = 'PT'")
-    .where(
-          "(to_tsvector('portuguese', unaccent(synonyms.name)) ||
-            to_tsvector('portuguese', unaccent(biomarkers.name))) @@
-            to_tsquery('portuguese', unaccent(:query))",
-          query: query
-        )
-    # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
-    .select('DISTINCT ON (measures.biomarker_id) measures.*, biomarkers.name, synonyms.name AS synonym_name, units.name AS unit_name, units.value_type AS unit_value_type,'\
-    'biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value, '\
-    'biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value, '\
-    'source_types.name AS source_type_name')
-    .order('measures.biomarker_id, measures.date DESC, synonyms.id DESC');
+    calculated_age_sql = "FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))"
 
-    # 2. Order collection by synonym or name, structure the data with all select selection and not just AR defult class and transform strings into symbols as keys.
-    base_query = sort_by_synonym_or_name(base_query.map(&:attributes).map(&:symbolize_keys))
+    inner_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
+      .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
+      .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # includes are often best placed on the final query if possible, but might be needed here depending on usage.
+      .where(sources: {human_id: human_id})
+      # Allow records even if unit_factor doesn't exist
+      .where("(unit_factors.biomarker_id = measures.biomarker_id AND unit_factors.unit_id = measures.unit_id) OR unit_factors.id IS NULL")
+      # Allow records even if biomarker_range doesn't exist for the specific age/gender
+      .where("(biomarkers_ranges.biomarker_id = biomarkers.id AND biomarkers_ranges.age = #{calculated_age_sql} AND biomarkers_ranges.gender = ?) OR biomarkers_ranges.id IS NULL", birthdate, gender)
+      .where(
+            "(to_tsvector('portuguese', unaccent(synonyms.name)) ||
+              to_tsvector('portuguese', unaccent(biomarkers.name))) @@
+              to_tsquery('portuguese', unaccent(:query))",
+            query: query
+          )
+      # 
+      # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
+      # Select necessary columns, calculate display_name
+      .select(<<~SQL)
+        DISTINCT ON (measures.biomarker_id)
+        measures.*,
+        biomarkers.name,
+        CASE WHEN synonyms.language = 'PT' THEN synonyms.name ELSE biomarkers.name END AS display_name,
+        units.name AS unit_name,
+        units.value_type AS unit_value_type,
+        biomarkers_ranges.possible_min_value / unit_factors.factor AS same_unit_original_value_possible_min_value,
+        biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value,
+        source_types.name AS source_type_name
+      SQL
+      # Order strictly for DISTINCT ON correctness
+      .order(Arel.sql("measures.biomarker_id, measures.date DESC, CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END, synonyms.id DESC"))
 
-    # 3. Transform dataset for rendering
-    base_query = add_measure_text(base_query).yield_self{ |query| add_measure_status(query) }
+   # 2. Build the Outer Query to apply the final sorting on display_name
+    # COLLATE \"pt_BR.UTF-8\" to treat Portuguese characters correctly
+    # The alias 'biomarkers' allows referring to columns from the inner query.
+    final_query = Biomarker.from(inner_query, :biomarkers)
+                           .order(Arel.sql("biomarkers.display_name COLLATE \"pt_BR.UTF-8\" ASC"))
 
+    # 3. Structure the data from the final sorted query
+    results = final_query.map(&:attributes).map(&:symbolize_keys)
+
+    # 4. Transform dataset for rendering (operates on the Array of Hashes)
+    results = add_measure_text(results).yield_self{ |query| add_measure_status(query) }
+
+    return results
   end
 
   # Instance method
@@ -110,19 +144,19 @@ class Biomarker < ApplicationRecord
 
   private
 
+  # Removed sort_by_display_name as sorting is now handled by the database
+  # def self.sort_by_display_name(collection)
+  #   collection.sort_by do |biomarker|
+  #     biomarker[:display_name]
+  #   end
+  # end
+
   def self.sort_by_synonym_or_name(collection)
     collection.sort_by do |biomarker|
       synonym = biomarker[:synonym_name]
       synonym ? biomarker[:synonym_name] : biomarker[:name]
     end
   end
-
-  # def self.sort_by_synonym_or_name(collection)
-  #   collection.sort_by do |biomarker|
-  #     synonym = biomarker.synonyms.detect { |s| s.language == "PT" }
-  #     synonym ? synonym.name : biomarker.name
-  #   end
-  # end
 
   def self.add_measure_text(collection)
     collection.each do |biomarker|
