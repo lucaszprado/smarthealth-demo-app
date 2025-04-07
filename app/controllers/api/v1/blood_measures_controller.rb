@@ -15,7 +15,8 @@ class Api::V1::BloodMeasuresController < ActionController::API
         human_id: human.id,
         health_provider_id: health_provider_id,
         health_professional_id: health_professional_id,
-        pdf_files: pdf_file
+        pdf_files: pdf_file,
+        origin: :manual
       }
   
     source = SourceCreatorService.create_source(source_params, "Blood")

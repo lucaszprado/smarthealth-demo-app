@@ -2,7 +2,7 @@
 
 <!-- Last measure div -->
 <div class="u-flex u-flex--justifyStart u-flex--alignCenter mb-4">
-  <%= measure_type(measure) %>
+  <%= render 'measures/non_ranges', locals: measure_attributes(measure) %>
 </div>
 
 <!-- JavaScript Chart-->
