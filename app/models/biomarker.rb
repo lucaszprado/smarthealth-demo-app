@@ -75,7 +75,7 @@ class Biomarker < ApplicationRecord
     # COLLATE \"pt_BR.UTF-8\" to treat Portuguese characters correctly
     # The alias 'biomarkers' allows referring to columns from the inner query.
     final_query = Biomarker.from(inner_query, :biomarkers)
-                           .order(Arel.sql("biomarkers.display_name COLLATE \"pt_BR.UTF-8\" ASC"))
+                           .order(Arel.sql("biomarkers.display_name COLLATE \"pt_BR\" ASC"))
 
     # 3. Structure the data from the final sorted query
     results = final_query.map(&:attributes).map(&:symbolize_keys)
@@ -124,7 +124,7 @@ class Biomarker < ApplicationRecord
     # COLLATE \"pt_BR.UTF-8\" to treat Portuguese characters correctly
     # The alias 'biomarkers' allows referring to columns from the inner query.
     final_query = Biomarker.from(inner_query, :biomarkers)
-                           .order(Arel.sql("biomarkers.display_name COLLATE \"pt_BR.UTF-8\" ASC"))
+                           .order(Arel.sql("biomarkers.display_name COLLATE \"pt_BR\" ASC"))
 
     # 3. Structure the data from the final sorted query
     results = final_query.map(&:attributes).map(&:symbolize_keys)
