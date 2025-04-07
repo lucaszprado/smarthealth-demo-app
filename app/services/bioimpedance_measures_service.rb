@@ -27,7 +27,7 @@ class BioimpedanceMeasuresService
         #
         #.transform_values(&:presence) = .transform_values{|v|v.presence}
         # presence is a Rails method that:
-        # Returns the value if it’s not blank
+        # Returns the value if it's not blank
         # Returns nil if it's blank
 
         # Reading data to create source and prepare source_params to SourceCreatorService
@@ -38,7 +38,7 @@ class BioimpedanceMeasuresService
 
         # Define age to create BiomarkersRanges
         date = Time.at(row_data["date"].to_i).to_date
-        age = ((date - human.birthdate)/365.25).floor
+        age = calculate_age(human.birthdate, date)
 
         # Create Measure
         Measure.create!(
@@ -51,21 +51,45 @@ class BioimpedanceMeasuresService
           date: Time.at(row_data["date"].to_i)
         )
 
-        # Create BiomarkersRange
-        BiomarkersRange.create!(
-          biomarker_id: row_data["biomarker_id"],
-          gender: human.gender,
-          age: age,
-          possible_min_value: row["common_min"].nil? ? nil : row["common_min"].to_f,
-          possible_max_value: row["common_max"].nil? ? nil : row["common_max"].to_f,
-          optimal_min_value: row["optimal_min"].nil? ? nil : row["optimal_min"].to_f,
-          optimal_max_value: row["optimal_max"].nil? ? nil : row["optimal_max"].to_f
-        )
+        # Prepare potential range values from the current row first
+        possible_min = row_data["common_min"].nil? ? nil : row_data["common_min"].to_f
+        possible_max = row_data["common_max"].nil? ? nil : row_data["common_max"].to_f
+        optimal_min = row_data["optimal_min"].nil? ? nil : row_data["optimal_min"].to_f
+        optimal_max = row_data["optimal_max"].nil? ? nil : row_data["optimal_max"].to_f
+
+        # Only proceed if the current row actually has range data
+        if possible_min.present? || possible_max.present?
+          # Check if an identical range record already exists
+          existing_range = BiomarkersRange.find_by(
+            biomarker_id: row_data["biomarker_id"],
+            gender: human.gender,
+            age: age,
+            possible_min_value: possible_min, # Check against extracted value
+            possible_max_value: possible_max  # Check against extracted value
+          )
+
+          # Create only if no identical record exists
+          unless existing_range
+            BiomarkersRange.create!(
+              biomarker_id: row_data["biomarker_id"],
+              gender: human.gender,
+              age: age,
+              possible_min_value: possible_min,
+              possible_max_value: possible_max,
+              optimal_min_value: optimal_min, # Use prepared optimal values
+              optimal_max_value: optimal_max  # Use prepared optimal values
+            )
+          end
+        end
       rescue StandardError => e
         result[:errors] << "Row #{index + 2} : #{e.message}"
         raise ActiveRecord::Rollback
       end
     end
     result
+  end
+
+  def self.calculate_age(birthdate, date)
+    ((date - birthdate) / 365.25).floor
   end
 end

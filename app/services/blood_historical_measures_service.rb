@@ -16,7 +16,7 @@ class BloodHistoricalMeasuresService
         #
         #.transform_values(&:presence) = .transform_values{|v|v.presence}
         # presence is a Rails method that:
-        # Returns the value if it’s not blank
+        # Returns the value if it's not blank
         # Returns nil if it's blank
 
         begin
@@ -58,14 +58,32 @@ class BloodHistoricalMeasuresService
             date: measure_date
           )
 
-          # Create the associated biomarker range record
-          BiomarkersRange.create!(
-            biomarker_id: row_data["biomarker_id"],
-            gender: row_data["gender"],
-            age: row_data["age"],
-            possible_min_value: row_data["possible_min_value"].present? ? row_data["possible_min_value"].to_f : nil,
-            possible_max_value: row_data["possible_max_value"].present? ? row_data["possible_max_value"].to_f : nil,
-          )
+          # Prepare potential range values from the current row first
+          possible_min = row_data["possible_min_value"].present? ? row_data["possible_min_value"].to_f : nil
+          possible_max = row_data["possible_max_value"].present? ? row_data["possible_max_value"].to_f : nil
+
+          # Only proceed if the current row actually has range data
+          if possible_min.present? || possible_max.present?
+            # Check if an identical range record already exists
+            existing_range = BiomarkersRange.find_by(
+              biomarker_id: row_data["biomarker_id"],
+              gender: row_data["gender"],
+              age: row_data["age"],
+              possible_min_value: possible_min, # Check against extracted value
+              possible_max_value: possible_max  # Check against extracted value
+            )
+
+            # Create only if no identical record exists
+            unless existing_range
+              BiomarkersRange.create!(
+                biomarker_id: row_data["biomarker_id"],
+                gender: row_data["gender"],
+                age: row_data["age"],
+                possible_min_value: possible_min,
+                possible_max_value: possible_max
+              )
+            end
+          end
 
           result[:success_count] += 1
 
