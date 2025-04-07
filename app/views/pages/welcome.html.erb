@@ -1,0 +1,35 @@
+<div class="Welcome">
+  <header class="Welcome-header">
+    <div class="Welcome-headerGreeting">Welcome, User!</div>
+    <nav class="Welcome-headerNav">
+      <%= link_to "#", class: "Welcome-headerLink" do %>
+        <i class="fas fa-user"></i> Profile
+      <% end %>
+      <%= link_to "#", class: "Welcome-headerLink" do %>
+        <i class="fas fa-credit-card"></i> Payment
+      <% end %>
+    </nav>
+  </header>
+
+  <main class="Welcome-main">
+    <div class="Welcome-buttonContainer">
+      <%# Placeholder URLs. Replace with actual paths like human_biomarkers_path(@human, type: 'blood') once user context is available %>
+      <%= link_to "#", class: "Welcome-button Welcome-button--blood" do %>
+        <i class="fas fa-vial"></i>
+        <span>Blood</span>
+      <% end %>
+
+      <%= link_to "#", class: "Welcome-button Welcome-button--body" do %>
+        <i class="fas fa-weight-scale"></i>
+        <span>Body Composition</span>
+      <% end %>
+
+      <%= link_to "#", class: "Welcome-button Welcome-button--imaging" do %>
+        <i class="fas fa-x-ray"></i>
+        <span>Imaging Reports</span>
+      <% end %>
+    </div>
+  </main>
+
+  <%# You might have a footer here if needed %>
+</div> 

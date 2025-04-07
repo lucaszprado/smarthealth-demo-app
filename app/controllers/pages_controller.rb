@@ -14,4 +14,9 @@ class PagesController < ApplicationController
 
   def about
   end
+
+ 
+  def welcome
+    # Renders app/views/pages/welcome.html.erb using the default application layout
+  end
 end
