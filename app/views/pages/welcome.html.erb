@@ -1,0 +1,39 @@
+<!-- Stores the block in variable in a hash under the key :navbar_top -->
+<!-- This hash can be acessed later on during the rendering process by calling yield :navbar_top -->
+<% content_for :navbar_top do %>
+  <%= render 'shared/navbar_top', locals: {human: Human.find(3)} %>
+<% end %>
+
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+      <div class="u-flexColumn">
+        <main class="">
+          <section class="ButtonsTriangle">
+            <!-- Example circular buttons -->
+            <!-- Replace `#` with your actual links or logic -->
+            <button class="CircleButtonKey" aria-label="Check-ups">
+              <i class=" CircleButtonKey-icon fa-solid fa-droplet fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary"> Sangue </span>
+            </button>
+
+            <button class="CircleButtonKey" aria-label="Vitamins">
+              <i class="CircleButtonKey-icon fa-solid fa-circle-radiation fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary"> Imagens </span>
+            </button>
+
+            <button class="CircleButtonKey" aria-label="More Health Data">
+              <i class="CircleButtonKey-icon fa-solid fa-weight-scale fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary u-textMargin--noMargin"> Composição corporal </span>
+            </button>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Bottom Nav -->
+<% content_for :navbar_bottom do %>
+  <%= render 'shared/navbar_bottom' %>
+<% end %>

@@ -1,32 +1,118 @@
-.navbar-lewagon {
+.NavbarTop {
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 4rem;
   justify-content: space-between;
   background: white;
-  padding-bottom: 0.5rem;
-  height: 6rem; // Comment when you have a logo
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 10rem;
+.NavbarTop-title {
+  font-size: 2rem;
+  margin: 0;
 }
 
-.nav-item.dropdown .dropdown-toggle {
+.NavbarTop-menuButton {
+  background: none;
+  border: none;
+  color: #333;
   cursor: pointer;
+
+  &:hover {
+    color: #666;
+  }
 }
 
-// Push the content down in all the pages where we have a navbar
-.has-navbar {
-  padding-top: 6rem;
+// =====
+.NavbarBottom {
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+
+  // Bootstrap class
+  // Provides the base container styling for a navigation bar.
+
+  // It sets up key features such as background color, padding, and overall layout rules
+  // that are consistent across the entire navigation header.
+  @extend .navbar;
+
+  // Bootstrap class
+  // Fixes an element to the bottom of the viewport
+  // It stays in place even when the page is scrolled
+  @extend .fixed-bottom;
 }
 
-// Adjusting NavBar Width for Mobile devices / Breakpoint: 768px
-@media (max-width: 768px) {
-  .navbar-lewagon .navbar-brand img {
-    width: 5rem;
+.NavbarBottom-nav {
+  // Bootstrap class
+  // Typically applied to an unordered list (<ul>) inside the navbar.
+  // It formats the list so that its child elements (usually navigation links or buttons marked with the class nav-item and nav-link) are styled appropriately.
+  @extend .navbar-nav;
+}
+
+.NavbarBottom-item {
+  // Bootstrap class
+  // Represents an individual navigation item (often a list item wrapping a link) within a navigation group.
+  // It applies consistent spacing and styling rules to each navigation item.
+  @extend .nav-item;
+}
+
+.NavbarBottom-link {
+  // Bootstrap class
+  // Styles a hyperlink within the navigation to match the navbar’s theme and spacing.
+  // The nav-link class is meant to be applied to anchor (<a>) elements within a navigation bar.
+  @extend .nav-link;
+}
+
+
+
+// OK WelcomePage-bottomNav -> NavbarBottom
+
+// OK u-justifyContentAround -> .u-flex--justifyEvenly [Layouts]
+
+// Ok u-flexRow -> .u-flex--row [Layouts]
+
+// Bootstrap class: Used for creating responsive navigation headers
+// Ok navbar -> NavbarBottom
+
+// Bootstrap class: Fixes an element (like a navbar) to the bottom of the viewport.
+// Ok fixed-bottom -> NavbarBottom
+
+// Bootstrap class: Styles the navbar for use with light background colors.
+// [Aborted] navbar-light
+
+// Bootstrap: Applies a light background color.
+// [Aborted] bg-light
+
+// Bootstrap class: Used to contain and style a set of navigation links in a navbar.
+// Ok navbar-nav -> .NavbarBottom
+
+// Bootstrap class: w-100: Sets the element's width to 100% (a built‑in Bootstrap utility).
+// Ok w-100 -> .u-child--w100 [Layout]
+
+// Bootstrap class: Styles an individual navigation item
+// Ok nav-item -> .NavbarBottom-item
+
+// Bootstrap class: Styles links inside a navbar.
+// OK nav-link -> .NavbarBottom-link
+
+// Bootstrap class: Centers text horizontally
+// Ok text-center -> .u-textAlign--center
+
+
+
+
+
+
+@media (min-width: 768px) {
+  .NavbarTop {
+    height: 6rem; // Comment when you have a logo
   }
-  .navbar-lewagon {
-    height: 4rem; // Comment when you have a logo
+  .has-navbar-top {
+    padding-top: 6rem;
   }
-  .has-navbar {
-    padding-top: 3rem;
+
+  .has-navbar-bottom {
+    padding-bottom: 6rem;
   }
 }
