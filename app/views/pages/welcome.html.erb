@@ -1,35 +1,39 @@
-<div class="Welcome">
-  <header class="Welcome-header">
-    <div class="Welcome-headerGreeting">Welcome, User!</div>
-    <nav class="Welcome-headerNav">
-      <%= link_to "#", class: "Welcome-headerLink" do %>
-        <i class="fas fa-user"></i> Profile
-      <% end %>
-      <%= link_to "#", class: "Welcome-headerLink" do %>
-        <i class="fas fa-credit-card"></i> Payment
-      <% end %>
-    </nav>
-  </header>
+<!-- Stores the block in variable in a hash under the key :navbar_top -->
+<!-- This hash can be acessed later on during the rendering process by calling yield :navbar_top -->
+<% content_for :navbar_top do %>
+  <%= render 'shared/navbar_top', locals: {human: Human.find(3)} %>
+<% end %>
 
-  <main class="Welcome-main">
-    <div class="Welcome-buttonContainer">
-      <%# Placeholder URLs. Replace with actual paths like human_biomarkers_path(@human, type: 'blood') once user context is available %>
-      <%= link_to "#", class: "Welcome-button Welcome-button--blood" do %>
-        <i class="fas fa-vial"></i>
-        <span>Blood</span>
-      <% end %>
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+      <div class="u-flexColumn">
+        <main class="">
+          <section class="ButtonsTriangle">
+            <!-- Example circular buttons -->
+            <!-- Replace `#` with your actual links or logic -->
+            <button class="CircleButtonKey" aria-label="Check-ups">
+              <i class=" CircleButtonKey-icon fa-solid fa-droplet fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary"> Sangue </span>
+            </button>
 
-      <%= link_to "#", class: "Welcome-button Welcome-button--body" do %>
-        <i class="fas fa-weight-scale"></i>
-        <span>Body Composition</span>
-      <% end %>
+            <button class="CircleButtonKey" aria-label="Vitamins">
+              <i class="CircleButtonKey-icon fa-solid fa-circle-radiation fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary"> Imagens </span>
+            </button>
 
-      <%= link_to "#", class: "Welcome-button Welcome-button--imaging" do %>
-        <i class="fas fa-x-ray"></i>
-        <span>Imaging Reports</span>
-      <% end %>
+            <button class="CircleButtonKey" aria-label="More Health Data">
+              <i class="CircleButtonKey-icon fa-solid fa-weight-scale fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary u-textMargin--noMargin"> Composição corporal </span>
+            </button>
+          </section>
+        </main>
+      </div>
     </div>
-  </main>
+  </div>
+</div>
 
-  <%# You might have a footer here if needed %>
-</div> 
+ <!-- Bottom Nav -->
+<% content_for :navbar_bottom do %>
+  <%= render 'shared/navbar_bottom' %>
+<% end %>

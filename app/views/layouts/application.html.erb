@@ -34,12 +34,13 @@
 
   </head>
 
-  <body class="<%= content_for?(:navbar) ? 'has-navbar' : '' %>">
+  <body class="<%= content_for?(:navbar_top) ? 'has-navbar-top' : '' %> <%= content_for?("navbar_bottom") ? 'has-navbar-bottom' : '' %>">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield :navbar %>
+    <%= yield :navbar_top %>
+    <!--%= yield :navbar_bottom %-->
+    <!-- Uncoment to add the bottom navbar -->
     <%= yield %>
-
   </body>
 
 </html>

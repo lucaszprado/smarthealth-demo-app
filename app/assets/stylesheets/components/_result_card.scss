@@ -72,7 +72,7 @@
     background-color: var(--Primary, #F5F5F5);
   }
 
-  // Elements inside ResultCard that will be adjusted from a min-width: 576px (large devices)
+  // Elements inside ResultCard that will be adjusted from a min-width: 768px (large devices)
   @media (min-width: 768px) {
 
     i {

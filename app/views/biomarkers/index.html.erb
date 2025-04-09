@@ -1,5 +1,7 @@
-<% content_for :navbar do %>
-  <%= render 'shared/navbar', locals: {human: @human} %>
+<!-- Stores the block in variable in a hash under the key :navbar_top -->
+<!-- This hash can be acessed later on during the rendering process by calling yield :navbar_top -->
+<% content_for :navbar_top do %>
+  <%= render 'shared/navbar_top', locals: {human: @human} %>
 <% end %>
 
 <div class="container">

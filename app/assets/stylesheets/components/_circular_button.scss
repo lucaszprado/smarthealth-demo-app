@@ -1,0 +1,35 @@
+// Reusable circular button -> To be added on component
+.CircleButtonKey {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border: none;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  line-height: 0.7rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  // Example hover
+  &:hover {
+    background-color: $background-color;
+  }
+}
+
+
+.CircleButtonKey-icon {
+  color: $icon-gray; // Icon color
+}
+
+
+@media (min-width: 768px) {
+  .WelcomePage-buttonsTriangle .CircleButtonKey  {
+  // Gets only the CircleButtonKey inside the WelcomePage-buttonsTriangle -> Descendant selectors
+    width: 10rem;
+    height: 10rem;
+  }
+}

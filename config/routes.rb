@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "about", to: "pages#about"
   get "/welcome", to: "pages#welcome"
+  get "/welcome_draft", to:"pages#welcome_draft"
 
   namespace :api do
     namespace :v1 do
