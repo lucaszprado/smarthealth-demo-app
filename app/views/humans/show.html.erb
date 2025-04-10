@@ -1,26 +1,39 @@
-<h1> Our first Human 🚀</h1>
-<div>
-  <ul>
-    <% @human_biomarkers.each do |biomarker_id, biomarker_serie| %>
-      <li>
-        Biomarker: <%= Biomarker.find(biomarker_id).name %>
-        <ol>
-          <% biomarker_serie.each do |date, value|%>
-            <li> <%= date %> = <%= value %> </li>
-          <% end %>
-            <%= line_chart(
-              biomarker_serie,
-              width: "70rem",
-              height: "30rem",
-              dataset: {
-                label: 'Filled',
-                backgroundColor: "#b033",
-                borderColor: "#b033",
-                fill: true,
-                }
-            )%>
-        </ol>
-      </li>
-    <% end %>
-  </ul>
+<!-- Stores the block in variable in a hash under the key :navbar_top -->
+<!-- This hash can be acessed later on during the rendering process by calling yield :navbar_top -->
+<% content_for :navbar_top do %>
+  <%= render 'shared/navbar_top', locals: {human: @human} %>
+<% end %>
+
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+      <div class="u-flexColumn">
+        <main class="">
+          <section class="ButtonsTriangle">
+            <!-- Example circular buttons -->
+            <!-- Replace `#` with your actual links or logic -->
+            <%= link_to human_biomarkers_path(@human), class: "CircleButtonKey", aria: {label: "Blood"} do %>
+                <i class=" CircleButtonKey-icon fa-solid fa-droplet fa-2x mb-2"></i>
+                <span class="u-fontSizeVW--secondary"> Sangue </span>
+            <% end %>
+
+            <%= link_to human_imaging_reports_path(@human), class: "CircleButtonKey", aria: {label: "Image"} do %>
+              <i class="CircleButtonKey-icon fa-solid fa-circle-radiation fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary"> Imagens </span>
+            <% end %>
+
+            <%= link_to "#", class: "CircleButtonKey", aria: {label: "Bioimpedance"} do %>
+              <i class="CircleButtonKey-icon fa-solid fa-weight-scale fa-2x mb-2"></i>
+              <span class="u-fontSizeVW--secondary u-textMargin--noMargin"> Composição Corporal </span>
+            <% end %>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
 </div>
+
+ <!-- Bottom Nav -->
+<% content_for :navbar_bottom do %>
+  <%= render 'shared/navbar_bottom' %>
+<% end %>

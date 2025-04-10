@@ -19,3 +19,24 @@
   margin-left: 0.3rem;
 }
 
+.u-buttonEffects--boxShadow {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1),
+              0px 4px 10px rgba(0, 0, 0, 0.05);
+  // Two level blur: main and secondary
+  // Both have only vertical shift. Main shadow has a very soft, spread-out shadow.
+  // And Secondary has a smaller and sharper shadow but barely visible.
+  transform: translateY(-2px);
+}
+.u-buttonEffects--hover {
+  transition: all 0.2s ease-in-out;
+  // Transition makes the effect (to hover state) smooth and natural instead of happening instantly.
+  // all → Applies the transition to all properties (shadow + transform). We can select a specif property if we want.
+  // 0.2s → The effect takes 0.2 seconds (fast but visible).
+  // ease-in-out → The animation starts slow, speeds up, and slows down again at the end.
+
+  &:hover {
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15), 0px 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    // This property moves the button upwards by 2 pixels when hovered => pressable, floating effect
+  }
+}

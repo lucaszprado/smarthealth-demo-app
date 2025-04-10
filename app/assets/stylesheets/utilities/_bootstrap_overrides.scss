@@ -1,0 +1,33 @@
+
+// = Font Awesome =
+// == Icon size utilities ==
+.u-iconSize--xs {
+  @extend .fa-xs;
+  // Extra small, 0.75 times the standard size.
+}
+
+.u-iconSize--sm {
+  @extend .fa-sm;
+  // Small, 0.875 times the standard size.
+}
+
+.u-iconSize--lg {
+  @extend .fa-lg;
+  // Large, 1.33 times the standard size.
+}
+
+.u-iconSize--2x {
+  @extend .fa-2x;
+  // 2 times the standard size.
+}
+
+.u-iconSize--3x {
+  @extend .fa-3x;
+  // 3 times the standard size.
+}
+
+
+
+
+
+
