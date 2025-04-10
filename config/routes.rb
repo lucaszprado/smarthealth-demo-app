@@ -23,29 +23,29 @@ Rails.application.routes.draw do
         resources :imaging_reports, only: [:create]
         resources :bioimpedance_measures, only: [:create]
         resources :blood_measures, only: [:create]
-
-        post :get_human_measures, on: :member  # POST /api/v1/humans/:id/get_human_measures
-        # It's an endpoint nested under human. It's a Post because it's a POST request to upload the file.
-        post :upload_bioimpedance, on: :member
-        # humans is the resource
-        # :id is the dynamic segment that refers to the current human (the member)
-        # upload_bioimpedance is a custom action on that member
-        # This is the behavior when you create a memver route
-
-
-
-        post :upload_imaging_report, on: :member
-
       end
     end
   end
 
   resources :humans, only: [:show] do
-    resources :biomarkers, only: [:index, :show] do #{only => [:index, :show]} || Chamando uma funcao resources e de argumento passando uma string e um hash.
-    #another syntax: resources("biomarkers", {"only" => ["index", "show"]}) || resources("biomarkers") --> Hash is a change argument for the function.
-      get 'search', on: :collection
+    resources :biomarkers, only: [:index, :show] do
+      get 'search', on: :collection, to: 'biomarkers#search'
+
+      get 'blood', on: :collection, to: 'biomarkers#blood'
+      get 'blood/search', on: :collection, to: 'biomarkers#blood_search'
+
+
+      # get 'blood', on: :collection, to: 'biomarkers#blood' do
+      #   get 'search', on: :collection, to: 'biomarkers#blood_search'
+      # end
+
+      get 'bioimpedance', on: :collection do
+        get 'search', on: :collection, to: 'biomarkers#bioimpedance_search'
+      end
+
       resources :measures, only: [:index]
     end
+
     resources :imaging_reports, only: [:index, :show] # url_helper: human_imaging_report_path(human_id: @human.id, id: @imaging_report.id)
   end
 end

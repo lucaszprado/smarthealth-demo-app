@@ -43,13 +43,18 @@ class Biomarker < ApplicationRecord
 
   # Build ActiveRecord collection of measures with the latest measure per biomarker,
   # Build the Inner Query to select the latest measure per biomarker,
-  def self.with_last_measure_for_human(human_id, birthdate, gender)
+  # human_id: 1
+  # birthdate: '1990-01-01'
+  # gender: 'M'
+  # source_type_names: ['Blood', 'Bioimpedance']
+  def self.last_measure_by_source(human_id, birthdate, gender, source_type_names)
     calculated_age_sql = "FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))"
 
     inner_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
       .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
       .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # includes are often best placed on the final query if possible, but might be needed here depending on usage.
       .where(sources: {human_id: human_id})
+      .where(source_types: {name: source_type_names})
       .where("(unit_factors.biomarker_id = measures.biomarker_id AND unit_factors.unit_id = measures.unit_id) OR unit_factors.id IS NULL")
       # Allow records even if unit_factor doesn't exist
       .where("(biomarkers_ranges.biomarker_id = biomarkers.id AND biomarkers_ranges.age = #{calculated_age_sql} AND biomarkers_ranges.gender = ?) OR biomarkers_ranges.id IS NULL", birthdate, gender)
@@ -68,11 +73,16 @@ class Biomarker < ApplicationRecord
         biomarkers_ranges.possible_max_value / unit_factors.factor AS same_unit_original_value_possible_max_value,
         source_types.name AS source_type_name
       SQL
-      # Order strictly for DISTINCT ON correctness
-      .order(Arel.sql("measures.biomarker_id, measures.date DESC"))
-       # -> CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END, synonyms.id DESC => Do we really need this?
+      #
+      # Order strictly for DISTINCT
+      # Order must have the same parameters as DISTINCT ON
+      .order(Arel.sql("measures.biomarker_id,
+                      measures.date DESC,
+                      CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END,
+                      synonyms.id DESC"))
 
-    # 2. Build the Outer Query to apply the final sorting on display_name
+
+    # Build the Outer Query to apply the final sorting on display_name
     # COLLATE \"pt_BR.UTF-8\" to treat Portuguese characters correctly
     # The alias 'biomarkers' allows referring to columns from the inner query.
     final_query = Biomarker.from(inner_query, :biomarkers)
@@ -87,13 +97,14 @@ class Biomarker < ApplicationRecord
     return results
   end
 
-  def self.search_for_human(human_id, birthdate, gender, query)
+  def self.search_last_measure_by_source(human_id, birthdate, gender, query, source_type_names)
     calculated_age_sql = "FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))"
 
     inner_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
       .left_joins(:biomarkers_ranges, :unit_factors, :synonyms, measures: [:unit, source: :source_type])
-      .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]]) # includes are often best placed on the final query if possible, but might be needed here depending on usage.
+      .includes(:biomarkers_ranges, :synonyms, :unit_factors, measures: [:unit, source: [:source_type, :health_professional, :health_provider]])
       .where(sources: {human_id: human_id})
+      .where(source_types: {name: source_type_names})
       # Allow records even if unit_factor doesn't exist
       .where("(unit_factors.biomarker_id = measures.biomarker_id AND unit_factors.unit_id = measures.unit_id) OR unit_factors.id IS NULL")
       # Allow records even if biomarker_range doesn't exist for the specific age/gender
@@ -119,7 +130,10 @@ class Biomarker < ApplicationRecord
         source_types.name AS source_type_name
       SQL
       # Order strictly for DISTINCT ON correctness
-      .order(Arel.sql("measures.biomarker_id, measures.date DESC, CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END, synonyms.id DESC"))
+      .order(Arel.sql("measures.biomarker_id,
+                      measures.date DESC,
+                      CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END,
+                      synonyms.id DESC"))
 
    # 2. Build the Outer Query to apply the final sorting on display_name
     # COLLATE \"pt_BR.UTF-8\" to treat Portuguese characters correctly
