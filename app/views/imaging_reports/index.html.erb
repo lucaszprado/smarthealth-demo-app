@@ -2,31 +2,32 @@
   <div class="row justify-content-center">
     <div class="col-12 col-lg-9">
       <!-- Back button -->
-      <%= link_to human_path(@human.id), class: "CircleButtonNavigation" do %>
-        <i class="CircleButtonNavigation-icon fa-solid fa-arrow-left u-iconSize--lg"></i>
-      <% end %>
-      <!-- Search bar -->
-      <div data-controller="refresh-list">
-        <div class="SearchBar-container">
-          <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
-            <div class="SearchBar-inputWrapper">
-              <%= f.text_field :query,
-                                class: "SearchBar-input",
-                                placeholder: 'Parte corporal, exame ou laudo',
-                                value: params[:query],
-                                data: {
-                                      refresh_list_target: 'searchInput',
-                                      action: "keyup->refresh-list#update"
-                                }
-              %>
-              <span class="SearchBar-icon">
-                <i class="fa fa-search SearchBar-iconElement"></i>
-              </span>
-            </div>
+      <div data-controller='refresh-list'>
+        <div class="FixedHeader pb-4">
+          <%= link_to human_path(@human.id), class: "CircleButtonNavigation mb-4" do %>
+            <i class="CircleButtonNavigation-icon fa-solid fa-arrow-left u-iconSize--lg"></i>
           <% end %>
+          <!-- Search bar -->
+              <div class="SearchBar u-child--w100">
+                <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
+                  <div class="SearchBar-inputWrapper">
+                    <%= f.text_field :query,
+                                      class: "SearchBar-input",
+                                      placeholder:'Parte corporal, exame ou laudo',
+                                      value: params[:query],
+                                      data: {
+                                            refresh_list_target:'searchInput',
+                                            action: "keyup->refresh-list#update"
+                                      }
+                    %>
+                    <span class="SearchBar-icon">
+                      <i class="fa fa-search SearchBar-iconElement"></i>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
         </div>
-
-        <!-- Biomarkers list -->
+          <!-- Biomarkers list -->
         <div data-refresh-list-target="list">
           <% @imaging_reports.each do |imaging_report| %>
             <!-- Result Card -->

@@ -2,30 +2,31 @@
   <div class="row justify-content-center">
     <div class="col-12 col-lg-9">
       <!-- Back button -->
-      <%= link_to human_path(@human.id), class: "CircleButtonNavigation" do %>
-        <i class="CircleButtonNavigation-icon fa-solid fa-arrow-left u-iconSize--lg"></i>
-      <% end %>
-      <!-- Search bar -->
       <div data-controller='refresh-list'>
-        <div class="SearchBar-container">
-            <%= form_with url: search_human_biomarkers_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
-              <div class="SearchBar-inputWrapper">
-                <%= f.text_field :query,
-                                  class: "SearchBar-input",
-                                  placeholder:"Digite um biomarcador",
-                                  value: params[:query],
-                                  data: {
-                                        refresh_list_target:'searchInput',
-                                        action: "keyup->refresh-list#update"
-                                  }
-                %>
-                <span class="SearchBar-icon">
-                  <i class="fa fa-search SearchBar-iconElement"></i>
-                </span>
+        <div class="FixedHeader pb-4">
+          <%= link_to human_path(@human.id), class: "CircleButtonNavigation mb-4" do %>
+            <i class="CircleButtonNavigation-icon fa-solid fa-arrow-left u-iconSize--lg"></i>
+          <% end %>
+          <!-- Search bar -->
+              <div class="SearchBar u-child--w100">
+                <%= form_with url: search_human_biomarkers_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
+                  <div class="SearchBar-inputWrapper">
+                    <%= f.text_field :query,
+                                      class: "SearchBar-input",
+                                      placeholder:"Digite um biomarcador",
+                                      value: params[:query],
+                                      data: {
+                                            refresh_list_target:'searchInput',
+                                            action: "keyup->refresh-list#update"
+                                      }
+                    %>
+                    <span class="SearchBar-icon">
+                      <i class="fa fa-search SearchBar-iconElement"></i>
+                    </span>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
         </div>
-
         <!-- Biomarkers list -->
         <div data-refresh-list-target='list'>
           <% @biomarkers.each do |biomarker| %>

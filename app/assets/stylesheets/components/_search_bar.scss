@@ -1,9 +1,6 @@
-.SearchBar-container {
-  position: sticky;
-  top: 3.5rem; /* Adjust this value according to your navbar height */
-  z-index: 1020; /* Ensures it stays above other elements */ /* Match your page background */
-  padding: 1rem 0;
-  background: $light-gray;
+// Class reserved for any high level styling of the search bar
+.SearchBar {
+
 }
 
 /* Element: Input Wrapper */
@@ -39,10 +36,10 @@
   cursor: pointer; /* Makes the icon clickable */
 }
 
-// Elements that will be adjusted from a min-width: 576px (large devices)
-@media (min-width: 768px) {
+// Elements that will be adjusted from a min-width: 768px (large devices)
+// @media (min-width: 768px) {
 
-  .SearchBar-container {
-    top: 6rem;
-  }
-}
+//   .SearchBar-container {
+//     top: 6rem;
+//   }
+// }

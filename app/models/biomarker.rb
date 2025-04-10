@@ -43,7 +43,7 @@ class Biomarker < ApplicationRecord
 
   # Build ActiveRecord collection of measures with the latest measure per biomarker,
   # Build the Inner Query to select the latest measure per biomarker,
-  def self.with_last_measure_for_human(human_id, birthdate, gender)  
+  def self.with_last_measure_for_human(human_id, birthdate, gender)
     calculated_age_sql = "FLOOR(DATE_PART('year', AGE(DATE(measures.date), ?)))"
 
     inner_query = joins(measures: {source: :human}) # Inner joins from biomarkers <- measures <- source <- human
@@ -69,7 +69,8 @@ class Biomarker < ApplicationRecord
         source_types.name AS source_type_name
       SQL
       # Order strictly for DISTINCT ON correctness
-      .order(Arel.sql("measures.biomarker_id, measures.date DESC, CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END, synonyms.id DESC"))
+      .order(Arel.sql("measures.biomarker_id, measures.date DESC"))
+       # -> CASE WHEN synonyms.language = 'PT' THEN 0 ELSE 1 END, synonyms.id DESC => Do we really need this?
 
     # 2. Build the Outer Query to apply the final sorting on display_name
     # COLLATE \"pt_BR.UTF-8\" to treat Portuguese characters correctly
@@ -103,7 +104,7 @@ class Biomarker < ApplicationRecord
               to_tsquery('portuguese', unaccent(:query))",
             query: query
           )
-      # 
+      #
       # When you use .select(...) explicitly, ActiveRecord only includes the specified columns.
       # Select necessary columns, calculate display_name
       .select(<<~SQL)
