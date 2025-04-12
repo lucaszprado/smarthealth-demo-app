@@ -34,14 +34,13 @@ Rails.application.routes.draw do
       get 'blood', on: :collection, to: 'biomarkers#blood'
       get 'blood/search', on: :collection, to: 'biomarkers#blood_search'
 
-
       # get 'blood', on: :collection, to: 'biomarkers#blood' do
       #   get 'search', on: :collection, to: 'biomarkers#blood_search'
       # end
 
-      get 'bioimpedance', on: :collection do
-        get 'search', on: :collection, to: 'biomarkers#bioimpedance_search'
-      end
+      get 'bioimpedance', on: :collection, to: 'biomarkers#bioimpedance'
+      get 'bioimpedance/search', on: :collection, to: 'biomarkers#bioimpedance_search'
+
 
       resources :measures, only: [:index]
     end

@@ -1,0 +1,18 @@
+<div class="SearchBar u-child--w100"> <!-- search_human_biomarkers_path(@human) -->
+  <%= form_with url: search_url , method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>
+    <div class="SearchBar-inputWrapper">
+      <%= f.text_field :query,
+                        class: "SearchBar-input",
+                        placeholder:"Digite um biomarcador",
+                        value: params[:query],
+                        data: {
+                              refresh_list_target:'searchInput',
+                              action: "keyup->refresh-list#update"
+                        }
+      %>
+      <span class="SearchBar-icon">
+        <i class="fa fa-search SearchBar-iconElement"></i>
+      </span>
+    </div>
+  <% end %>
+</div>

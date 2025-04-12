@@ -1,6 +1,7 @@
 class Source < ApplicationRecord
   belongs_to :human
   has_many :measures, dependent: :destroy
+  belongs_to :source_type, optional: true
 
   has_many :imaging_reports, dependent: :destroy
   # Deleting a source deletes its respective imaging_reports

@@ -6,6 +6,8 @@ class BiomarkersController < ApplicationController
     birthdate = @human.birthdate.strftime('%Y-%m-%d')
     gender = @human.gender
     @biomarkers = Biomarker.last_measure_by_source(@human.id, birthdate, gender, ['Blood'])
+    @search_url = blood_search_human_biomarkers_path(@human)
+    # Instance variable that defines the search_url for the search form -> Point to the blood_search action
     render :index
     # Render the same view as the index action
   end
@@ -15,6 +17,7 @@ class BiomarkersController < ApplicationController
     birthdate = @human.birthdate.strftime('%Y-%m-%d')
     gender = @human.gender
     @biomarkers = Biomarker.last_measure_by_source(@human.id, birthdate, gender, ['Bioimpedance'])
+    @search_url = bioimpedance_search_human_biomarkers_path(@human)
     render :index
   end
 
@@ -63,6 +66,7 @@ class BiomarkersController < ApplicationController
     birthdate = @human.birthdate.strftime('%Y-%m-%d')
     gender = @human.gender
     @biomarkers = Biomarker.last_measure_by_source(@human.id, birthdate, gender, ['Blood', 'Bioimpedance'])
+    @search_url = search_human_biomarkers_path(@human)
   end
 
   def search

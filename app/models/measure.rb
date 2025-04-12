@@ -47,7 +47,7 @@ class Measure < ApplicationRecord
 
 
 
-  # Queries all the required data for the controller send to the view
+  # Query the measures belonging to a human and a biomarker
   def self.process_biomarker_data(human, biomarker)
     most_recent_measure = most_recent(human, biomarker)
     return {} unless most_recent_measure
@@ -85,7 +85,8 @@ class Measure < ApplicationRecord
           band_type: upper_band_measures.values.first ? 1 : 0,
           gender: human.gender == "M" ? "Homem" : "Mulher",
           human_age: human.age_at_measure(last_date),
-          status: nil
+          status: nil,
+          source_type: most_recent_measure.source.source_type.name
         },
         measure_series: {
           measures_with_sources: converted_measures,
@@ -109,7 +110,8 @@ class Measure < ApplicationRecord
           band_type: upper_band_measures.values.first ? 1 : 0,
           gender: human.gender == "M" ? "Homem" : "Mulher",
           human_age: human.age_at_measure(last_date),
-          status: nil
+          status: nil,
+          source_type: most_recent_measure.source.source_type.name
         },
         measure_series: {
           measures_with_sources: converted_measures,
@@ -132,7 +134,8 @@ class Measure < ApplicationRecord
         gender: human.gender == "M" ? "Homem" : "Mulher",
         human_age: human.age_at_measure(last_date),
         status: converted_measures[last_date]&.first <= upper_band_measures[last_date] &&
-                converted_measures[last_date]&.first >= lower_band_measures[last_date] ? "green" : "yellow"
+                converted_measures[last_date]&.first >= lower_band_measures[last_date] ? "green" : "yellow",
+        source_type: most_recent_measure.source.source_type.name
       },
       measure_series: {
         measures_with_sources: converted_measures,

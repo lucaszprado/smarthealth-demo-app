@@ -20,9 +20,21 @@ module MeasuresHelper
   def measure_type(measure)
     if measure[:last_measure_attributes][:band_type] == 1
       render "measures/ranges", locals: measure_attributes(measure)
-   else
+    else
      render 'measures/non_ranges', locals: measure_attributes(measure)
-   end
+    end
+  end
+
+  # Defines the path for the back button humans/human_id/biomarkers/biomarker_id/measures based on the source type
+  def return_path_for_measure(source_type, human)
+    case source_type
+    when "Blood"
+      blood_human_biomarkers_path(human)
+    when "Bioimpedance"
+      bioimpedance_human_biomarkers_path(human)
+    else
+      human_biomarkers_path(human)
+    end
   end
 
   def measure_attributes(measure)
