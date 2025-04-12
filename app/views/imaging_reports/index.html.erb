@@ -4,9 +4,7 @@
       <!-- Back button -->
       <div data-controller='refresh-list'>
         <div class="FixedHeader pb-4">
-          <%= link_to human_path(@human.id), class: "CircleButtonNavigation mb-4" do %>
-            <i class="CircleButtonNavigation-icon fa-solid fa-arrow-left u-iconSize--lg"></i>
-          <% end %>
+          <%= render 'shared/back_button_top', path_helper: human_path(@human.id) %>
           <!-- Search bar -->
               <div class="SearchBar u-child--w100">
                 <%= form_with url: human_imaging_reports_path(@human), method: :get, html: { class: 'SearchBar-form', data: { refresh_list_target: 'form' } } do |f| %>

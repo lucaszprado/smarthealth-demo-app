@@ -2,9 +2,7 @@
   <div class = "row justify-content-center">
     <div class = "col-12 col-lg-9">
        <!-- Back button -->
-      <%= link_to return_path_for_measure(@measure_data[:last_measure_attributes][:source_type], @human), class: "CircleButtonNavigation mb-4 mt-2" do %>
-        <i class="CircleButtonNavigation-icon fa-solid fa-arrow-left u-iconSize--lg"></i>
-      <% end %>
+      <%= render 'shared/back_button_top', path_helper: return_path_for_measure(@measure_data[:last_measure_attributes][:source_type], @human) %>
 
       <!-- Biomarker name -->
       <h2> <%= @measure_data[:last_measure_attributes][:biomarker_title] %> </h2>
