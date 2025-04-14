@@ -7,10 +7,29 @@
   background: $light-gray
 }
 
+.u-background--greenWhatsapp{
+  background-color: $green-whatsapp;
+}
+
 .u-textColor--gray{
   color: $gray;
 }
 
+.u-textColor--white{
+  color: $white;
+}
+
+// Icons
+  // Icon Size
+.u-iconSize--imageLike {
+  font-size: 10rem;
+}
+ // Icon Color
+.u-iconColor--blueBrandSecondary {
+  color: $blue-brand-secondary;
+}
+
+// Status Indicator
 .u-statusIndicator--title{
   width: 1rem;
   height: 1rem;
