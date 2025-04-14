@@ -1,0 +1,6 @@
+<div data-refresh-list-target='list'>
+  <% @biomarkers.each do |biomarker| %>
+    <!-- Result Card -->
+      <%= render "shared/result_card", locals: result_card_attributes(@human, biomarker) %>
+  <% end %>
+</div>

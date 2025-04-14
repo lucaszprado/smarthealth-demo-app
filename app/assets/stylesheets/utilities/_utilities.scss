@@ -3,6 +3,7 @@
   color: inherit;
 }
 
+// Background Colors
 .u-background--lightGray {
   background: $light-gray
 }
@@ -11,6 +12,7 @@
   background-color: $green-whatsapp;
 }
 
+// Text Colors
 .u-textColor--gray{
   color: $gray;
 }
@@ -18,6 +20,11 @@
 .u-textColor--white{
   color: $white;
 }
+
+.u-textColor--blueBrandNight{
+  color: $blue-brand-night;
+}
+
 
 // Icons
   // Icon Size
@@ -27,6 +34,10 @@
  // Icon Color
 .u-iconColor--blueBrandSecondary {
   color: $blue-brand-secondary;
+}
+
+.u-iconColor--blueBrandNight {
+  color: $blue-brand-night;
 }
 
 // Status Indicator

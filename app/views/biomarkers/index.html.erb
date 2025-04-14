@@ -9,12 +9,7 @@
           <%= render 'search_form', search_url: @search_url %>
         </div>
         <!-- Biomarkers list -->
-        <div data-refresh-list-target='list'>
-          <% @biomarkers.each do |biomarker| %>
-            <!-- Result Card -->
-              <%= render "shared/result_card", locals: result_card_attributes(@human, biomarker) %>
-          <% end %>
-        </div>
+        <%= render partial: render_biomarkers_partial(@biomarkers), locals: { biomarkers: @biomarkers } %>
       </div>
     </div>
   </div>

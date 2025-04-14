@@ -13,18 +13,18 @@
             <!-- Example circular buttons -->
             <!-- Replace `#` with your actual links or logic -->
             <%= link_to blood_human_biomarkers_path(@human), class: "CircleButtonKey", aria: {label: "Blood"} do %>
-                <i class=" CircleButtonKey-icon fa-solid fa-droplet fa-2x mb-2"></i>
-                <span class="u-fontSizeVW--secondary"> Sangue </span>
+                <i class=" CircleButtonKey-icon fa-solid fa-droplet fa-2x u-iconColor--blueBrandSecondary mb-2"></i>
+                <span class="u-fontSizeVW--secondary u-textColor--blueBrandNight"> Sangue </span>
             <% end %>
 
             <%= link_to human_imaging_reports_path(@human), class: "CircleButtonKey", aria: {label: "Image"} do %>
-              <i class="CircleButtonKey-icon fa-solid fa-circle-radiation fa-2x mb-2"></i>
-              <span class="u-fontSizeVW--secondary"> Imagens </span>
+              <i class="CircleButtonKey-icon fa-solid fa-circle-radiation fa-2x u-iconColor--blueBrandSecondary mb-2"></i>
+              <span class="u-fontSizeVW--secondary u-textColor--blueBrandNight"> Imagens </span>
             <% end %>
 
             <%= link_to bioimpedance_human_biomarkers_path(@human), class: "CircleButtonKey", aria: {label: "Bioimpedance"} do %>
-              <i class="CircleButtonKey-icon fa-solid fa-weight-scale fa-2x mb-2"></i>
-              <span class="u-fontSizeVW--secondary u-textMargin--noMargin"> Composição Corporal </span>
+              <i class="CircleButtonKey-icon fa-solid fa-weight-scale fa-2x u-textColor--blueBrandNight u-iconColor--blueBrandSecondary mb-2"></i>
+              <span class="u-fontSizeVW--secondary u-textColor--blueBrandNight"> Composição Corporal </span>
             <% end %>
           </section>
         </main>

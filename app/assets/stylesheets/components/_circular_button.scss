@@ -6,8 +6,7 @@
   height: 7rem;
   border-radius: 50%;
   padding: 0.5rem;
-  background-color: #f8f9fa;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  //background-color: #f8f9fa;
   cursor: pointer;
   line-height: 0.7rem;
   display: flex;
@@ -15,13 +14,12 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: inherit;
   text-align: center;
   // CircleBUttonKey is applied to <a>, which is an inline element centered on left by default.
   }
 
 .CircleButtonKey-icon {
-  color: $icon-gray; // Icon color
+  color: $blue-brand-secondary; // Icon color
 }
 
 @media (min-width: 768px) {
