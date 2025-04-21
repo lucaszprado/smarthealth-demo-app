@@ -59,10 +59,12 @@ SUIT CSS methodology
 Bootstrap 5
 
 ## 📸 App Demo (Try It Yourself)
-To see how the data is organized and how users can interact with their data:
+**To see how the data is organized and how users can interact with their data:**
+
 👉 [My real profile](https://smarthealth-prod-a89f7e2c4ece.herokuapp.com/humans/34/)
 
-To see how the App gets data from the users:
+**To see how the App gets data from the users:**
+
 👉 [Demo Profile](https://smarthealth-prod-a89f7e2c4ece.herokuapp.com/humans/265/)
 
 Upload a sample exam (blood test, imaging report, or bioimpedance PDF)
