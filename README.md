@@ -37,3 +37,42 @@ app/
 docs/
 ├── llm_notes.md                      # Notes from LLM-assisted development
 ├── data_model.md                     # Explanation of schema and architecture
+
+```
+
+## 🛠️ Tech Stack
+
+Ruby on Rails 7
+
+PostgreSQL
+
+ActiveStorage (PDF uploads)
+
+ActiveAdmin
+
+StimulusJS
+
+Chart.js
+
+SUIT CSS methodology
+
+Bootstrap 5
+
+## 📸 App Demo (Try It Yourself)
+To see how the data is organized and how users can interact with their data:
+👉 [My real profile] (https://smarthealth-prod-a89f7e2c4ece.herokuapp.com/humans/34/)
+
+To see how the App gets data from the users:
+👉 [Demo Profile] (https://smarthealth-prod-a89f7e2c4ece.herokuapp.com/humans/265/)
+
+Upload a sample exam (blood test, imaging report, or bioimpedance PDF)
+The system will parse and display structured insights automatically
+
+Want a test file? Let me know — I’ll gladly send one.
+
+## 🚀 Next Steps / If I Had More Time
+Add user authentication
+
+Implement longitudinal analytics for health risk tracking
+
+Make the PDF parsing pipeline fully async with Sidekiq
